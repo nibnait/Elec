@@ -5,7 +5,7 @@ itheima国家电力系统（10天）
 ##day01 系统框架的搭建
 
 1.按条件查找的DAO：  
-要先有BaseQuery
+要先有BaseQuery、
 	buildWhere
 
 ##day02 运行监控
@@ -24,6 +24,7 @@ itheima国家电力系统（10天）
 	}
 ```
 
-4.**ckEditor+Ckfinder文本编辑器**
+4.**CKEditor+CKFinder文本编辑器**
 	(CkFinder	文件上传)   
 
+5.

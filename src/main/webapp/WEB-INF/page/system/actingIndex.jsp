@@ -9,6 +9,9 @@
 <script language="javascript" src="${pageContext.request.contextPath }/script/function.js"></script>
 <script language="javascript" src="${pageContext.request.contextPath }/script/limitedTextarea.js"></script>
 <script language="javascript" src="${pageContext.request.contextPath }/script/showText.js"></script>
+<script language="javascript" src="${pageContext.request.contextPath }/ckeditor/ckeditor.js"></script>
+<script language="javascript" src="${pageContext.request.contextPath }/ckfinder/ckfinder.js"></script>
+
   <script language="javascript"> 
   function checkchar(){
   
@@ -37,7 +40,7 @@
         devRun.draw();	
   }
   window.onload=function(){
-		checkTextAreaLen();
+		//checkTextAreaLen();
   }
   
   </script>
@@ -110,6 +113,9 @@
 			<td class="ta_01" bgcolor="#ffffff" style="word-break: break-all">
 	
 				<s:textarea name="stationRun" id="stationRun"   cssStyle="width: 500px; height: 160px; padding: 1;FONT-FAMILY: 宋体; FONT-SIZE: 9pt" onkeydown="if(event.keyCode==13)addEnter('stationRun');" />
+				<script type="text/javascript">
+					CKEDITOR.replace("stationRun",{ height: 200, width: 820 });
+				</script>
 			</td>
 			
 		</tr>
@@ -125,6 +131,10 @@
 			<input type="button" name="BT_Submit" value="保存" onclick="checkchar()" id="BT_Submit" style="font-size:12px; color:black; height=20;width=50">&nbsp;&nbsp;
 				<input style="font-size:12px; color:black; height=20;width=80" id="BT_Export" type="button" value="导出设置" name="BT_Export" 
 						 onclick="openWindow('${pageContext.request.contextPath }/system/exportExcel.jsp?belongTo=5-3','700','400')">&nbsp;&nbsp;
+				<script type="text/javascript">
+					CKEDITOR.replace("stationRun",{ height: 200, width: 820 });
+				</script>
+			
 			</td>
 		</tr>
 	</table>
