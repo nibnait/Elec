@@ -1,4 +1,4 @@
-package com.dcfun.elec.web.action;
+package com.dcfun.elec.base.action;
 
 import java.lang.reflect.ParameterizedType;
 

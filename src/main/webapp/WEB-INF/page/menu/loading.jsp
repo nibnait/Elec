@@ -80,7 +80,7 @@ BODY {SCROLLBAR-FACE-COLOR: #cccccc; SCROLLBAR-HIGHLIGHT-COLOR: #ffffFF; SCROLLB
 			    <fieldset id="stationset" style="width: 500px; height: 430px; padding: 1 background:${pageContext.request.contextPath }/images/back1.JPG"><legend>
 				    <font color="#0000FF">
 				    <img border="0" src="${pageContext.request.contextPath }/images/zoom.gif" width="14" height="14"><a href="#" onclick="shiftiframe('1')">站点运行情况</a></font></legend>
-					<IFRAME src="alermStation.jsp"  name="station" id="station" frameBorder="0" width="500" scrolling="auto" height="400"></IFRAME>	
+					<IFRAME src="elecMenuAction_alermStation.do"  name="station" id="station" frameBorder="0" width="500" scrolling="auto" height="400"></IFRAME>	
 					     
 			    </fieldset>
 			
@@ -90,7 +90,7 @@ BODY {SCROLLBAR-FACE-COLOR: #cccccc; SCROLLBAR-HIGHLIGHT-COLOR: #ffffFF; SCROLLB
 				<fieldset id="devset" style="width: 500px; height: 430px; padding: 1 background:${pageContext.request.contextPath }/images/back1.JPG"><legend>
 					<font color="#0000FF">
 					<img border="0" src="${pageContext.request.contextPath }/images/zoom.gif" width="14" height="14"><a href="#" onclick="shiftiframe('2')">设备运行情况</a></font></legend>
-	             	<IFRAME src="alermDevice.jsp"  name="dev" id="dev" frameBorder="0" width="500" scrolling="auto" height="400"></IFRAME>	
+	             	<IFRAME src="elecMenuAction_alermDevice.do"  name="dev" id="dev" frameBorder="0" width="500" scrolling="auto" height="400"></IFRAME>	
 				</fieldset>
 			</td>
 		</tr>

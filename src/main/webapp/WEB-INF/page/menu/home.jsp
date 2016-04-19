@@ -19,13 +19,21 @@ eval("document.location='"+action+"'");
 </SCRIPT>
 </HEAD>
 
-<FRAMESET border=0 frameSpacing=0 rows=82,* frameBorder=0 id="mainparent">
-<FRAME name=topFrame src="${pageContext.request.contextPath }/menu/title.jsp" noResize scrolling=no>
-<FRAMESET id="main" border="0" frameSpacing="0" frameBorder="0" cols="153,1%,*">
-<FRAME name="leftFrame" src="${pageContext.request.contextPath }/menu/left.jsp" noResize>
-<frame name="changeButton" src="${pageContext.request.contextPath }/menu/change.jsp" frameBorder=0 marginHeight=0 marginWidth=0 scrolling=no noresize>
-<FRAME name="mainFrame" src="${pageContext.request.contextPath }/menu/loading.jsp" >
-</FRAMESET>
+<FRAMESET border=0 frameSpacing=0 rows=82,* frameBorder=0
+	id="mainparent">
+	<FRAME name=topFrame
+		src="${pageContext.request.contextPath }/system/elecMenuAction_title.do" noResize
+		scrolling=no>
+	<FRAMESET id="main" border="0" frameSpacing="0" frameBorder="0"
+		cols="153,1%,*">
+		<FRAME name="leftFrame"
+			src="${pageContext.request.contextPath }/system/elecMenuAction_left.do" noResize>
+		<frame name="changeButton"
+			src="${pageContext.request.contextPath }/system/elecMenuAction_change.do"
+			frameBorder=0 marginHeight=0 marginWidth=0 scrolling=no noresize>
+		<FRAME name="mainFrame"
+			src="${pageContext.request.contextPath }/system/elecMenuAction_loading.do">
+	</FRAMESET>
 </FRAMESET>
 
 

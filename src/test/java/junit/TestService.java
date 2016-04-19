@@ -37,7 +37,7 @@ public class TestService {
 		elecText.setTextRemark("测试");
 		
 		
-		 elecTextService.findCollectionByConditionNoPage(elecText);
+//		elecTextService.findCollectionByConditionNoPage(elecText);
 	}
 
 }

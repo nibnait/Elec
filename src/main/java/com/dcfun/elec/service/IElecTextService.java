@@ -8,7 +8,4 @@ public interface IElecTextService {
 	
 	void saveElecText(ElecText elecText);
 
-	void findCollectionByConditionNoPage(ElecText elecText);
-	
-	
 }

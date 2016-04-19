@@ -24,17 +24,5 @@ public class ElecTextServiceImpl implements IElecTextService {
 		elecTextDao.save(elecText);
 	}
 
-	@Override
-	public void findCollectionByConditionNoPage(ElecText elecText) {
-
-//		String whereStr = buildWhere(elecText);
-		
-	}
-
-	private void buildWhere(ElecText elecText) {
-
-		
-	}
-	
 
 }

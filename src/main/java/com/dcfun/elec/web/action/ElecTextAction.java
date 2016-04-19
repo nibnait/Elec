@@ -5,6 +5,7 @@ import javax.annotation.Resource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.dcfun.elec.base.action.BaseAction;
 import com.dcfun.elec.domain.ElecText;
 import com.dcfun.elec.service.IElecTextService;
 

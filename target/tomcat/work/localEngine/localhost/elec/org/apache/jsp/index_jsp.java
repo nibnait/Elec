@@ -53,7 +53,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write('\r');
       out.write('\n');
       if (true) {
-        _jspx_page_context.forward("menu/index.jsp");
+        _jspx_page_context.forward("/WEB-INF/page/menu/index.jsp");
         return;
       }
       out.write('\r');

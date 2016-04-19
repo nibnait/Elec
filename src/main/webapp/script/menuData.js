@@ -130,7 +130,7 @@ var privilegeDate = [{
 			name:'运行监控',
 			icon:'../images/MenuIcon/daibanshiyi.gif',
 			target:'mainFrame',
-			url:'../system/actingIndex.jsp',
+			url:'../system/elecCommonMsgAction_home.do',
 			isParent:false
 		},{
 			mid:'aq',

@@ -119,7 +119,7 @@
 		</dependency>
 	</dependencies>
   <build>
-		<finalName>itheima1128elecMaven</finalName>
+		<finalName>elec</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>

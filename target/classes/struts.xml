@@ -7,14 +7,38 @@
 	<constant name="struts.devMode" value="true"></constant>
 	<!-- ui主题，简单主题 -->
 	<constant name="struts.ui.theme" value="simple"></constant>
-	<!-- 修改struts2的后缀 改成.do-->
+	<!-- 修改struts2的后缀 改成.do -->
 	<constant name="struts.action.extension" value="do"></constant>
-	
+
 	<!-- 系统管理 -->
 	<package name="system" namespace="/system" extends="struts-default">
 		<!-- 测试 -->
 		<action name="elecTextAction_*" class="elecTextAction" method="{1}">
 			<result name="save">/system/textAdd.jsp</result>
 		</action>
+		<!-- 系统登录 -->
+		<action name="elecMenuAction_*" class="elecMenuAction" method="{1}">
+			<result name="menuHome">/WEB-INF/page/menu/home.jsp</result>
+			<result name="title">/WEB-INF/page/menu/title.jsp</result>
+			<result name="left">/WEB-INF/page/menu/left.jsp</result>
+			<result name="change">/WEB-INF/page/menu/change.jsp</result>
+			<result name="loading">/WEB-INF/page/menu/loading.jsp</result>
+			<result name="logout" type="redirect">/index.jsp</result>
+
+			<result name="alermStation">/WEB-INF/page/menu/alermStation.jsp</result>
+			<result name="alermDevice">/WEB-INF/page/menu/alermDevice.jsp</result>
+		</action>
+
+
+		<!-- 运行监控 -->
+		<action name="elecCommonMsgAction_*" class="elecCommonMsgAction"
+			method="{1}">
+			<result name="home">/WEB-INF/page/system/actingIndex.jsp</result>
+			<result name="save" type="redirectAction">
+				<param name="actionName">elecCommonMsgAction_home.do</param>
+			</result>
+			<result name="actingView">/WEB-INF/page/system/actingView.jsp</result>
+		</action>
+
 	</package>
 </struts>
