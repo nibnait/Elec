@@ -1,0 +1,49 @@
+A:visited { 
+              color:"#003366"; text-decoration: none;
+          }
+A:active  { 
+              color:"#0033cc";text-decoration: none;
+          }
+A:hover   { 
+              color:"#ff0000";text-decoration: underline;
+          }
+A:link    { 
+              color:"#003399";text-decoration : none;
+          }
+BODY      {
+              FONT-FAMILY: 宋体; FONT-SIZE: 9pt;
+              SCROLLBAR-FACE-COLOR: #f6f6f6; FONT-SIZE: 9pt; 
+	      SCROLLBAR-HIGHLIGHT-COLOR: #ffffff; 
+	      SCROLLBAR-SHADOW-COLOR: #cccccc; 
+	      SCROLLBAR-3DLIGHT-COLOR: #cccccc; 
+	      SCROLLBAR-ARROW-COLOR: #330000;
+	      SCROLLBAR-TRACK-COLOR: #f6f6f6; 
+	      SCROLLBAR-DARKSHADOW-COLOR: #ffffff; 
+	   }
+TD         {  
+              FONT-FAMILY: 宋体; FONT-SIZE: 9pt;color:"#003366";
+           }
+DIV        {  
+              FONT-FAMILY: 宋体; FONT-SIZE: 9pt;
+           }
+FORM       {  
+              FONT-FAMILY: 宋体; FONT-SIZE: 9pt;
+           }
+OPTION     {  
+              FONT-FAMILY: 宋体; FONT-SIZE: 9pt;
+           }
+P          {
+              FONT-FAMILY:宋体 ; FONT-SIZE: 9pt;
+           }
+BR         {  
+              FONT-FAMILY: 宋体; FONT-SIZE: 9pt;
+           }
+INPUT      {  
+              FONT-FAMILY: 宋体; BORDER-TOP-WIDTH: 1px; PADDING-RIGHT: 1px; PADDING-LEFT: 1px; BORDER-LEFT-WIDTH: 1px; FONT-SIZE: 9pt; BORDER-LEFT-COLOR: #cccccc; BORDER-BOTTOM-WIDTH: 1px; BORDER-BOTTOM-COLOR: #cccccc; PADDING-BOTTOM: 1px; BORDER-TOP-COLOR: #cccccc; PADDING-TOP: 1px; BORDER-RIGHT-WIDTH: 1px; BORDER-RIGHT-COLOR: #cccccc
+           }
+textarea   {
+              border-width: 1; border-color: #000000; background-color: #FFFFFF; font-family: 宋体; font-size: 9pt;
+           }
+select     {
+              border-width: 1; border-color: #000000; font-family: 宋体; font-size: 9pt; font-style: bold;
+           }

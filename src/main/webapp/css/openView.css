@@ -1,0 +1,44 @@
+.highslide-html {
+    background-color: white;
+    border: 2px solid gray;
+}
+.highslide-html-content {
+	position: absolute;
+    display: none;
+    padding: 10px;
+}
+.highslide-loading {
+    display: block;
+	color: black;
+	font-size: 8pt;
+	font-family: sans-serif;
+	font-weight: bold;
+    text-decoration: none;
+	padding: 2px;
+	border: 1px solid black;
+    background-color: white; 
+}
+.control {
+	float: right;
+    display: block;
+    /*position: relative;*/
+	margin: 0 5px;
+	font-size: 9pt;
+	font-weight: bold;
+	text-decoration: none;
+	text-transform: uppercase;
+	color: #999;
+}
+.control:hover {
+	color: black !important;
+}
+.highslide-move {
+    cursor: move;
+}
+
+.highslide-display-block {
+    display: block;
+}
+.highslide-display-none {
+    display: none;
+}

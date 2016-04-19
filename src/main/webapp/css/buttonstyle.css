@@ -1,0 +1,6 @@
+.btn_mouseout {
+BORDER-RIGHT: #62A7D3 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #62A7D3 1px solid; PADDING-LEFT: 2px; FONT-SIZE: 12px; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#B6D9E4); BORDER-LEFT: #62A7D3 1px solid; CURSOR: hand; COLOR: black; PADDING-TOP: 2px; BORDER-BOTTOM: #62A7D3 1px solid
+}
+.btn_mouseover {
+BORDER-RIGHT: #62A7D3 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #62A7D3 1px solid; PADDING-LEFT: 2px; FONT-SIZE: 12px; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#DEF0FA); BORDER-LEFT: #62A7D3 1px solid; CURSOR: hand; COLOR: black; PADDING-TOP: 2px; BORDER-BOTTOM: #62A7D3 1px solid
+}

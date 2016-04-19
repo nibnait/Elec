@@ -1,0 +1,103 @@
+BODY { FONT-SIZE: 9pt }
+table { font-size:9pt }
+.line {color :red}
+
+u {
+	COLOR: #000000;FONT-SIZE: 9pt;TEXT-DECORATION: none
+}
+
+A:visited { COLOR: #000066; FONT-SIZE: 9pt; TEXT-DECORATION: none }
+A:hover { COLOR: #FF9900;FONT-SIZE: 9pt; TEXT-DECORATION: none }
+A:active { COLOR: #000066; FONT-SIZE:9pt;TEXT-DECORATION: none } 
+A:link { COLOR: #000066; FONT-SIZE: 9pt; text-decoration: none}
+INPUT {COLOR: #333333; FONT-SIZE: 9pt;}
+TEXTAREA { COLOR: #333333; FONT-SIZE: 9pt }
+TD { font-size: 9pt; COLOR: #000000; FONT-SIZE: 9pt }
+SELECT { COLOR: #333333; FONT-SIZE: 9pt } 
+BUTTON { FONT-SIZE: 9pt } 
+.BigFont { FONT-SIZE: 14pt }
+.BigFont2 { COLOR: #333333;FONT-SIZE: 24pt }
+.BigInput { COLOR: #333333; FONT-SIZE: 14pt }
+.BigButton { COLOR:#333333; FONT-SIZE: 14pt }
+.BigSelect { COLOR: #333333; FONT-SIZE: 14pt }
+.BlackLink { COLOR: #333333 } 
+.8p { FONT-SIZE: 8pt } 
+.land { BORDER-BOTTOM:#333333 1px solid; BORDER-LEFT:#333333 1px solid; BORDER-RIGHT:#333333 1px solid; BORDER-TOP:#333333 1px solid; FONT-SIZE: 9pt; FONT-WEIGHT: normal } /* 文本框样式 */
+.less { BORDER-BOTTOM:1px solid; BORDER-LEFT:1px solid; BORDER-RIGHT:1px solid; BORDER-TOP:1px solid; FONT-SIZE: 9pt; FONT-WEIGHT: normal; color: #FFFF00; background-color: #008000 }
+.lend { BACKGROUND: #ffffff; BORDER-BOTTOM: rgb(80,102,70) 1px solid; BORDER-LEFT: rgb(80,102,70) 1px solid; BORDER-RIGHT: rgb(80,102,70) 1px solid; BORDER-TOP: rgb(80,102,70) 1px solid; FONT-SIZE: 9pt; FONT-WEIGHT: normal;behavior:url(../../include/deeptree.htc);}
+.ying {BORDER-TOP-WIDTH: 1px; PADDING-RIGHT: 1px; PADDING-LEFT: 1px; BACKGROUND: url(images/yinying.gif) #ffffff;BORDER-LEFT-WIDTH: 1px; FONT-SIZE: 9pt; BORDER-LEFT-COLOR: #000000; BORDER-BOTTOM-WIDTH: 1px; BORDER-BOTTOM-COLOR: #000000; PADDING-BOTTOM: 1px; BORDER-TOP-COLOR: #000000; PADDING-TOP: 1px; HEIGHT: 18px; BORDER-RIGHT-WIDTH: 1px; BORDER-RIGHT-COLOR: #000000;}
+
+.bt1
+{
+	BORDER-BOTTOM: thin inset; 
+	BORDER-LEFT:#333333 0px none; 
+	BORDER-RIGHT:#333333 0px none; 
+	BORDER-TOP:#333333 0px none; 
+	FONT-SIZE: 9pt; 
+	FONT-WEIGHT: normal; }
+}
+.bt2
+{
+    BORDER-RIGHT: medium none;
+    BORDER-TOP: medium none;
+    BORDER-LEFT: medium none;
+    COLOR: #333333;
+    BORDER-BOTTOM: thin inset;
+}
+.bt3
+{
+    BORDER-TOP-WIDTH: 1px;
+    BORDER-LEFT-WIDTH: 1px;
+    FONT-SIZE: 9pt;
+    BORDER-LEFT-COLOR: #ffcccc;
+    BORDER-BOTTOM-WIDTH: 1px;
+    BORDER-BOTTOM-COLOR: #990000;
+    VERTICAL-ALIGN: middle;
+    COLOR: #ffffff;
+    BORDER-TOP-COLOR: #ffcccc;
+    BACKGROUND-COLOR: #72A0F4;
+    TEXT-ALIGN: center;
+    BORDER-RIGHT-WIDTH: 1px;
+    BORDER-RIGHT-COLOR: #990000
+}
+.view
+{
+    BORDER-TOP-WIDTH: 1px;
+    BORDER-LEFT-WIDTH: 1px;
+    FONT-SIZE: 9pt;
+    BORDER-LEFT-COLOR: #e1e0e0;
+    BORDER-BOTTOM-WIDTH: 1px;
+    BORDER-BOTTOM-COLOR: #990000;
+    VERTICAL-ALIGN: middle;
+    COLOR: #000000;
+    BORDER-TOP-COLOR: #e1e0e0;
+    BACKGROUND-COLOR: #dddada;
+    TEXT-ALIGN: center;
+    BORDER-RIGHT-WIDTH: 1px;
+    BORDER-RIGHT-COLOR: #990000
+}
+.main
+{
+    BORDER-TOP-WIDTH: 1px;
+    BORDER-LEFT-WIDTH: 1px;
+    FONT-SIZE: 9pt;
+    BORDER-LEFT-COLOR: #ffcccc;
+    BORDER-BOTTOM-WIDTH: 1px;
+    BORDER-BOTTOM-COLOR: #990000;
+    VERTICAL-ALIGN: middle;
+    COLOR: #ffffff;
+    BORDER-TOP-COLOR: #ffcccc;
+    BACKGROUND-COLOR: #177076;
+    TEXT-ALIGN: center;
+    BORDER-RIGHT-WIDTH: 1px;
+    BORDER-RIGHT-COLOR: #990000
+}
+.text
+{ 
+  border : 1px solid ;
+  overflow : auto
+}
+.style
+{BORDER-RIGHT: medium none; BORDER-TOP: medium none; 
+BORDER-LEFT: medium none;
+BORDER-BOTTOM: thin inset; BACKGROUND-COLOR: #ffffff}

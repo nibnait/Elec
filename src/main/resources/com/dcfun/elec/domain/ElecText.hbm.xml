@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.dcfun.elec.domain.ElecText" table="Elec_Text">
+		<id name="textID" type="string" column="textID">
+			<generator class="uuid"></generator>		
+		</id>
+		<property name="textName" type="string"></property>
+		<property name="textDate" type="date"></property>
+		<property name="textRemark" type="string"></property>
+	</class>
+
+</hibernate-mapping>

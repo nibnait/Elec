@@ -1,0 +1,44 @@
+.clsShowInfoWindow {
+	BORDER-RIGHT: #8AB3F4 3px solid;
+	PADDING-RIGHT: 0em;
+	BORDER-TOP: #8AB3F4 3px solid;
+	PADDING-LEFT: 0em;
+	FONT-SIZE: smaller;
+	font-family:Verdana, Arial, Helvetica;
+	font-size:12px;
+	Z-INDEX: 101;
+	PADDING-BOTTOM: 0em;
+	BORDER-LEFT: #8AB3F4 3px solid;
+	WIDTH: 260px;
+	COLOR: #000000;
+	PADDING-TOP: 0em;
+	BORDER-BOTTOM: #8AB3F4 3px solid;
+	position:absolute;
+	BACKGROUND-COLOR: #CEE0EB;
+	table-layout:fixed;
+	word-break:break-all
+}
+table.tableBorderStyle{
+         BORDER-RIGHT: #ffffff 0px solid;
+         BORDER-TOP: #ffffff 0px solid;
+         BORDER-LEFT:#ffffff 0px;
+         BORDER-BOTTOM:#ffffff 0px;
+         margin:1;
+         text-align:center
+}
+td.tdBorderStyle{
+         BORDER-RIGHT: #666666 1px solid;
+         BORDER-TOP: #666666 1px solid;
+         BORDER-LEFT:#666666 1px solid;
+         BORDER-BOTTOM:#666666 1px solid;
+         text-align:center
+}
+.scrollStyle{
+         width:100%;
+	   	 height:15px;
+	   	 overflow:hidden;
+	     vertical-align:middle;
+	     text-align:left;
+	     word-break:break-all;
+	     word-wrap:break-word
+}
