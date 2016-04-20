@@ -138,7 +138,7 @@ var privilegeDate = [{
 			name:'数据字典维护',
 			icon:'../images/MenuIcon/shujuzidianguanli.gif',
 			target:'mainFrame',
-			url:'../system/dictionaryIndex.jsp',
+			url:'../system/elecSystemDDLAction_home.do',
 			isParent:false
 		}
 	]

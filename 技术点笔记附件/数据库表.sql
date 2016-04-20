@@ -14,3 +14,12 @@ create table Elec_CommonMsg_Content(
 	content varchar(5000) null,		#数据内容
 	orderby int null		#数据显示排序
 );
+
+
+#数据字典 
+create table Elec_SystemDDL(
+	seqID int not null primary key,		#主键ID(自增长)
+	keyword varchar(20) null,		#数据类型
+	ddlCode int null,		#数据项的code
+	ddlName varchar(50) null		#数据项的value
+)

@@ -39,3 +39,28 @@ itheima国家电力系统（10天）
 7.js特效(四)：JS浮动框
 
 8.js特效(五)：highslideJs插件
+
+
+
+##day03 数据字典	SystemDDL
+
+1.Hql投影查询  
+	使用hql语句直接将投影查询的字段放置到对象中，例如
+```
+String hql = "SELECT DISTINCT new cn.itcast.elec.domain.ElecSystemDDL(o.keyword) FROM ElecSystemDDL o";  
+List<ElecSystemDDL> list = this.getHibernateTemplate().find(hql);
+```
+ 
+2.使用JQuery 进行表格的添加删除tr
+
+3.添加数据类型的JS校验：
+	 - Trim()!="";
+	 - 新增数据类型 不能与已有的一致
+	 - 新增数据类型的itemnames不能重复
+
+4.c3p0连接池  
+	还可将hibernate.cfg.xml完全整合到beans.xml中
+
+5.
+	
+	

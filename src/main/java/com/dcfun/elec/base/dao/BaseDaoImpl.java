@@ -64,12 +64,16 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T> {
 			final Map<String, Object> keyValues, Map<String, String> orderby) {
 
 		final StringBuffer finalHql = new StringBuffer();
-		finalHql.append("from " + entityClass.getSimpleName());
+		finalHql.append("from " + entityClass.getSimpleName()+" o");
 		finalHql.append(" where 1=1");
 		if (keyValues != null) {
+			
 			for (Entry<String, Object> entry : keyValues.entrySet()) {// 把查询条件放到where的后面
-				finalHql.append(" and " + entry.getKey() + "=:"
-						+ entry.getKey());
+				if(entry.getKey().contains(".")){
+					finalHql.append("and "+entry.getKey()+"=:"+entry.getKey().split("\\.")[1]);
+				}else{
+					finalHql.append("and "+entry.getKey()+"=:"+entry.getKey());
+				}
 			}
 		}
 
@@ -82,7 +86,11 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T> {
 						Query query = session.createQuery(finalHql.toString());
 						if (keyValues != null) {
 							for (Entry<String, Object> entry : keyValues.entrySet()) {
-							query.setParameter(entry.getKey(), entry.getValue());
+								if(entry.getKey().contains(".")){
+									query.setParameter(entry.getKey().split("\\.")[1], entry.getValue());
+								}else{
+									query.setParameter(entry.getKey(), entry.getValue());
+								}
 							}
 						}
 

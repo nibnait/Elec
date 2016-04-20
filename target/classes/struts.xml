@@ -39,6 +39,17 @@
 			</result>
 			<result name="actingView">/WEB-INF/page/system/actingView.jsp</result>
 		</action>
+		
+		<!-- 数据字典维护 -->
+		<action name="elecSystemDDLAction_*" class="elecSystemDDLAction"
+			method="{1}">
+			<result name="home">/WEB-INF/page/system/dictionaryIndex.jsp</result>
+			<result name="edit">/WEB-INF/page/system/dictionaryEdit.jsp</result>
+			<result name="save" type="redirectAction">
+				<param name="actionName">elecSystemDDLAction_home.do</param>
+			</result>
+		</action>
+
 
 	</package>
 </struts>

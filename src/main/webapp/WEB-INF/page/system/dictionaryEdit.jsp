@@ -1,5 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
-
+<%@ taglib uri="/struts-tags" prefix="s" %>
 
    <table cellSpacing="1" cellPadding="0" width="90%" align="center" bgColor="#f5fafe" border="0" >
     <tr>
@@ -12,16 +12,27 @@
 					<td class="ta_01" align="center"  width="60%" height=22 background="${pageContext.request.contextPath }/images/tablehead.jpg">名称</td>
 					<td class="ta_01" align="center"  width="20%" height=22 background="${pageContext.request.contextPath }/images/tablehead.jpg">删除</td>					
 				</tr>
-			    
+			    <s:if test="#request.list!=null && #request.list.size()>0">
+			    <s:iterator value="#request.list">
 			     <tr>
-				   <td class="ta_01" align="center"  width="20%">1</td>
+				   <td class="ta_01" align="center"  width="20%"><s:property value="ddlCode" /></td>
 				   <td class="ta_01" align="center"  width="60%">
-				   <input id="1" name="itemname" type="text" value="男"  size="45" maxlength="25"></td>
+				   <input id="1" name="itemname" type="text" value='<s:property value="ddlName"/>'  size="45" maxlength="25"></td>
 				   <td class="ta_01" align="center"  width="20%">
-				   	<a href="#" onclick="delTableRow('1')">
+				   	<a href="#" onclick="delTableRow('<s:property value="ddlCode" />')">
 					<img src="${pageContext.request.contextPath }/images/delete.gif" width="16" height="16" border="0" style="CURSOR:hand"></a>
 				  </td>
 				</tr>
+				</s:iterator>
+				 </s:if>
+			    <s:else>
+			    	<tr>
+					   <td class="ta_01" align="center"  width="20%">1</td>
+					   <td class="ta_01" align="center"  width="60%">
+					   <input name="itemname" type="text"  size="45" maxlength="25"></td>
+					   <td class="ta_01" align="center"  width="20%"></td>
+					</tr>
+			    </s:else>
 	     </table>
 	   </td>
 	 </tr>
