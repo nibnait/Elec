@@ -57,8 +57,19 @@ public class ElecMenuAction extends BaseAction<MenuForm> {
 	}
 
 	// 功能区域显示页面
+	/**
+	 * @Name: loading
+	 * @Description: 功能区域显示页面
+	 * @Author: dcfun
+	 * @Version: V1.00
+	 * @Create Date: 2016-04-19 13:37:11
+	 * @Parameters: 无
+	 * @Return: String: 跳转到menu/loading.jsp
+	 */
 	public String loading() {
-
+		//查询设备运行情况 放置到浮动框中
+		ElecCommonMsg commonMsg = elecCommonMsgService.findCommonMsg();
+		ValueUtils.putValueStack(commonMsg);
 		return "loading";
 	}
 	

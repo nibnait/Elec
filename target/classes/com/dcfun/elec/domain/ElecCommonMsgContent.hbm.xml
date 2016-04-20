@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.dcfun.elec.domain.ElecCommonMsgContent" table="Elec_CommonMsg_Content">
+		<id name="comID" type="string" column="comID">
+			<generator class="uuid"></generator>
+		</id>
+		<property name="type" type="string" column="type"></property>
+		<property name="content" type="string" column="content"></property>
+		<property name="orderby" type="integer" column="orderby"></property>
+	</class>
+</hibernate-mapping>

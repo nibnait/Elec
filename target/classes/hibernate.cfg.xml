@@ -18,5 +18,6 @@
 		<!-- 添加映射 -->
 		<mapping resource="com/dcfun/elec/domain/ElecText.hbm.xml"/>
 		<mapping resource="com/dcfun/elec/domain/ElecCommonMsg.hbm.xml"/>
+		<mapping resource="com/dcfun/elec/domain/ElecCommonMsgContent.hbm.xml"/>
 	</session-factory>
 </hibernate-configuration>
