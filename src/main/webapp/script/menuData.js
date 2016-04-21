@@ -114,7 +114,7 @@ var privilegeDate = [{
 			name:'用户管理',
 			icon:'../images/MenuIcon/yonghuguanli.gif',
 			target:'mainFrame',
-			url:'../system/userIndex.jsp',
+			url:'../system/elecUserAction_home.do',
 			isParent:false
 		},{
 			mid:'ao',

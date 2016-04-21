@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.dcfun.elec.domain.ElecUser" table="Elec_User">
+		<id name="userID" type="string" column="userID">
+			<generator class="uuid"></generator>
+		</id>
+		<property name="jctID" type="string" column="jctID"></property>
+		<property name="jctUnitID" type="string" column="jctUnitID"></property>
+		<property name="userName" type="string" column="userName"></property>
+		<property name="logonName" type="string" column="logonName"></property>
+		<property name="logonPwd" type="string" column="logonPwd"></property>
+		<property name="sexID" type="string" column="sexID"></property>
+		<property name="birthday" type="date" column="birthday"></property>
+		<property name="address" type="string" column="address"></property>
+		<property name="contactTel" type="string" column="contactTel"></property>
+		<property name="email" type="string" column="email"></property>
+		<property name="mobile" type="string" column="mobile"></property>
+		<property name="isDuty" type="string" column="isDuty"></property>
+		<property name="postID" type="string" column="postID"></property>
+		<property name="onDutyDate" type="date" column="onDutyDate"></property>
+		<property name="offDutyDate" type="date" column="offDutyDate"></property>
+		<property name="remark" type="string" column="remark"></property>
+		
+		<!-- 一个用户对应多个文件 -->
+		<set name="elecUserFiles" table="Elec_User_File" inverse="true">
+			<key>
+				<column name="userID"></column>
+			</key>
+			<one-to-many class="com.dcfun.elec.domain.ElecUserFile"/>
+		</set> 
+		
+		<!-- <set name="elecRoles" table="elec_user_role" inverse="true">
+			<key>
+				<column name="userID"></column>
+			</key>
+			<many-to-many class="cn.itcast.elec.domain.ElecRole" column="roleID"/>
+		</set>  -->
+		
+		
+	</class>
+</hibernate-mapping>

@@ -53,14 +53,24 @@ List<ElecSystemDDL> list = this.getHibernateTemplate().find(hql);
  
 2.使用JQuery 进行表格的添加删除tr
 
-3.添加数据类型的JS校验：
-	 - Trim()!="";
-	 - 新增数据类型 不能与已有的一致
-	 - 新增数据类型的itemnames不能重复
+3.添加数据类型的JS校验：  
+	 - Trim()!="";  
+	 - 新增数据类型 不能与已有的一致  
+	 - 新增数据类型的itemnames不能重复  
 
 4.c3p0连接池  
 	还可将hibernate.cfg.xml完全整合到beans.xml中
 
 5.
-	
-	
+
+VO	值对象	（查询条件对象）  
+PO	持久层对象（与数据库对应）
+
+6.数据字典 编辑页面那个Form2页面还是有问题！   
+只能删除第1个itemname 无法删除其他的，Debug了一下 发现jQuery.remove 方法无效  
+
+7.？ 当使用数据字典的时候，需要数据的转换，多了很多的sql语句（待优化！）
+
+8.function.js/openWindow(sHref,strWidth,strHeight) 
+
+9.

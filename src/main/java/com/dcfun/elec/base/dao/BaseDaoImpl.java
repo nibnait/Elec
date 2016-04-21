@@ -59,6 +59,7 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T> {
 		this.getHibernateTemplate().deleteAll(list);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> findCollectionByConditionNoPage(
 			final Map<String, Object> keyValues, Map<String, String> orderby) {
@@ -69,10 +70,32 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T> {
 		if (keyValues != null) {
 			
 			for (Entry<String, Object> entry : keyValues.entrySet()) {// 把查询条件放到where的后面
-				if(entry.getKey().contains(".")){
-					finalHql.append("and "+entry.getKey()+"=:"+entry.getKey().split("\\.")[1]);
+				
+				
+				if (entry.getKey().contains("like")) {
+					if(entry.getKey().contains(".")){
+						finalHql.append(" and "+entry.getKey()+":"+entry.getKey().split("\\.")[1].substring(0, entry.getKey().length()-5));//用了两个split 只为把“>”、“<”分出来
+					}else{
+						//最简单的情况，没有"."的  “like” 
+						
+						finalHql.append(" and "+entry.getKey()+":"+entry.getKey().substring(0, entry.getKey().length()-5));
+					}
+					
+					
+				}else if(entry.getKey().contains("=")){
+					
+					if(entry.getKey().contains(".")){
+						finalHql.append(" and "+entry.getKey().split("\\.")[1].split("\\=")[0]+"= :"+entry.getKey().split("\\.")[1].split("\\=")[0].substring(0, entry.getKey().length()-3));//用了两个split 只为把“>”、“<”分出来
+					}else{
+						//最简单的情况，没有"."的  “>=”、“<=” 
+						finalHql.append(" and "+entry.getKey().split("\\=")[0]+"= :"+entry.getKey().split("\\=")[0].substring(0, entry.getKey().length()-3));
+					}
+					
+					
+				}else if(entry.getKey().contains(".")){
+					finalHql.append(" and "+entry.getKey()+"=:"+entry.getKey().split("\\.")[1]);
 				}else{
-					finalHql.append("and "+entry.getKey()+"=:"+entry.getKey());
+					finalHql.append(" and "+entry.getKey()+"=:"+entry.getKey());
 				}
 			}
 		}
@@ -86,11 +109,36 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T> {
 						Query query = session.createQuery(finalHql.toString());
 						if (keyValues != null) {
 							for (Entry<String, Object> entry : keyValues.entrySet()) {
-								if(entry.getKey().contains(".")){
+								
+								if (entry.getKey().contains("like")) {
+									
+									if(entry.getKey().contains(".")){
+										
+										query.setParameter(entry.getKey().split("\\.")[1].substring(0, entry.getKey().length()-5), entry.getValue());
+									}else{
+										//最简单的情况，没有"."的  “>=”、“<=” 
+										//为了支持 >=、<=  也是拼 [笑Cry]
+										query.setParameter(entry.getKey().substring(0, entry.getKey().length()-5), entry.getValue());
+									}
+									
+									
+								}else if(entry.getKey().contains("=")){
+									
+									if(entry.getKey().contains(".")){
+										query.setParameter(entry.getKey().split("\\.")[1].split("\\=")[0].substring(0, entry.getKey().length()-3), entry.getValue());
+									}else{
+										//最简单的情况，没有"."的  “>=”、“<=” 
+										//为了支持 >=、<=  也是拼 [笑Cry]
+										query.setParameter(entry.getKey().split("\\=")[0].substring(0, entry.getKey().length()-3), entry.getValue());
+									}
+									
+									
+								}else if(entry.getKey().contains(".")){
 									query.setParameter(entry.getKey().split("\\.")[1], entry.getValue());
 								}else{
 									query.setParameter(entry.getKey(), entry.getValue());
 								}
+								
 							}
 						}
 

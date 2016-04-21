@@ -1,6 +1,6 @@
 
 <%@ page language="java" pageEncoding="UTF-8"%>
-
+<%@taglib uri="/struts-tags" prefix="s" %>
 
 <html>
   <head>
@@ -247,66 +247,41 @@
      <tr>
          <td align="center" bgColor="#f5fafe" class="ta_01">登&nbsp;&nbsp;录&nbsp;&nbsp;名：<font color="#FF0000">*</font></td>
          <td class="ta_01" bgColor="#ffffff">
-         	<input name="logonName" type="text" maxlength="25" id="logonName" size="20" onblur="checkUser(this);">
+         	<s:textfield name="logonName" maxlength="25" id="logonName" size="20" onblur="checkUser(this);"></s:textfield>
          	<div id="check"></div>
          </td>
          <td width="18%" align="center" bgColor="#f5fafe" class="ta_01">用户姓名：<font color="#FF0000">*</font></td>
          <td class="ta_01" bgColor="#ffffff">
-         	<input name="userName" type="text" maxlength="25" id="userName" size="20"> 
+         	<s:textfield name="userName" maxlength="25" id="userName" size="20"></s:textfield>
          </td>
     </tr>
 	<tr>
 		<td align="center" bgColor="#f5fafe" class="ta_01">性别：<font color="#FF0000">*</font></td>
 		<td class="ta_01" bgColor="#ffffff">
-			<select name="sexID" id="sexID" style="width:155px">
-			<option value=""></option>
-			<option value="1">男</option>
-			<option value="2">女</option>
-			</select>
+			<s:select list="#request.sexList" name="sexID" id="sexID"
+					  listKey="ddlCode" listValue="ddlName"
+					  headerKey="" headerValue="请选择"
+					  cssStyle="width:155px">
+			</s:select>
 		</td>
 		<td align="center" bgColor="#f5fafe" class="ta_01">职位：<font color="#FF0000">*</font></td>
 		<td class="ta_01" bgColor="#ffffff">
-			<select name="postID" id="postID" style="width:155px">
-	    		<option value=""></option>
-			    <option value="1">总经理</option>
-			    <option value="2">部门经理</option>
-			    <option value="3">员工</option>
-			</select>
+			<s:select list="#request.postList" name="postID" id="postID"
+					  listKey="ddlCode" listValue="ddlName"
+					  headerKey="" headerValue="请选择"
+					  cssStyle="width:155px">
+			</s:select>
 		</td>
 	</tr>
 	<tr>
 		<td align="center" bgColor="#f5fafe" class="ta_01">所属单位：<font color="#FF0000">*</font></td>
 		<td class="ta_01" bgColor="#ffffff">
-			<select name="jctID" id="jctID" style="width:155px">
-			<option value=""></option>
+			<s:select list="#request.jctList" name="jctID" id="jctID"
+					  listKey="ddlCode" listValue="ddlName"
+					  headerKey="" headerValue="请选择"
+					  cssStyle="width:155px">
+			</s:select>
 			
-			<option value="1">北京</option>	
-		
-			<option value="2">上海</option>	
-			
-			<option value="3">深圳</option>	
-			
-			<option value="4">厦门</option>	
-			
-			<option value="5">成都</option>	
-			
-			<option value="6">海尔滨</option>	
-			
-			<option value="7">长春</option>	
-			
-			<option value="8">沈阳</option>	
-			
-			<option value="9">广州</option>	
-			
-			<option value="10">西安</option>	
-			
-			<option value="11">南宁</option>	
-			
-			<option value="12">天津</option>	
-			
-			<option value="13">海南</option>	
-			
-			</select>
 		</td>
 		<td align="center" bgColor="#f5fafe" class="ta_01">单位名称：<font color="#FF0000">*</font></td>
 		<td class="ta_01" bgColor="#ffffff">
@@ -316,54 +291,55 @@
 	<tr>
 		<td align="center" bgColor="#f5fafe" class="ta_01">密码：</td>
 		<td class="ta_01" bgColor="#ffffff">
-			<input name="logonPwd" id="logonPwd" type="password" maxlength="25"  size="22">
+			<s:password name="logonPwd" id="logonPwd" maxlength="25"  size="22"></s:password>
 		</td>
 		<td align="center" bgColor="#f5fafe" class="ta_01">确认密码：</td>
 		<td class="ta_01" bgColor="#ffffff">
-			<input name="passwordconfirm" type="password" maxlength="25"  size="22">
+			<s:password name="passwordconfirm" id="passwordconfirm" maxlength="25"  size="22"></s:password>
 		</td>
 	</tr>
 
 	<tr>
 		<td align="center" bgColor="#f5fafe" class="ta_01">出生日期：</td>
 		<td class="ta_01" bgColor="#ffffff">
-			<input name="birthday" id="birthday" type="text" maxlength="50"  size="20" onClick="WdatePicker()" >
+			<s:textfield name="birthday" id="birthday" maxlength="50"  size="20" onClick="WdatePicker()"></s:textfield>
 		</td>
 		<td align="center" bgColor="#f5fafe" class="ta_01">联系地址：</td>
 		<td class="ta_01" bgColor="#ffffff">
-			<input name="address" type="text" maxlength="50"  size="20">
+			<s:textfield name="address" maxlength="50"  size="20"></s:textfield>
 		</td>
 	</tr>
 
 	<tr>
 		<td align="center" bgColor="#f5fafe" class="ta_01">联系电话：</td>
 		<td class="ta_01" bgColor="#ffffff">
-			<input name="contactTel" type="text" maxlength="25"  size="20">
+			<s:textfield name="contactTel" maxlength="25"  size="20"></s:textfield>
 		</td>
 		<td align="center" bgColor="#f5fafe" class="ta_01">手机：</td>
 		<td class="ta_01" bgColor="#ffffff">
-			<input name="mobile" type="text" maxlength="25"  size="20">
+			<s:textfield name="mobile" maxlength="25"  size="20"></s:textfield>
 		</td>
 	</tr>
 
 	<tr>
 		<td align="center" bgColor="#f5fafe" class="ta_01">电子邮箱：</td>
 		<td class="ta_01" bgColor="#ffffff">
-			<input name="email" type="text" maxlength="50"  size="20">
+			<s:textfield name="email" maxlength="50"  size="20"></s:textfield>
 		</td>
 		<td align="center" bgColor="#f5fafe" class="ta_01">是否在职：</td>
 		<td class="ta_01" bgColor="#ffffff">
-			<select name="isDuty" id="isDuty" style="width:155px">
-			<option value="1" selected>是</option>
-			<option value="2">否</option>
-			</select>
+			<s:select list="#request.isDutyList" name="isDuty" id="isDuty"
+					  listKey="ddlCode" listValue="ddlName"
+					  value="1"
+					  cssStyle="width:155px">
+			</s:select>
 		</td>
 	</tr>
 
 	<tr>
 		<td align="center" bgColor="#f5fafe" class="ta_01">入职日期：<font color="#FF0000">*</font></td>
 		<td class="ta_01" bgColor="#ffffff">
-			<input name="onDutyDate" id="onDutyDate" type="text" maxlength="50" size="20" onClick="WdatePicker()">
+			<s:textfield name="onDutyDate" id="onDutyDate" maxlength="50" size="20" onClick="WdatePicker()"></s:textfield>
 		</td>
 		<td align="center" bgColor="#ffffff" class="ta_01"></td>
 		<td class="ta_01" bgColor="#ffffff">
@@ -373,7 +349,7 @@
 	<TR>
 		<TD class="ta_01" align="center" bgColor="#f5fafe">备注：</TD>
 		<TD class="ta_01" bgColor="#ffffff" colSpan="3">
-			<textarea name="remark"  style="WIDTH:95%"  rows="4" cols="52"></textarea>
+			<s:textarea name="remark"  cssStyle="WIDTH:95%"  rows="4" cols="52"></s:textarea>
 		</TD>
 	</TR>
 	

@@ -15,14 +15,21 @@
 	
 	<!-- 1:添加组件对注解的支持 -->
 	<context:component-scan base-package="com.dcfun.elec"/>
-	<!-- 2:? -->
+	<!-- 2:c3p0连接池-->
+	
 	<!-- 3:spring整合hibernate的核心 -->
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<!-- <property name="dataSource" ref="dataSource"></property> -->
+		
 		<property name="configLocation">
 			<value>
 				classpath:hibernate.cfg.xml
 			</value>
 		</property>
+		<property name="mappingDirectoryLocations">
+			<value>classpath:com/dcfun/elec/domain</value>
+		</property>
+		
 	</bean>
 	<!-- 4:创建事务管理器 -->
 	<bean id="trManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">

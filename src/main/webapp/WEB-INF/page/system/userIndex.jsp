@@ -1,5 +1,5 @@
-
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%@ taglib uri="/struts-tags" prefix="s" %>
 
 
  <script language="javascript"> 
@@ -45,7 +45,7 @@
 	</HEAD>
 		
 	<body >
-		<form id="Form1" name="Form1" action="/system/userAction_main.do" method="post" style="margin:0px;"> 
+		<form id="Form1" name="Form1" action="elecUserAction_home.do" method="post" style="margin:0px;"> 
 			<table cellspacing="1" cellpadding="0" width="90%" align="center" bgcolor="#f5fafe" border="0">
 				<TR height=10><td></td></TR>
 				<tr>
@@ -63,12 +63,20 @@
 					<td class="ta_01" align="center" bgcolor="#f5fafe" height="22">
 					所属单位：</td>
 					<td class="ta_01" >
-						<select name="jctID" id="jctID" style="width:155px">
+						<%-- <select name="jctID" id="jctID" style="width:155px">
 						    <option value="">请选择</option>
 						    <option value="1">北京</option>
 						    <option value="2">上海</option>
 						    <option value="3">深圳</option>
-						</select>
+						</select> --%>
+						
+						<s:select list="#request.jctList" name="jctID" id="jctID" cssStyle="width:155px"
+							listKey="ddlCode" listValue="ddlName"
+							headerKey="" headerValue="请选择"
+						>
+						
+						</s:select>
+						
 					</td>
 				</tr>
 				<tr>
@@ -104,7 +112,7 @@
 					    <input style="font-size:12px; color:black; height=20;width=80" id="BT_Add" type="button" value="查询" name="BT_find" 
 						 onclick="document.forms[0].submit()">&nbsp;&nbsp;
 						<input style="font-size:12px; color:black; height=20;width=80" id="BT_Add" type="button" value="添加用户" name="BT_Add" 
-						 onclick="openWindow('userAdd.jsp','900','700')">&nbsp;&nbsp;
+						 onclick="openWindow('${pageContext.request.contextPath }/system/elecUserAction_add.do','900','700')">&nbsp;&nbsp;
 						<input style="font-size:12px; color:black; height=20;width=80" id="BT_Delete" type="button" value="批量删除" name="BT_Delete" 
 						 onclick="return deleteAll()">&nbsp;&nbsp;
 					</td>
@@ -129,42 +137,43 @@
 								<td width="10%" align="center" height=22 background="${pageContext.request.contextPath }/images/tablehead.jpg">查看</td>
 							</tr>
 							
-							
-								
+							<s:if test="#request.userList!=null && #request.userList.size()>0">
+								<s:iterator value="#request.userList">
 									<tr onmouseover="this.style.backgroundColor = 'white'" onmouseout="this.style.backgroundColor = '#F5FAFE';">
 										<td style="HEIGHT:22px" align="center" width="5%">
-											<input type="checkbox" name="userID" id="userID" value="ff808081110677790111070ccffe0001">
+											<input type="checkbox" name="userID" id="userID" value="<s:property value="userID"/>">
 										</td>
 										<td style="HEIGHT:22px" align="center" width="15%">
-											zhangsan
+											<s:property value="logonName"/>
 										</td>
 										<td style="HEIGHT:22px" align="center" width="15%">
-											张三
+											<s:property value="userName"/>
 										</td>
 										<td style="HEIGHT:22px" align="center" width="7%">
-											男
+											<s:property value="sexID"/>
 										</td>
 										<td style="HEIGHT:22px" align="center" width="15%">
-											88888888
+											<s:property value="contactTel"/>
 										</td>	
 										<td style="HEIGHT:22px" align="center" width="15%">
-											2012-11-15
+											<s:date name="onDutyDate" format="yyyy-MM-dd"/>
 										</td>								
 										<td style="HEIGHT:22px" align="center" width="8%">
-											员工
+											<s:property value="postID"/>
 										</td>
 										
 										<td align="center" style="HEIGHT: 22px" align="center" width="10%">																	
-										   <a href="#" onclick="openWindow('userEdit.jsp?userID=ff808081110677790111070ccffe0001','900','700');">
+										   <a href="#" onclick="openWindow('userEdit.jsp?userID=<s:property value="userID"/>','900','700');">
 										   <img src="${pageContext.request.contextPath }/images/edit.gif" border="0" style="CURSOR:hand"></a>													
 										</td>
 										
 										<td align="center" style="HEIGHT: 22px" align="center" width="10%">
-											<a href="#" onclick="openWindow('userEdit.jsp?userID=ff808081110677790111070ccffe0001&viewflag=1','900','700');">
+											<a href="#" onclick="openWindow('userEdit.jsp?userID=<s:property value="userID"/>&viewflag=1','900','700');">
 											<img src="${pageContext.request.contextPath }/images/button_view.gif" width="20" height="18" border="0" style="CURSOR:hand"></a>												
 										</td>
 									</tr>
-									
+								</s:iterator>
+							</s:if>
 								
 						</table>					
 						

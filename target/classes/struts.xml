@@ -51,5 +51,13 @@
 		</action>
 
 
+		<!-- 用户管理 -->
+		<action name="elecUserAction_*" class="elecUserAction"
+			method="{1}">
+			
+			<result name="home">/WEB-INF/page/system/userIndex.jsp</result>
+			<result name="add">/WEB-INF/page/system/userAdd.jsp</result>
+		</action>
+
 	</package>
 </struts>

@@ -211,9 +211,11 @@
 							<s:iterator value="#request.list" var="#list">
 								<option value='<s:property value='list.keyword'/>'> <s:property value="keyword"/></option>
 							</s:iterator>											 
-						</select> --%> <s:select list="#request.list" cssClass="bg"
+						</select> --%> 
+						<s:select list="#request.list" cssClass="bg"
 							cssStyle="width:180px" onchange="changetype()" name="keyword"
-							id="keyword" listKey="keyword" listValue="keyword"
+							id="keyword" 
+							listKey="keyword" listValue="keyword"
 							headerKey="jerrynew" headerValue="">
 
 						</s:select>

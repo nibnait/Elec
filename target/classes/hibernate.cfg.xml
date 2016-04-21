@@ -16,9 +16,9 @@
 		<property name="hibernate.hbm2ddl.auto">update</property>
 		<property name="hibernate.show_sql">true</property>
 		<!-- 添加映射 -->
-		<mapping resource="com/dcfun/elec/domain/ElecText.hbm.xml"/>
+		<!-- <mapping resource="com/dcfun/elec/domain/ElecText.hbm.xml"/>
 		<mapping resource="com/dcfun/elec/domain/ElecCommonMsg.hbm.xml"/>
 		<mapping resource="com/dcfun/elec/domain/ElecCommonMsgContent.hbm.xml"/>
-		<mapping resource="com/dcfun/elec/domain/ElecSystemDDL.hbm.xml"/>
+		<mapping resource="com/dcfun/elec/domain/ElecSystemDDL.hbm.xml"/> -->
 	</session-factory>
 </hibernate-configuration>
