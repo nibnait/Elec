@@ -9,12 +9,12 @@ public interface IElecSystemDDLService {
 
 	public static final String SERVICE_NAME = "com.dcfun.elec.service.impl.ElecSystemDDLServiceImpl";
 
-	List<ElecSystemDDL> findCollectionByDistinct();
+	List<ElecSystemDDL> findSystemDDLListByDistinct();
 
-	List<ElecSystemDDL> findCollectionByKeyword(String keyword);
+	List<ElecSystemDDL> findSystemDDLListByKeyword(String keyword);
 
 	void saveElecSystemDDL(ElecSystemDDL elecSystemDDL);
 
-	
+	String findDdlNameByKeywordAndDdlCode(String keyword, String ddlCode);
 
 }

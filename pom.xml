@@ -7,8 +7,8 @@
 	<packaging>war</packaging>
 	<name>elec</name>
 
-
  <dependencies>
+
 	<!--ckeditor-->
 	 <dependency>
 		<groupId>net.jangaroo</groupId>

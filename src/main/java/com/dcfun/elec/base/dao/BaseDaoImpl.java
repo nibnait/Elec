@@ -16,11 +16,11 @@ import org.hibernate.SessionFactory;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
-import com.dcfun.elec.utils.TUtils;
+import com.dcfun.elec.utils.Util_T;
 
 public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T> {
 
-	Class entityClass = TUtils.getTClass(this.getClass());
+	Class entityClass = Util_T.getTClass(this.getClass());
 
 	@Resource(name = "sessionFactory")
 	public final void setSessionFactoryDi(SessionFactory sessionFactory) {

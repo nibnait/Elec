@@ -7,12 +7,14 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.dcfun.elec.dao.IElecSystemDDLDao;
+import com.dcfun.elec.dao.impl.ElecUserDaoImpl;
 import com.dcfun.elec.domain.ElecSystemDDL;
 import com.dcfun.elec.service.IElecSystemDDLService;
 
@@ -24,14 +26,30 @@ public class ElecSystemDDLServiceImpl implements IElecSystemDDLService {
 	@Resource(name=IElecSystemDDLDao.SERVICE_NAME)
 	IElecSystemDDLDao elecSystemDDLDao;
 
-	@Override
-	public List<ElecSystemDDL> findCollectionByDistinct() {
-		List<ElecSystemDDL> list = elecSystemDDLDao.findCollectionByDistinct();
+	/**  
+	* @Name: findSystemDDLListByDistinct
+	* @Description: 查询数据字典，去掉重复值
+	* @Author: dcfun
+	* @Version: V1.00 （版本号）
+	* @Create Date: 2016-4
+	* @Parameters: 无
+	* @Return: List<ElecSystemDDL>：存放数据类型的集合
+	*/
+	public List<ElecSystemDDL> findSystemDDLListByDistinct() {
+		List<ElecSystemDDL> list = elecSystemDDLDao.findSystemDDLListByDistinct();
 		return list;
 	}
 
-	@Override
-	public List<ElecSystemDDL> findCollectionByKeyword(String keyword) {
+	/**  
+	* @Name: findSystemDDLListByKeyword
+	* @Description: 以数据类型作为条件，查询数据字典
+	* @Author: dcfun
+	* @Version: V1.00 （版本号）
+	* @Create Date: 2016-4
+	* @Parameters: String：数据类型
+	* @Return: List<ElecSystemDDL>：存放数据字典的集合
+	*/
+	public List<ElecSystemDDL> findSystemDDLListByKeyword(String keyword) {
 		
 		Map<String, Object> condition = new HashMap<String, Object>();
 		Map<String, String> orderby = new LinkedHashMap<String, String>();
@@ -65,7 +83,7 @@ public class ElecSystemDDLServiceImpl implements IElecSystemDDLService {
 		}
 		//编辑 新增
 		else if(typeFlag!=null && typeFlag.equals("add")) {
-			List<ElecSystemDDL> list = this.findCollectionByKeyword(keywordname);
+			List<ElecSystemDDL> list = this.findSystemDDLListByKeyword(keywordname);
 			elecSystemDDLDao.deleteObjectByCollection(list);
 			this.save(itemname, keywordname);
 		}
@@ -84,7 +102,19 @@ public class ElecSystemDDLServiceImpl implements IElecSystemDDLService {
 		
 	}
 
-	
-	
-	
+	/**  
+	* @Name: findDdlNameByKeywordAndDdlCode
+	* @Description: 使用数据类型和数据项的编号，获取数据项的值
+	* @Author: dcfun
+	* @Version: V1.00 （版本号）
+	* @Create Date: 2016-04-21 18:22:11
+	* @Parameters: String keyword, 数据类型
+	* 				String ddlCode，数据项的编号
+	* @Return: 数据项的值
+	*/
+	public String findDdlNameByKeywordAndDdlCode(String keyword, String ddlCode) {
+
+		return elecSystemDDLDao.findDdlNameByKeywordAndDdlCode(keyword, ddlCode);
+	}
+
 }

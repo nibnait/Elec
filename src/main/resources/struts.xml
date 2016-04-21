@@ -9,9 +9,11 @@
 	<constant name="struts.ui.theme" value="simple"></constant>
 	<!-- 修改struts2的后缀 改成.do -->
 	<constant name="struts.action.extension" value="do"></constant>
+	<!-- 改变struts2上传文件的大小 -->
+	<constant name="struts.multipart.maxSize" value="20971520"></constant>	
 
 	<!-- 系统管理 -->
-	<package name="system" namespace="/system" extends="struts-default">
+	<package name="system" namespace="/system" extends="json-default">
 		<!-- 测试 -->
 		<action name="elecTextAction_*" class="elecTextAction" method="{1}">
 			<result name="save">/system/textAdd.jsp</result>
@@ -52,11 +54,29 @@
 
 
 		<!-- 用户管理 -->
-		<action name="elecUserAction_*" class="elecUserAction"
-			method="{1}">
+		<action name="elecUserAction_*" class="elecUserAction" method="{1}">
 			
 			<result name="home">/WEB-INF/page/system/userIndex.jsp</result>
 			<result name="add">/WEB-INF/page/system/userAdd.jsp</result>
+			<result name="findJctUnit" type="json">
+				<param name="includeProperties">\[\d+\]\.ddlCode,\[\d+\]\.ddlName</param>
+			</result>
+			<result name="checkUser" type="json">
+				<param name="includeProperties">message</param>
+			</result>
+			<result name="save">/close.jsp</result>
+			<result name="edit">/WEB-INF/page/system/userEdit.jsp</result>
+			<result name="download"></result>
+<!-- 		<result name="download" type="stream">
+			    <param name="inputName">inputStream</param>
+			    <param name="contentDisposition">attachment;filename="${#request.filename}"</param>
+			    <param name="bufferSize">1024</param>
+			</result>
+ -->			
+			<result name="input">/WEB-INF/page/system/error.jsp</result>
+			<result name="delete" type="redirectAction">
+				<param name="actionName">elecUserAction_home.do</param>
+			</result>
 		</action>
 
 	</package>

@@ -31,7 +31,7 @@ public class ElecSystemDDLAction extends BaseAction<ElecSystemDDL>{
 	 * @Return: String: 跳转到ystem/dictionaryIndex.jsp
 	 */
 	public String home(){
-		List<ElecSystemDDL> list = elecSystemDDLService.findCollectionByDistinct();
+		List<ElecSystemDDL> list = elecSystemDDLService.findSystemDDLListByDistinct();
 //		ValueUtils.putValueStack(list);
 		request.setAttribute("list", list);
 		return "home";
@@ -47,7 +47,7 @@ public class ElecSystemDDLAction extends BaseAction<ElecSystemDDL>{
 	 * @Return: String: 跳转到system/dictionaryEdit.jsp
 	 */
 	public String edit(){
-		List<ElecSystemDDL> list = elecSystemDDLService.findCollectionByKeyword(elecSystemDDL.getKeyword());
+		List<ElecSystemDDL> list = elecSystemDDLService.findSystemDDLListByKeyword(elecSystemDDL.getKeyword());
 //		ValueUtils.putValueStack(list);
 		request.setAttribute("list", list);
 		return "edit";

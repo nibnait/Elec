@@ -1,5 +1,7 @@
 package com.dcfun.elec.domain;
 
+import java.io.File;
+import java.io.InputStream;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -152,7 +154,77 @@ public class ElecUser implements java.io.Serializable {
 	private Date onDutyDateBegin;
 	//入职结束时间
 	private Date onDutyDateEnd;
+	
+	//添加一个mssage的属性，用于ajax校验
+	private String message;
+	
+	//上传的文件(File类型)
+	private File [] uploads;
+	//上传的文件名
+	private String [] uploadsFileName;
+	//上传的文件类型
+	private String [] uploadsContentType;
+	
+	//文件ID
+	private String fileID;
+	
+	//文件下载的流的属性
+	private InputStream inputStream;
+	
+	//查看用户的时候传递viewflag=1，编辑的时候viewflag==null
+	private String viewflag;
+	
+	//用来判断是否对密码进行加密，存放修改用户之前的密码
+	private String password;
 
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getViewflag() {
+		return viewflag;
+	}
+	public void setViewflag(String viewflag) {
+		this.viewflag = viewflag;
+	}
+	public InputStream getInputStream() {
+		return inputStream;
+	}
+	public void setInputStream(InputStream inputStream) {
+		this.inputStream = inputStream;
+	}
+	public String getFileID() {
+		return fileID;
+	}
+	public void setFileID(String fileID) {
+		this.fileID = fileID;
+	}
+	public File[] getUploads() {
+		return uploads;
+	}
+	public void setUploads(File[] uploads) {
+		this.uploads = uploads;
+	}
+	public String[] getUploadsFileName() {
+		return uploadsFileName;
+	}
+	public void setUploadsFileName(String[] uploadsFileName) {
+		this.uploadsFileName = uploadsFileName;
+	}
+	public String[] getUploadsContentType() {
+		return uploadsContentType;
+	}
+	public void setUploadsContentType(String[] uploadsContentType) {
+		this.uploadsContentType = uploadsContentType;
+	}
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
+	}
 	public Date getOnDutyDateBegin() {
 		return onDutyDateBegin;
 	}

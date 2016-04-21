@@ -10,6 +10,8 @@ public interface IElecSystemDDLDao extends IBaseDao<ElecSystemDDL>{
 
 	public static final String SERVICE_NAME = "com.dcfun.elec.dao.impl.ElecSystemDDLDaoImpl";
 
-	List<ElecSystemDDL> findCollectionByDistinct();
+	List<ElecSystemDDL> findSystemDDLListByDistinct();
+
+	String findDdlNameByKeywordAndDdlCode(String string, String sexID);
 
 }

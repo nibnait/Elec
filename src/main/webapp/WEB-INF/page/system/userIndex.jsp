@@ -3,6 +3,8 @@
 
 
  <script language="javascript"> 
+   /**DOM对象*/
+   /**
    function deleteAll(){
 	 var selectuser = document.getElementsByName("userID");
 	 var flag = false;
@@ -27,13 +29,49 @@
      	}
      }
    }
+   */
+   /**jquery对象*/
+   function deleteAll(){
+	 var $selectuser = $("input[type=checkbox][name=userID]");
+	 var flag = false;
+	 $selectuser.each(function(){
+		 if(this.checked){
+			 flag=true;
+			 return false;//退出循环
+		 }
+	 })
+     if(!flag){
+     	alert("没有选择执行操作的用户！不能执行该操作");
+     	return false;
+     }
+     else{
+     	var confirmflag = window.confirm("你确定执行批量删除吗？");
+     	if(!confirmflag){
+     		return false;
+     	}
+     	else{
+     		$("#Form2").attr("action","elecUserAction_delete.do");
+     		$("#Form2").submit(); 	
+     		return true;
+     	}
+    }
+  }
   //用户:全部选中/全部不选中
+  /** DOM对象*/
+  /**
    function checkAllUser(user){
 	  var selectuser = document.getElementsByName("userID");
       for(var i=0;i<selectuser.length;i++){
      	 selectuser[i].checked = user.checked;
       }
    }
+   */
+   
+   /** JQuery对象*/
+   function checkAllUser(user) {
+		$("input[type=checkbox][name=userID]").attr("checked",user.checked);
+   }
+   
   </script>
 
 <HTML>
@@ -42,6 +80,7 @@
 		<LINK href="${pageContext.request.contextPath }/css/Style.css" type="text/css" rel="stylesheet">
 		<script type="text/javascript" src="${pageContext.request.contextPath}/My97DatePicker/WdatePicker.js"></script>
 		<script language="javascript" src="${pageContext.request.contextPath }/script/function.js"></script>
+		<script language="javascript" src="${pageContext.request.contextPath }/script/jquery-1.4.2.js"></script>
 	</HEAD>
 		
 	<body >
@@ -163,12 +202,12 @@
 										</td>
 										
 										<td align="center" style="HEIGHT: 22px" align="center" width="10%">																	
-										   <a href="#" onclick="openWindow('userEdit.jsp?userID=<s:property value="userID"/>','900','700');">
+										   <a href="#" onclick="openWindow('${pageContext.request.contextPath }/system/elecUserAction_edit.do?userID=<s:property value="userID"/>','900','700');">
 										   <img src="${pageContext.request.contextPath }/images/edit.gif" border="0" style="CURSOR:hand"></a>													
 										</td>
 										
 										<td align="center" style="HEIGHT: 22px" align="center" width="10%">
-											<a href="#" onclick="openWindow('userEdit.jsp?userID=<s:property value="userID"/>&viewflag=1','900','700');">
+											<a href="#" onclick="openWindow('${pageContext.request.contextPath }/system/elecUserAction_edit.do?userID=<s:property value="userID"/>&viewflag=1','900','700');">
 											<img src="${pageContext.request.contextPath }/images/button_view.gif" width="20" height="18" border="0" style="CURSOR:hand"></a>												
 										</td>
 									</tr>

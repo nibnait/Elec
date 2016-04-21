@@ -15,7 +15,7 @@
    
 <Script language="javascript">
 
-
+	/**Dom对象的操作*/
 	function check_null(){
 	    
 	     var theForm=document.Form1;
@@ -118,9 +118,128 @@
    	  		   return false;
    	  	   }
    	   }
-	   document.Form1.action="saveUser.do";
+	   document.Form1.action="${pageContext.request.contextPath }/system/elecUserAction_save.do";
 	   document.Form1.submit();
 	}
+	
+		/**jquery对象*/
+	/*function check_null(){
+	    if($.trim($("input[name='logonName']").val())=="")
+		{
+			alert("登录名不能为空");
+			$("input[name='logonName']")[0].focus();
+			return false;
+		}
+	    if($.trim($("input[name='userName']").val())=="")
+		{
+			alert("用户姓名不能为空");
+			$("input[name='userName']")[0].focus();
+			return false;
+		}
+		if($("select[name='sexID']").val()=="")
+		{
+			alert("请选择性别");
+			$("select[name='sexID']")[0].focus();
+			return false;
+		}
+	    if($("select[name='jctID']").val()=="")
+		{
+			alert("请选择所属单位");
+			$("select[name='jctID']")[0].focus();
+			return false;
+		}
+	    if($.trim($("input[name='onDutyDate']").val())=="")
+		{
+			alert("入职时间不能为空");
+			$("input[name='onDutyDate']")[0].focus();
+			return false;
+		}
+	    if($("select[name='postID']").val()=="")
+		{
+			alert("请选择职位");
+			$("select[name='postID']")[0].focus();
+			return false;
+		}
+        if($("input[name='logonPwd']").val()!=$("input[name='passwordconfirm']").val()){
+		  	alert("两次输入密码不一致，请重新输入");
+		  	return false;
+		}
+        if($("textarea[name='remark']").val().length>250){
+           
+         	alert("备注字符长度不能超过250");
+         	$("textarea[name='remark']")[0].focus();
+ 			return false; 
+        }
+       	//选择[是]
+       	if($("#isDuty option:nth-child(1)").is(":selected")){
+    	   if($.trim($("input[name='onDutyDate']").val())==""){
+ 			   alert("该用户属于在职人员，请填写入职时间");
+ 			   $("input[name='onDutyDate']")[0].focus();
+ 			   return false; 
+ 		   	}
+       	} 
+       //选择[否]
+       if($("#isDuty option:nth-child(2)").is(":selected")){
+    	   alert("不允许新增用户操作，选择离职！");
+    	   $("select[name='isDuty']")[0].focus();
+ 		   return false;
+       }
+       
+ 	   //上传的文件不能为空
+ 	   var $tbl=$("#filesTbl tr");
+       var flag = false;
+ 	   $tbl.each(function(index,domEle){
+ 		   //去掉表头
+ 		   if(index==0){
+ 			   return true;//相当于continue
+ 		   }
+ 		   //从1开始是为了去掉表头
+ 		   else{
+ 			   var $uploads = $(this).find("td:nth-child(2)").find("input[name='uploads']").val();
+ 			   if($.trim($uploads)==""){
+ 				  alert("请选择第"+ index +"行的文件路径！");
+ 				  flag = true;
+ 				  return false;//相当于break
+ 			   }
+ 		   }
+ 	   })
+ 	   //说明附件存在错误
+ 	   if(flag){
+ 		   return false;
+ 	   }
+      
+	   //正则表达式的使用	
+       var theForm=document.Form1;
+       if(checkNull(theForm.contactTel)){
+           if(!checkPhone(theForm.contactTel.value))
+  		  {
+  			alert("请输入正确的电话号码");
+  			theForm.contactTel.focus();
+  			return false;
+  		  }
+  		}
+  		
+  	    if(checkNull(theForm.mobile)){
+           if(!checkMobilPhone(theForm.mobile.value))
+  		  {
+  			alert("请输入正确的手机号码");
+  			theForm.mobile.focus();
+  			return false;
+  		  }
+  		}
+  		
+  	   if(checkNull(theForm.email))	{
+           if(!checkEmail(theForm.email.value))
+  		 {
+  			alert("请输入正确的EMail"); 	
+  			theForm.email.focus();
+  			return false;
+  		 }
+  	   }
+ 	   $("#Form1").attr("action","${pageContext.request.contextPath }/system/elecUserAction_save.do");
+	   $("#Form1").submit();
+	}
+	*/
 	function checkTextAreaLen(){
   		var remark = new Bs_LimitedTextarea('remark', 250); 
   		remark.infolineCssStyle = "font-family:arial; font-size:11px; color:gray;";
@@ -279,7 +398,7 @@
 			<s:select list="#request.jctList" name="jctID" id="jctID"
 					  listKey="ddlCode" listValue="ddlName"
 					  headerKey="" headerValue="请选择"
-					  cssStyle="width:155px">
+					  cssStyle="width:155px" onclick="findJctUnit(this)">
 			</s:select>
 			
 		</td>

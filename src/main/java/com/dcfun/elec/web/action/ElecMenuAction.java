@@ -10,7 +10,7 @@ import com.dcfun.elec.domain.ElecCommonMsg;
 import com.dcfun.elec.domain.ElecText;
 import com.dcfun.elec.service.IElecCommonMsgService;
 import com.dcfun.elec.service.IElecTextService;
-import com.dcfun.elec.utils.ValueUtils;
+import com.dcfun.elec.utils.Util_ValueStack;
 import com.dcfun.elec.web.form.MenuForm;
 
 @Controller("elecMenuAction")
@@ -69,7 +69,7 @@ public class ElecMenuAction extends BaseAction<MenuForm> {
 	public String loading() {
 		//查询设备运行情况 放置到浮动框中
 		ElecCommonMsg commonMsg = elecCommonMsgService.findCommonMsg();
-		ValueUtils.putValueStack(commonMsg);
+		Util_ValueStack.pushValueStack(commonMsg);
 		return "loading";
 	}
 	
@@ -102,7 +102,7 @@ public class ElecMenuAction extends BaseAction<MenuForm> {
 	//站点运行情况
 	public String alermStation(){
 		ElecCommonMsg commonMsg = elecCommonMsgService.findCommonMsg();
-		ValueUtils.putValueStack(commonMsg);
+		Util_ValueStack.pushValueStack(commonMsg);
 		return "alermStation";
 	}
 	
@@ -118,7 +118,7 @@ public class ElecMenuAction extends BaseAction<MenuForm> {
 	//设备运行情况
 	public String alermDevice(){
 		ElecCommonMsg commonMsg = elecCommonMsgService.findCommonMsg();
-		ValueUtils.putValueStack(commonMsg);
+		Util_ValueStack.pushValueStack(commonMsg);
 		return "alermDevice";
 	}
 	

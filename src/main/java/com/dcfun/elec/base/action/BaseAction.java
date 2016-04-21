@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 
-import com.dcfun.elec.utils.TUtils;
+import com.dcfun.elec.utils.Util_T;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
@@ -23,7 +23,7 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T>,Servl
 	@SuppressWarnings("unchecked")
 	public BaseAction(){
 		
-		Class entityClass = TUtils.getTClass(this.getClass());
+		Class entityClass = Util_T.getTClass(this.getClass());
 		
 		try {
 			entity = (T) entityClass.newInstance();

@@ -10,7 +10,7 @@ import com.dcfun.elec.domain.ElecCommonMsg;
 import com.dcfun.elec.domain.ElecText;
 import com.dcfun.elec.service.IElecCommonMsgService;
 import com.dcfun.elec.service.IElecTextService;
-import com.dcfun.elec.utils.ValueUtils;
+import com.dcfun.elec.utils.Util_ValueStack;
 
 @Controller("elecCommonMsgAction")
 @Scope(value="prototype")
@@ -33,7 +33,7 @@ public class ElecCommonMsgAction extends BaseAction<ElecCommonMsg>{
 	 */
 	public String home(){
 		ElecCommonMsg commonMsg = elecCommonMsgService.findCommonMsg();
-		ValueUtils.putValueStack(commonMsg);
+		Util_ValueStack.pushValueStack(commonMsg);
 		return "home";
 	}
 	
@@ -65,7 +65,7 @@ public class ElecCommonMsgAction extends BaseAction<ElecCommonMsg>{
 		//1：查询数据库运行监控表的数据，返回惟一ElecCommonMsg
 		ElecCommonMsg commonMsg = elecCommonMsgService.findCommonMsg();
 		//2：将ElecCommonMsg对象压入栈顶，支持表单回显
-		ValueUtils.putValueStack(commonMsg);
+		Util_ValueStack.pushValueStack(commonMsg);
 		return "actingView";
 	}
 	

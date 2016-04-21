@@ -25,7 +25,7 @@
 		<property name="remark" type="string" column="remark"></property>
 		
 		<!-- 一个用户对应多个文件 -->
-		<set name="elecUserFiles" table="Elec_User_File" inverse="true">
+		<set name="elecUserFiles" table="Elec_User_File" inverse="true" order-by="progressTime desc" cascade="delete">
 			<key>
 				<column name="userID"></column>
 			</key>
