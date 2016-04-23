@@ -41,7 +41,7 @@ public class ElecUserServiceImpl implements IElecUserService {
 	IElecSystemDDLDao elecSystemDDLDao;
 
 	@Override
-	public List<ElecUser> findCollectionByCondition(ElecUser elecUser) {
+	public List<ElecUser> findUserListByCondition(ElecUser elecUser) {
 
 		Map<String, Object> condition = new HashMap<String, Object>();
 		Map<String, String> orderby = new LinkedHashMap<String, String>();

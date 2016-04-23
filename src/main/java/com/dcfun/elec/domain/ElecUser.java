@@ -37,14 +37,14 @@ public class ElecUser implements java.io.Serializable {
 		this.elecUserFiles = elecUserFiles;
 	}
 
-//	private Set<ElecRole> elecRoles = new HashSet<ElecRole>();
-//	
-//	public Set<ElecRole> getElecRoles() {
-//		return elecRoles;
-//	}
-//	public void setElecRoles(Set<ElecRole> elecRoles) {
-//		this.elecRoles = elecRoles;
-//	}
+	private Set<ElecRole> elecRoles = new HashSet<ElecRole>();
+	
+	public Set<ElecRole> getElecRoles() {
+		return elecRoles;
+	}
+	public void setElecRoles(Set<ElecRole> elecRoles) {
+		this.elecRoles = elecRoles;
+	}
 	
 	public String getUserID() {
 		return userID;
@@ -177,6 +177,20 @@ public class ElecUser implements java.io.Serializable {
 	//用来判断是否对密码进行加密，存放修改用户之前的密码
 	private String password;
 
+	/**
+	 * 添加一个标识，判断页面的复选框是否被选中，该标识要放置到ElecUser对象中
+   flag=1：选中
+   flag=2：没有被选中
+	 */
+	private String flag;
+
+	
+	public String getFlag() {
+		return flag;
+	}
+	public void setFlag(String flag) {
+		this.flag = flag;
+	}
 	public String getPassword() {
 		return password;
 	}

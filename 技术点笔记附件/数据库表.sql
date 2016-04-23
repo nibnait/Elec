@@ -53,4 +53,51 @@ create table Elec_User_File(
 	fileURL varchar(1000) null,	#文件路径
 	progressTime timestamp null,	#上传时间
 	constraint foreign key(userID) references Elec_User(userID)
-)
+);
+
+
+#角色信息表
+create table Elec_Role(
+	roleID varchar(32) not null primary key, #角色ID
+	roleName varchar(500)		#角色名称
+);
+
+INSERT INTO `elec_role` VALUES ('1', '系统管理员');
+INSERT INTO `elec_role` VALUES ('2', '高级管理员');
+INSERT INTO `elec_role` VALUES ('3', '中级管理员');
+INSERT INTO `elec_role` VALUES ('4', '业务用户');
+INSERT INTO `elec_role` VALUES ('5', '一般用户');
+INSERT INTO `elec_role` VALUES ('6', '普通用户');
+-- ----------------------------
+
+
+#权限信息表
+create table Elec_Popedom(
+	mid varchar(32) not null, 		#权限Code(主键ID)
+	pid varchar(32) not null,		#父级权限Code，如果已经的根节点则为0
+	name varchar(32) null,			#权限名称
+	url varchar(5000) null,			#权限在系统中执行的URL
+	icon varchar(5000) null,		#如果是菜单，则为显示图片的URL
+	target varchar(5000) null,		#如果是菜单,链接执行的Frame区域名称
+	isParent boolean null,			#是否是父节点，父节点为true，子节点为false
+	isMenu boolean null,			#是否是系统菜单结构	
+	primary key(mid,pid)		#设置联合主键
+);
+
+
+#用户_角色 关联表
+#create table Elec_User_Role(
+#	userID varchar(32) not null,	#用户ID
+#	roleID varchar(32) not null,	#权限角色ID
+#	primary key(userID,roleID)		#设置联合逐渐
+#);
+
+#角色_权限 关联表
+create table Elec_Role_Popedom(
+	roleID varchar(32) not null,	#权限角色ID
+	mid varchar(32) not null,		#权限Code(主键ID)
+	pid varchar(32) not null,		#父级权限code,如果已经是根节点则为0
+	primary key(roleID,mid,pid)		#设置联合主键
+);
+
+

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.dcfun.elec.domain.ElecRolePopedom" table="Elec_Role_Popedom">
+		<composite-id>
+          <key-property name="roleID" type="string">
+               <column name="roleID"/>
+           </key-property>
+           <key-property name="mid" type="string">
+               <column name="mid"/>
+           </key-property>
+           <key-property name="pid" type="string">
+               <column name="pid"/>
+           </key-property>
+        </composite-id>		
+	</class>
+</hibernate-mapping>

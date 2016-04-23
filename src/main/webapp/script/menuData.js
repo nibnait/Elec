@@ -122,7 +122,7 @@ var privilegeDate = [{
 			name:'角色管理',
 			icon:'../images/MenuIcon/jueseguanli.gif',
 			target:'mainFrame',
-			url:'../system/roleIndex.jsp',
+			url:'../system/elecRoleAction_home.do',
 			isParent:false
 		},{
 			mid:'ap',

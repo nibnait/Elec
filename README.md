@@ -1,6 +1,6 @@
 # Elec 总结一下 每天学到的技术点
 itheima国家电力系统（10天）  
-这是一个简单的SSH整合项目。
+这是一个 基于maven的SSH demo整合项目。
 
 
 [TOC]
@@ -80,7 +80,7 @@ Hibernate 持久化、游离态、...？？？
 function.js/openWindow(sHref,strWidth,strHeight) 
 
 
-##day04 用户管理
+##day04 用户管理（【用户-用户文件】 一对多的操作）
 
 
 1. jquery的ajax实现二级联动
@@ -162,4 +162,48 @@ function.js/openWindow(sHref,strWidth,strHeight)
 	3. 即 实现了 编辑用户 和查看用户页面的通用
 
 11.使用md5的密码加密，处理用户的密码  
-	[MD5keyBean.java](com.dcfun.elec.utils)是个好东西！
+	[MD5keyBean.java](https://github.com/nibnait/Elec/blob/master/src/main/java/com/dcfun/elec/utils/MD5keyBean.java)是个好东西！
+
+##角色管理（权限分配）(多对多的操作)
+
+1. 
+	 - 角色-权限 	多对多关系  
+	角色是维护方
+
+	 - 用户-角色 多对一的关系  
+	 用户是维护方  
+	
+2. hibernate主键策略：  
+>
+	1. uuid		32位唯一的uuid
+	2. increment	自增长
+	3. assigned	代理主键（hibernate自动生成、一个没有任何含义的唯一主键）
+	4. 。。。？？
+
+
+3. 遍历所有 权限  
+	使用 二级List 
+
+4. jquery实现 首页权限选择的复选框的联动操作
+
+>	[attribute^=value]	匹配给定的属性是以某些值**开始**的元素
+
+>	[attribute$=value]	匹配给定的属性是以某些值**结尾**的元素
+
+火狐firedebug jquery函数执行完 返回的那些东西都是什么？
+
+5. 使用**包含**的技术 匹配 角色所具有的权限  
+	（popedomList 中的所有mid->String  然后调用contains()）
+
+6. 编辑页面的一些JS控制
+	1. 一行jquery 搞定“全选/全不选”
+	2. table的打开/关闭
+
+7. 根据角色 查询对应的用户！！  
+	（如果是普通用户、这数量也太大了、、、此处应该放到 用户编辑页面去做）
+	 
+8. 再加一个 添加权限的功能！！（！BUG）
+9. 多对多的删除
+	 - 级联删除 *谨慎使用
+	
+	

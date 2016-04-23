@@ -51,7 +51,7 @@ public class ElecUserAction extends BaseAction<ElecUser>{
 //		Util_ValueStack.putValueStack("jctList",jctList);
 
 //		2：根据组织页面中传递的查询条件，查询用户表，返回List<ElecUser>
-		List<ElecUser> userList = elecUserService.findCollectionByCondition(elecUser);
+		List<ElecUser> userList = elecUserService.findUserListByCondition(elecUser);
 		request.setAttribute("userList", userList);
 		
 		return "home";

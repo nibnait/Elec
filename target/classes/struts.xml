@@ -79,5 +79,16 @@
 			</result>
 		</action>
 
+		<!-- 角色管理 -->
+		<action name="elecRoleAction_*" class="elecRoleAction" method="{1}">
+			<result name="home">/WEB-INF/page/system/roleIndex.jsp</result>
+			<result name="edit">/WEB-INF/page/system/roleEdit.jsp</result>
+			<result name="save" type="redirectAction">
+				<param name="actionName">elecRoleAction_home.do</param>
+			</result>
+			
+		</action>
+
+
 	</package>
 </struts>

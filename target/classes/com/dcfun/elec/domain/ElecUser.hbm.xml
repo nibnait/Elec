@@ -32,12 +32,12 @@
 			<one-to-many class="com.dcfun.elec.domain.ElecUserFile"/>
 		</set> 
 		
-		<!-- <set name="elecRoles" table="elec_user_role" inverse="true">
+		<set name="elecRoles" table="elec_user_role" inverse="true">
 			<key>
 				<column name="userID"></column>
 			</key>
-			<many-to-many class="cn.itcast.elec.domain.ElecRole" column="roleID"/>
-		</set>  -->
+			<many-to-many class="com.dcfun.elec.domain.ElecRole" column="roleID"/>
+		</set> 
 		
 		
 	</class>

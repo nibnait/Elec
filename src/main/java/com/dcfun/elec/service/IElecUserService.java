@@ -9,7 +9,7 @@ public interface IElecUserService {
 
 	public static final String SERVICE_NAME = "com.dcfun.elec.service.impl.ElecUserServiceImpl";
 
-	List<ElecUser> findCollectionByCondition(ElecUser elecUser);
+	List<ElecUser> findUserListByCondition(ElecUser elecUser);
 
 	String checkUserByLogonName(String logonName);
 
