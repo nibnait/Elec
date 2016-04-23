@@ -164,14 +164,14 @@ function.js/openWindow(sHref,strWidth,strHeight)
 11.使用md5的密码加密，处理用户的密码  
 	[MD5keyBean.java](https://github.com/nibnait/Elec/blob/master/src/main/java/com/dcfun/elec/utils/MD5keyBean.java)是个好东西！
 
-##角色管理（权限分配）(多对多的操作)
+##day05角色管理（权限分配）(多对多的操作)
 
 1. 
 	 - 角色-权限 	多对多关系  
 	角色是维护方
 
 	 - 用户-角色 多对一的关系  
-	 用户是维护方  
+	 用户是维护方 ,
 	
 2. hibernate主键策略：  
 >

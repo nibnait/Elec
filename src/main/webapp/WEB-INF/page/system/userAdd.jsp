@@ -19,7 +19,13 @@
 	function check_null(){
 	    
 	     var theForm=document.Form1;
-	    
+	     
+	     if(theForm.roleID.value=="")
+		{
+			alert("请选择角色");
+			theForm.roleID.focus();
+			return false;
+		}
 	    if(Trim(theForm.logonName.value)=="")
 		{
 			alert("登录名不能为空");
@@ -140,6 +146,12 @@
 		{
 			alert("请选择性别");
 			$("select[name='sexID']")[0].focus();
+			return false;
+		}
+		if($("select[name='roleID']").val()=="")
+		{
+			alert("请选择角色");
+			$("select[name='roleID']")[0].focus();
 			return false;
 		}
 	    if($("select[name='jctID']").val()=="")
@@ -460,10 +472,18 @@
 		<td class="ta_01" bgColor="#ffffff">
 			<s:textfield name="onDutyDate" id="onDutyDate" maxlength="50" size="20" onClick="WdatePicker()"></s:textfield>
 		</td>
-		<td align="center" bgColor="#ffffff" class="ta_01"></td>
+<!-- 2016-04-24 00:02:36  添加  -->		
+		<td align="center" bgColor="#f5fafe" class="ta_01">角色：<font color="#FF0000">*</font></td>
 		<td class="ta_01" bgColor="#ffffff">
+			<s:select list="#request.roleList" name="roleID" id="roleID"
+					  listKey="roleID" listValue="roleName"
+					  headerKey="" headerValue="请选择"
+					  cssStyle="width:155px">
+			</s:select>
 		</td>
 	</tr>
+	
+	
     
 	<TR>
 		<TD class="ta_01" align="center" bgColor="#f5fafe">备注：</TD>

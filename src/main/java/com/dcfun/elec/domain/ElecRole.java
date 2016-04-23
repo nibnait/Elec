@@ -10,8 +10,9 @@ public class ElecRole implements java.io.Serializable {
 	private String roleID;		//主键ID
 	private String roleName;	//角色名称
 	
+	/** 2016-04-23 23:45:25添加 Set<ElecUser>*/
 	private Set<ElecUser> elecUsers = new HashSet<ElecUser>();
-		
+	
 	public Set<ElecUser> getElecUsers() {
 		return elecUsers;
 	}
@@ -30,5 +31,6 @@ public class ElecRole implements java.io.Serializable {
 	public void setRoleName(String roleName) {
 		this.roleName = roleName;
 	}
+	
 	
 }

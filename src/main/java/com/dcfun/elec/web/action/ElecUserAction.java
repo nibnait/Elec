@@ -14,9 +14,11 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.dcfun.elec.base.action.BaseAction;
+import com.dcfun.elec.domain.ElecRole;
 import com.dcfun.elec.domain.ElecSystemDDL;
 import com.dcfun.elec.domain.ElecUser;
 import com.dcfun.elec.domain.ElecUserFile;
+import com.dcfun.elec.service.IElecRoleService;
 import com.dcfun.elec.service.IElecSystemDDLService;
 import com.dcfun.elec.service.IElecUserService;
 import com.dcfun.elec.utils.Util_ValueStack;
@@ -27,12 +29,15 @@ public class ElecUserAction extends BaseAction<ElecUser>{
 
 	ElecUser elecUser = this.getModel();
 	
-	
 	@Resource(name=IElecUserService.SERVICE_NAME)
 	IElecUserService elecUserService;
 	
 	@Resource(name=IElecSystemDDLService.SERVICE_NAME)
 	IElecSystemDDLService elecSystemDDLService;
+	
+	@Resource(name=IElecRoleService.SERVICE_NAME)
+	IElecRoleService elecRoleService;
+	
 	
 	/**
 	 * @Name: home
@@ -82,6 +87,10 @@ public class ElecUserAction extends BaseAction<ElecUser>{
 		request.setAttribute("jctList", jctList);
 		List<ElecSystemDDL> isDutyList = elecSystemDDLService.findSystemDDLListByKeyword("是否在职");
 		request.setAttribute("isDutyList", isDutyList);
+		
+		//1、遍历role表	放入request中
+		List<ElecRole> roleList = elecRoleService.findAllRoleList();
+		request.setAttribute("roleList", roleList);
 	}
 	
 	

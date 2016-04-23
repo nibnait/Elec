@@ -183,7 +183,7 @@ td div {
 					<tr>
 						<td class="ta_01" align="right" width="35%" >角色类型&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 						<td class="ta_01" align="left"  width="65%" >
-							<s:select list="#request.elecRoleList" name="roleID" id="Form1_roleID" class="bg" cssStyle="width:180px" onchange="selectRole()"
+							<s:select list="#request.roleList" name="roleID" id="Form1_roleID" class="bg" cssStyle="width:180px" onchange="selectRole()"
 								listKey="roleID" listValue="roleName"
 								headerKey="0" headerValue="请选择"
 								>

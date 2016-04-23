@@ -11,8 +11,6 @@
 		<property name="fileURL" type="string" column="fileURL"></property>
 		<property name="progressTime" type="timestamp" column="progressTime"></property>
 		<!-- 用户文件和用户是多对一的关系 -->
-		<many-to-one name="elecUser" class="com.dcfun.elec.domain.ElecUser">
-			<column name="userID"></column>
-		</many-to-one>
+		<many-to-one name="elecUser" class="com.dcfun.elec.domain.ElecUser" column="userID" />
 	</class>
 </hibernate-mapping>

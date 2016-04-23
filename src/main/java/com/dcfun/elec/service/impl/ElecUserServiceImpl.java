@@ -17,9 +17,11 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.dcfun.elec.dao.IElecRoleDao;
 import com.dcfun.elec.dao.IElecSystemDDLDao;
 import com.dcfun.elec.dao.IElecUserDao;
 import com.dcfun.elec.dao.IElecUserFileDao;
+import com.dcfun.elec.domain.ElecRole;
 import com.dcfun.elec.domain.ElecUser;
 import com.dcfun.elec.domain.ElecUserFile;
 import com.dcfun.elec.service.IElecUserService;
@@ -39,6 +41,9 @@ public class ElecUserServiceImpl implements IElecUserService {
 	/** 数据字典表Dao */
 	@Resource(name = IElecSystemDDLDao.SERVICE_NAME)
 	IElecSystemDDLDao elecSystemDDLDao;
+	
+	@Resource(name = IElecRoleDao.SERVICE_NAME)
+	IElecRoleDao elecRoleDao;
 
 	@Override
 	public List<ElecUser> findUserListByCondition(ElecUser elecUser) {
@@ -140,7 +145,11 @@ public class ElecUserServiceImpl implements IElecUserService {
 	 */
 	@Transactional(isolation = Isolation.DEFAULT, propagation = Propagation.REQUIRED, readOnly = false)
 	public void saveUser(ElecUser elecUser) {
-
+		
+		/**2016-04-24 01:15:18 添加 elecUser.setRole*/
+		ElecRole role = elecRoleDao.findObjectById(elecUser.getRoleID());
+		elecUser.setElecRole(role);
+		
 		this.saveFiles(elecUser);
 
 		this.md5Password(elecUser);

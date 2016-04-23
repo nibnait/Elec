@@ -41,7 +41,7 @@ public class ElecRoleAction extends BaseAction<ElecPopedom>{
 		
 		//1、遍历role表	放入request中
 		List<ElecRole> roleList = elecRoleService.findAllRoleList();
-		request.setAttribute("elecRoleList", roleList);
+		request.setAttribute("roleList", roleList);
 		
 		//2、组织 两个权限list：	
 		//	parentPopedomList	存放所有pid=0的ElecPopedom,放入request中

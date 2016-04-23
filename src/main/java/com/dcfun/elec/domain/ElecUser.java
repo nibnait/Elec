@@ -37,15 +37,16 @@ public class ElecUser implements java.io.Serializable {
 		this.elecUserFiles = elecUserFiles;
 	}
 
-	private Set<ElecRole> elecRoles = new HashSet<ElecRole>();
-	
-	public Set<ElecRole> getElecRoles() {
-		return elecRoles;
+	/**2016-04-23 22:57:28 添加roleID */
+	//因为 用户和角色应该是多对一的关系！
+	private ElecRole elecRole;
+
+	public ElecRole getElecRole() {
+		return elecRole;
 	}
-	public void setElecRoles(Set<ElecRole> elecRoles) {
-		this.elecRoles = elecRoles;
+	public void setElecRole(ElecRole elecRole) {
+		this.elecRole = elecRole;
 	}
-	
 	public String getUserID() {
 		return userID;
 	}
@@ -183,8 +184,16 @@ public class ElecUser implements java.io.Serializable {
    flag=2：没有被选中
 	 */
 	private String flag;
-
 	
+	/**2016-04-24 01:20:48 添加  roleID*/
+	String roleID;
+	
+	public void setRoleID(String roleID) {
+		this.roleID = roleID;
+	}
+	public String getRoleID(){
+		return roleID;
+	}
 	public String getFlag() {
 		return flag;
 	}

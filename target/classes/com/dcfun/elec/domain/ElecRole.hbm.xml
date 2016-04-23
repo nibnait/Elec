@@ -9,11 +9,11 @@
 		</id>
 		<property name="roleName" type="string" column="roleName"></property>
 		
-		<set name="elecUsers" table="elec_user_role">
+		<set name="elecUsers" table="Elec_Role" inverse="true">
 			<key>
 				<column name="roleID"></column>
 			</key>
-			<many-to-many class="com.dcfun.elec.domain.ElecUser" column="userID"/>
+			<one-to-many class="com.dcfun.elec.domain.ElecUser"/>
 		</set> 
 	</class>
 </hibernate-mapping>

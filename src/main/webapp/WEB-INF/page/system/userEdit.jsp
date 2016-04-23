@@ -23,7 +23,12 @@
 	
 		var theForm=document.Form1;
 	    
-	  
+	  	if(Trim(theForm.roleID.value)=="")
+		{
+			alert("请选择角色");
+			theForm.roleID.focus();
+			return false;
+		}
 	    if(Trim(theForm.userName.value)=="")
 		{
 			alert("用户姓名不能为空");
@@ -126,6 +131,12 @@
     */
     /**jquery对象*/
     function check_null(){
+   		if($("select[name='roleID']").val()=="")
+		{
+			alert("请选择角色");
+			$("select[name='roleID']")[0].focus();
+			return false;
+		}
 	    if($.trim($("input[name='userName']").val())=="")
 		{
 			alert("用户姓名不能为空");
@@ -465,7 +476,20 @@
 			<s:textfield name="offDutyDate" id="offDutyDate" value="%{offDutyDateDate}" maxlength="50" size="20" onClick="WdatePicker()"></s:textfield>
 		</td>
 	</tr>
-    
+	<!-- 2016-04-24 00:02:36  添加  -->
+	<tr>
+    <td align="center" bgColor="#f5fafe" class="ta_01">角色：</td>
+		<td class="ta_01" bgColor="#ffffff">
+			<s:select list="#request.roleList" name="roleID" id="roleID"
+					  listKey="roleID" listValue="roleName"
+					  cssStyle="width:155px">
+			</s:select>
+		</td>
+		<td align="center" bgColor="#ffffff" class="ta_01"></td>
+		<td class="ta_01" bgColor="#ffffff">
+		</td>
+		
+	</tr>
 	<TR>
 		<TD class="ta_01" align="center" bgColor="#f5fafe">备注：</TD>
 		<TD class="ta_01" bgColor="#ffffff" colSpan="3">
