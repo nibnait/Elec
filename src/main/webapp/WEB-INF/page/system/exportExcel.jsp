@@ -1,4 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%@taglib uri="/struts-tags" prefix="s"%>
 <html>
 <head>
 <title>导出设置</title>   
@@ -131,7 +132,8 @@
 	  } 
   }  
   	
-   function setValue(){
+  /**DOM对象*/
+  /** function setValue(){
 
   	   				
    
@@ -181,6 +183,54 @@
        document.Form1.action="elecExportFieldsAction_saveSetExportExcel.do";
        document.Form1.submit();      
      }
+     */
+     /**jquery对象*/
+     function setValue(){
+
+				
+    	   
+         var $rightcol = $("#colname2");
+         var $leftcol = $("#colname1");
+    		selectid="";		
+			selectname="";
+			noselectid="";
+			noselectname="";
+		 $rightcol.find("option").each(function(index,domEle){
+			 if(index==$("#colname2 option").length-1){
+				 selectid += $(this).val();
+				 selectname += $(this).text();
+			 }
+			 else{
+				 selectid += $(this).val()+"#";
+				 selectname += $(this).text()+"#";
+			 }
+		 })	
+		 $leftcol.find("option").each(function(index,domEle){
+			 if(index==$("#colname1 option").length-1){
+				 noselectid += $(this).val();
+				 noselectname += $(this).text();
+			 }
+			 else{
+				 noselectid += $(this).val()+"#";
+				 noselectname += $(this).text()+"#";
+			 }
+		 })	
+			$("#expNameList").val(selectname);
+		 	$("#expFieldName").val(selectid);
+		 	$("#noExpNameList").val(noselectname);
+		 	$("#noExpFieldName").val(noselectid);
+			 			
+  }	
+  
+  function checksubmit(){
+    setValue();	
+    if($("#expNameList").val()=="" || $("#expFieldName").val()==""){
+       alert("请至少选择一列作为导出列");
+       return;
+    }
+  	$("#Form1").attr("action","elecExportFieldsAction_saveSetExportExcel.do");
+  	$("#Form1").submit();   
+  }
      
      </script>
   </head>
@@ -214,19 +264,18 @@
            <table border="0" width="100%" cellspacing="0" cellpadding="0">
                <tr>
                    <td width="30%" rowspan="4">
-                  
-                   <select size="15" name="colname1" multiple style="width:200px" id="colname1" ondblclick="JavaScript:Add('colname1','colname2','colname')">
-						<option value="stationRun" >站点运行情况</option>
-                   </select>
+                   <s:select list="#request.nomap" name="colname1" id="colname1"
+                   			 size="15" multiple="true"
+                   			 cssStyle="width:200px" ondblclick="JavaScript:Add('colname1','colname2','colname')">
+                   	</s:select>
                    </td> 
                    <td width="15%"></td>
                    <td width="35%" rowspan="4" id="colnameDiv">
                    
-                  
-                   <select size="15" name="colname2" id="colname2" multiple style="width:200px" ondblclick="JavaScript:Remove('colname1','colname2','colname')">
-                   		<option value="devRun" >设备运行情况</option>
-                   		<option value="createDate" >创建日期</option>
-                   </select>
+                   <s:select list="#request.map" name="colname2" id="colname2"
+                   			 size="15" multiple="true"
+                   			 cssStyle="width:200px" ondblclick="JavaScript:Remove('colname1','colname2','colname')">
+                   </s:select>
                    </td>  
                    
                    <td width="20%"></td>
@@ -250,7 +299,7 @@
                   </tr>
   
                   <tr><td width="73">
-                  	   <INPUT type="hidden"  name="belongTo"  id="belongTo"  value="5-3">
+                  	   <s:hidden name="belongTo" id="belongTo"></s:hidden>
 	                   <INPUT type="hidden"  name="expNameList"  id="expNameList"  value="">
 	                   <INPUT type="hidden"  name="expFieldName" id="expFieldName"  value="">
 	                   <INPUT type="hidden"  name="noExpNameList"  id="noExpNameList"  value="">

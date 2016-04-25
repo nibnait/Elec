@@ -14,4 +14,5 @@ public interface IBaseDao<T> {
 	void deleteObjectByCollection(List<T> list);
 	
 	List<T> findCollectionByConditionNoPage(Map<String, Object> condition, Map<String, String> orderby);
+	List<T> findCollectionByConditionNoPageWithCache(Map<String, Object> condition, Map<String, String> orderby);
 }

@@ -41,7 +41,7 @@ public class ElecUserServiceImpl implements IElecUserService {
 	/** 数据字典表Dao */
 	@Resource(name = IElecSystemDDLDao.SERVICE_NAME)
 	IElecSystemDDLDao elecSystemDDLDao;
-	
+
 	@Resource(name = IElecRoleDao.SERVICE_NAME)
 	IElecRoleDao elecRoleDao;
 
@@ -76,10 +76,18 @@ public class ElecUserServiceImpl implements IElecUserService {
 		// 按入职时间 升序排序
 		orderby.put("onDutyDate", "asc");
 
-		List<ElecUser> list = elecUserDao.findCollectionByConditionNoPage(
-				condition, orderby);
+		/**方案一：查询用户表，再转换 数据字典表*/
+//		List<ElecUser> list = elecUserDao.findCollectionByConditionNoPage(
+//				condition, orderby);
+//
+//		this.convertSystemDDL(list);
 
-		this.convertSystemDDL(list);
+		/**2016-04-25 18:48:47 添加
+		 * 方案二： 使用 左外连接查询用户表
+		 * */
+		List<ElecUser> list = elecUserDao.findCollectionByConditionNoPageWithSql(condition, orderby);
+		
+		
 		return list;
 	}
 
@@ -145,11 +153,11 @@ public class ElecUserServiceImpl implements IElecUserService {
 	 */
 	@Transactional(isolation = Isolation.DEFAULT, propagation = Propagation.REQUIRED, readOnly = false)
 	public void saveUser(ElecUser elecUser) {
-		
-		/**2016-04-24 01:15:18 添加 elecUser.setRole*/
+
+		/** 2016-04-24 01:15:18 添加 elecUser.setRole */
 		ElecRole role = elecRoleDao.findObjectById(elecUser.getRoleID());
 		elecUser.setElecRole(role);
-		
+
 		this.saveFiles(elecUser);
 
 		this.md5Password(elecUser);
@@ -163,12 +171,10 @@ public class ElecUserServiceImpl implements IElecUserService {
 	}
 
 	/**
-	 * 加密： 密码为空 --> 设置初始密码：123456、不为空 、 修改密码了 
-	 * 编辑的时候 若未修改密码，则无需再次加密了！！！
-	 *
+	 * 加密： 密码为空 --> 设置初始密码：123456、不为空 、 修改密码了 编辑的时候 若未修改密码，则无需再次加密了！！！
 	 * 
-	 * 妈蛋 被绕进去了，人家 正规的时候 修改密码 会另外做一条链接(或者请求、或者action)
-	 * 这种情况 就是个鸡肋！还要管理员 手动修改密码？呵呵 
+	 * 
+	 * 妈蛋 被绕进去了，人家 正规的时候 修改密码 会另外做一条链接(或者请求、或者action) 这种情况 就是个鸡肋！还要管理员 手动修改密码？呵呵
 	 * 
 	 * @param elecUser
 	 */
@@ -302,10 +308,11 @@ public class ElecUserServiceImpl implements IElecUserService {
 	public ElecUser findUserByLogonName(String logonName) {
 		Map<String, Object> condition = new HashMap<>();
 		condition.put("logonName", logonName);
-		List<ElecUser> userList = elecUserDao.findCollectionByConditionNoPage(condition, null);
-		
+		List<ElecUser> userList = elecUserDao.findCollectionByConditionNoPage(
+				condition, null);
+
 		ElecUser elecUser = null;
-		if (userList!=null && userList.size()>0) {
+		if (userList != null && userList.size() > 0) {
 			elecUser = userList.get(0);
 		}
 

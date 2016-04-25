@@ -79,10 +79,14 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T> {
 						if (keyValues != null) {
 							for (Entry<String, Object> entry : keyValues.entrySet()) {
 								
+								
+								/**2016-04-25 18:36:11 灵机一动
+								 * 
+								 * 		entry.getValue() 中加个 "("...")"不就可以定位到了么。。。哎、蠢！
+								 * */
 //								if(entry.getKey().contains("in")){
 //									/**2016-04-24 14:02:04 添加 --- 封装带in的查询条件*/
 //									if (entry.getKey().contains(".")) {
-//										System.out.println("setParameter:"+entry.getKey().split("\\.")[1].substring(0, entry.getKey().split("\\.")[1].length()-3)+"++"+entry.getValue());
 //										query.setParameter(entry.getKey().split("\\.")[1].substring(0, entry.getKey().length()-4), entry.getValue());
 //									}else {
 //										query.setParameter(entry.getKey().substring(0, entry.getKey().length()-3), entry.getValue());
@@ -148,7 +152,7 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T> {
 //					/**2016-04-24 14:02:04 添加 --- 封装带in的查询条件*/hibernate 找不到in(:mid) mid!!! 
 //					if (entry.getKey().contains(".")) {				//entry.getKey().split("\\.")[1].substring(0, entry.getKey().length()-4)
 //						System.out.println("finalHql.append:"+entry.getKey().split("\\.")[1].substring(0, entry.getKey().split("\\.")[1].length()-3));
-//						finalHql.append(" and "+entry.getKey()+"(:"+entry.getKey().split("\\.")[1].substring(0, entry.getKey().split("\\.")[1].length()-3)+")");
+//						finalHql.append(" and "+entry.getKey()+" :"+entry.getKey().split("\\.")[1].substring(0, entry.getKey().split("\\.")[1].length()-3));
 //						System.out.println("finalHql = "+finalHql);
 //					}else {
 //						//先写不带"." 的，  Mid in ( :Mid)
@@ -182,6 +186,73 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T> {
 			}
 		}
 		return finalHql;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<T> findCollectionByConditionNoPageWithCache(
+			final Map<String, Object> keyValues, Map<String, String> orderby) {
+
+		final StringBuffer finalHql = new StringBuffer();
+		finalHql.append("from " + entityClass.getSimpleName()+" o");
+		finalHql.append(" where 1=1");
+		finalHql.append(this.buildWhere(keyValues));
+		finalHql.append(this.buildOrderBy(orderby));
+		List<T> list = this.getHibernateTemplate().execute(
+				new HibernateCallback() {
+
+					public Object doInHibernate(Session session)
+							throws HibernateException, SQLException {
+
+						Query query = session.createQuery(finalHql.toString());
+						if (keyValues != null) {
+							for (Entry<String, Object> entry : keyValues.entrySet()) {
+								
+//								if(entry.getKey().contains("in")){
+//									/**2016-04-24 14:02:04 添加 --- 封装带in的查询条件*/
+//									if (entry.getKey().contains(".")) {
+//										System.out.println("setParameter:"+entry.getKey().split("\\.")[1].substring(0, entry.getKey().split("\\.")[1].length()-3)+"++"+entry.getValue());
+//										query.setParameter(entry.getKey().split("\\.")[1].substring(0, entry.getKey().length()-4), entry.getValue());
+//									}else {
+//										query.setParameter(entry.getKey().substring(0, entry.getKey().length()-3), entry.getValue());
+//									}
+//								}else
+								if (entry.getKey().contains("like")) {
+									
+									if(entry.getKey().contains(".")){
+										
+										query.setParameter(entry.getKey().split("\\.")[1].substring(0, entry.getKey().length()-5), entry.getValue());
+									}else{
+										//最简单的情况，没有"."的  “>=”、“<=” 
+										//为了支持 >=、<=  也是拼 [笑Cry]
+ 										query.setParameter(entry.getKey().substring(0, entry.getKey().length()-5), "'"+entry.getValue());
+									}
+									
+								}else if(entry.getKey().contains("=")){
+									
+									if(entry.getKey().contains(".")){
+										query.setParameter(entry.getKey().split("\\.")[1].split("\\=")[0].substring(0, entry.getKey().length()-3), entry.getValue());
+									}else{
+										//最简单的情况，没有"."的  “>=”、“<=” 
+										//为了支持 >=、<=  也是拼 [笑Cry]
+										query.setParameter(entry.getKey().split("\\=")[0].substring(0, entry.getKey().length()-3), entry.getValue());
+									}
+									
+								}else if(entry.getKey().contains(".")){
+									query.setParameter(entry.getKey().split("\\.")[1], entry.getValue());
+								}else{
+									query.setParameter(entry.getKey(), entry.getValue());
+								}
+								
+							}
+						}
+						query.setCacheable(true);
+						
+						return query.list();
+					}
+
+				});
+		return list;
 	}
 
 }

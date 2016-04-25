@@ -209,7 +209,7 @@ function.js/openWindow(sHref,strWidth,strHeight)
 	 - 级联删除 *谨慎使用
 	
 	
-##day06 系统登录模块
+##day06 系统登录&权限管理模块
 
 1. struts2校验机制 
 	 - ValidationAware  -->
@@ -230,7 +230,7 @@ function.js/openWindow(sHref,strWidth,strHeight)
 	2. 这里用的一个image.jsp嵌套的java代码、、好吧 
 
 5. 额额额 又发现了一个问题（！BUG）前端向后台传密码 居然是明文传输、、、  
-（要不要 先在前端用md5加个密，然后 再在后台 将密码二次加密后 再存到数据库中？[哈哈 还是先不给自己找麻烦了]）
+（要不要 先在前端用md5加个密，然后 再在后台 将密码二次加密后 再存到数据库中？[[-> _-》] 还是先不给自己找麻烦了]）
 
 6. 利用客户端的Cookie（保存用户名、密码）“记住我”  
 	1. Cookie中 不能存放中文
@@ -258,7 +258,7 @@ function.js/openWindow(sHref,strWidth,strHeight)
 		 - 普通用户（非系统管理员） 没有编辑、保存数据字典的权限
 	 - 	使用了大量的 <s:if test="">标签。。。感觉 并不是一个特别好的方法  
 	--> 引入 **自定义标签**
-13. ###（session级别的）粗颗粒权限控制：    
+13.  ###（session级别的）粗颗粒权限控制：    
 	服务器中的session，10分钟不操作，就会被自动清空（web.xml-->
 ```<session-config>
 	<session-timeout>10</session-timeout>
@@ -270,7 +270,7 @@ function.js/openWindow(sHref,strWidth,strHeight)
 	 - 存在 放行
 	 - 否则 重定向回首页（登陆等 本来就没有Session的操作除外）
 
-14. ###自定义**struts2拦截器**,进行异常处理+日志备份  
+14.  ###自定义**struts2拦截器**,进行异常处理+日志备份  
 	拦截所有.do结尾查找Action类的URL
 ```
 	try{
@@ -286,5 +286,21 @@ function.js/openWindow(sHref,strWidth,strHeight)
 	}
 ```
 
-15. ###细颗粒度权限控制  
+15.  ###细颗粒度权限控制  
 	**拦截器 + 自定义注解**
+
+
+##day07 
+
+1. webservice框架：
+    1. jdk    ws.invoke();
+    2. CKF
+    3. axis2
+    4. xfire
+2. hibernate 二级缓存
+	1. 用户首页： 使用数据类型和数据项的编号，获取数据项的值
+	2. 用户新增/编辑页面：使用数据类型，加载对应数据类型下的集合
+
+3. 联合查询+标量查询  
+4. 导出设置  
+	

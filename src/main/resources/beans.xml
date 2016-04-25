@@ -26,9 +26,9 @@
 				classpath:hibernate.cfg.xml
 			</value>
 		</property>
-		<property name="mappingDirectoryLocations">
+		<!-- <property name="mappingDirectoryLocations">
 			<value>classpath:com/dcfun/elec/domain</value>
-		</property>
+		</property> -->
 		
 	</bean>
 	<!-- 4:创建事务管理器 -->

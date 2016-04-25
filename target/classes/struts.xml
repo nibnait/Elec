@@ -116,9 +116,11 @@
 			<result name="save" type="redirectAction">
 				<param name="actionName">elecRoleAction_home.do</param>
 			</result>
-			
 		</action>
-
-
+		
+		<!-- 导出设置-->
+		<action name="elecExportFieldsAction_*" class="elecExportFieldsAction" method="{1}">
+			<result name="setExportFields">/WEB-INF/page/system/exportExcel.jsp</result>
+		</action>
 	</package>
 </struts>

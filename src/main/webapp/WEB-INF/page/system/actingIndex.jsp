@@ -186,7 +186,7 @@
 			<td class="ta_01" style="width: 100%" align="center" bgcolor="#f5fafe" colspan="2">
 			<input type="button" name="BT_Submit" value="保存" onclick="checkchar()" id="BT_Submit" style="font-size:12px; color:black; height=20;width=50">&nbsp;&nbsp;
 				<input style="font-size:12px; color:black; height=20;width=80" id="BT_Export" type="button" value="导出设置" name="BT_Export" 
-						 onclick="openWindow('${pageContext.request.contextPath }/system/exportExcel.jsp?belongTo=5-3','700','400')">&nbsp;&nbsp;
+						 onclick="openWindow('${pageContext.request.contextPath }/system/elecExportFieldsAction_setExportFields.do?belongTo=5-3','700','400')">&nbsp;&nbsp;
 			</td>
 		</tr>
 	</table>

@@ -57,7 +57,7 @@ public class ElecSystemDDLServiceImpl implements IElecSystemDDLService {
 		condition.put("o.keyword", keyword);
 		orderby.put("o.ddlCode", "asc");
 		
-		List<ElecSystemDDL> list = elecSystemDDLDao.findCollectionByConditionNoPage(condition, orderby);
+		List<ElecSystemDDL> list = elecSystemDDLDao.findCollectionByConditionNoPageWithCache(condition, orderby);
 		return list;
 	}
 

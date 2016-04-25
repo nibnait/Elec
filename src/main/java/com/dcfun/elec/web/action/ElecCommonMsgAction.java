@@ -11,6 +11,7 @@ import com.dcfun.elec.domain.ElecText;
 import com.dcfun.elec.service.IElecCommonMsgService;
 import com.dcfun.elec.service.IElecTextService;
 import com.dcfun.elec.utils.ValueStackUtils;
+import com.dcfun.elec.utils.annotation.AnnotationLimit;
 
 @Controller("elecCommonMsgAction")
 @Scope(value="prototype")
@@ -31,6 +32,7 @@ public class ElecCommonMsgAction extends BaseAction<ElecCommonMsg>{
 	 * @Parameters: 无
 	 * @Return: String: 跳转到actingIndex.jsp
 	 */
+	@AnnotationLimit(mid="aq",pid="am")
 	public String home(){
 		ElecCommonMsg commonMsg = elecCommonMsgService.findCommonMsg();
 		ValueStackUtils.pushValueStack(commonMsg);
@@ -46,6 +48,7 @@ public class ElecCommonMsgAction extends BaseAction<ElecCommonMsg>{
 	* @Parameters: 无
 	* @Return: String：重定向到system/actingIndex.jsp（再查询）
 	*/
+	@AnnotationLimit(mid="cb",pid="ca")
 	public String save(){
 		elecCommonMsgService.saveElecCommonMsg(elecCommonMsg);
 		return "save";
@@ -60,6 +63,7 @@ public class ElecCommonMsgAction extends BaseAction<ElecCommonMsg>{
 	* @Parameters: 无
 	* @Return: String：跳转到system/actingView.jsp
 	*/
+	@AnnotationLimit(mid="cc",pid="ca")
 	public String actingView(){
 		//查询运行监控的数据
 		//1：查询数据库运行监控表的数据，返回惟一ElecCommonMsg

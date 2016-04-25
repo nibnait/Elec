@@ -101,3 +101,13 @@ create table Elec_Role_Popedom(
 );
 
 
+#导出设置表
+create table Elec_ExportFields(
+	belongTo varchar(10) not null primary key,	#所属模块（自然主键），如 用户管理为：5-1
+	expNameList varchar(5000) null,		#导出字段的中文名
+	expFieldName varchar(5000) null, 	#导出字段的英文名
+	noexpNameList varchar(5000) null,	#未导出字段的中文名
+	noexpFieldName varchar(5000) null 	#未导出字段的英文名
+);
+
+

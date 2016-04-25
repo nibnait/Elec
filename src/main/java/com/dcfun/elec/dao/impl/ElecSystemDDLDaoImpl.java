@@ -55,6 +55,8 @@ public class ElecSystemDDLDaoImpl extends BaseDaoImpl<ElecSystemDDL> implements 
 				Query query = session.createQuery(hql);
 				query.setParameter(0, keyword);
 				query.setParameter(1, Integer.parseInt(ddlCode));
+				/**2016-04-25 18:13:02 添加 二级缓存机制*/
+				query.setCacheable(true);
 				return query.list();
 			}
 			
