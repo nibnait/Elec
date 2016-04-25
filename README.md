@@ -9,8 +9,9 @@ itheima国家电力系统（10天）
 
 
 1. 按条件查找的DAO：  
-要先有BaseQuery、
-	用HashMaP<>() buildWhere、LinkedHashMap<>() buildOrderBy
+要先有BaseQuery、  
+	 - 用HashMaP<String, Object>()  -->buildWhere、  
+	 - LinkedHashMap<String, String>()  -->buildOrderBy
 
 ##day02 运行监控
 
@@ -117,14 +118,15 @@ function.js/openWindow(sHref,strWidth,strHeight)
 	2. 方案二：使用Blob字段 将数据直接存放在数据库中
 
 6. 用户编辑	
-	1. 表单回显 *OGNL表达式*？？
+	1. 表单回显 **${OGNL表达式}**？？(从栈顶 想读啥 直接写)
 	2. 将userFile按上传时间降序排序：  
 		在user.hbm.xml的userFile那一项 加个order-by="progressTime desc"属性即可
 
 7. 添加spring解决hibernate懒加载：  
 
 	在web.xml的struts2过滤器前 *openSessionInViewFilter*
-
+这样 一个servlet的生命周期 就可以延长至一个 request到response整个周期了。  
+延迟了**session**的关闭时间，，，容易造成*“假死”*现象（一个session未关闭，则另一个session链接就连不上了。）
 
 8. 文件下载
 	- 方式一：javaweb 【InputStreame OutputStream】
@@ -207,3 +209,82 @@ function.js/openWindow(sHref,strWidth,strHeight)
 	 - 级联删除 *谨慎使用
 	
 	
+##day06 系统登录模块
+
+1. struts2校验机制 
+	 - ValidationAware  -->
+		 - addActionError(String anErrorMessage);  
+		 <s:actionError />
+		 - addFieldError(String fieldName, String errorMessage);
+		
+	 - 覆盖更改struts标签的样式（struts2-core --> template -->simple --> <s:... />)  
+	 在src下 创建一个 template/simple文件夹，然后想覆盖那个 就复制那个标签，然后 直接更改。
+
+2. HashMap 与 HashTable的区别：‘
+	1. HashTable是线程安全的， 比如在登陆的时候 存放一些用户的 权限、角色信息
+
+3. hibernate懒加载问题 之四种解决方案（详见 word笔记） 
+
+4. 验证码	系统生成的imageNumber放到session域中，与request传过来的imageNumber比较   
+	1. 正常应该写个LogonUtils的java类，输入图片流！
+	2. 这里用的一个image.jsp嵌套的java代码、、好吧 
+
+5. 额额额 又发现了一个问题（！BUG）前端向后台传密码 居然是明文传输、、、  
+（要不要 先在前端用md5加个密，然后 再在后台 将密码二次加密后 再存到数据库中？[哈哈 还是先不给自己找麻烦了]）
+
+6. 利用客户端的Cookie（保存用户名、密码）“记住我”  
+	1. Cookie中 不能存放中文
+	2. 有效时间（生命周期）
+	3. 有效路径
+	4. JSESSIONID 浏览器自动生成 自动存在Cookie中
+
+7. 拦截器  -->只能拦截.do（跳转action的操作），不能拦截跳转jsp servlet的操作  
+	此时 需引入过滤器filter：  
+	在跳转index.jsp页面之前 先获取Cookie, 传值的方式给index.jsp  
+**自定义过滤器，放置到web.xml的struts2过滤器的前面**  
+
+8. el表达式 获取request中的值： ${requestScope.password} 
+9. [jquery的ztree插件]()的使用（完成动态加载树型结构）
+10. HQL ：  
+	**请不要 尝试封装 in语句**， hibernate找不到的。
+11. xml中加个<![CDATA[...]]>  ...无需转义
+12. ###角色和权限的控制  
+
+	 -  角色控制
+	 	- 系统管理员 点击“用户管理” --> /system/userIndex.jsp
+	 	- 非系统管理员 点击“用户管理”  --> /system/userEdit.jsp
+
+	 -  权限控制：
+		 - 普通用户（非系统管理员） 没有编辑、保存数据字典的权限
+	 - 	使用了大量的 <s:if test="">标签。。。感觉 并不是一个特别好的方法  
+	--> 引入 **自定义标签**
+13. ###（session级别的）粗颗粒权限控制：    
+	服务器中的session，10分钟不操作，就会被自动清空（web.xml-->
+```<session-config>
+	<session-timeout>10</session-timeout>
+</session-config>  
+```
+	）
+	
+	【所以要在**struts过滤器**中 先将操作拦截下来 判断一下此操作的Session是否存在】  
+	 - 存在 放行
+	 - 否则 重定向回首页（登陆等 本来就没有Session的操作除外）
+
+14. ###自定义**struts2拦截器**,进行异常处理+日志备份  
+	拦截所有.do结尾查找Action类的URL
+```
+	try{
+		//如果没有异常，不会执行catch
+		String result =  参数.invoke();//指定Action的类，返回Action类的返回值
+		return result;
+	}
+	catch(Exception){
+		//如果出现异常，执行catch体
+		//日志备份（log4j技术）
+		//异常处理
+		return "errorMsg";
+	}
+```
+
+15. ###细颗粒度权限控制  
+	**拦截器 + 自定义注解**

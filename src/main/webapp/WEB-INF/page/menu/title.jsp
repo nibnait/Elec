@@ -1,8 +1,5 @@
-
 <%@ page language="java"  pageEncoding="UTF-8"%>
-
-
-
+<%@ taglib uri="/struts-tags" prefix="s" %>
 
 <HTML>
 <HEAD>
@@ -81,7 +78,7 @@ eval("document.location='"+action+"'");
     
     <td width="16%" height="19" bgcolor="#0965CA">
     <table cellSpacing="2" height="19" cellPadding="0" width="100%" border="0" ><tr><td valign="top">
-    <b><font color="#FFFFFF">欢迎您!&nbsp;&nbsp;&nbsp;admin</font></b>
+    <b><font color="#FFFFFF">欢迎您!&nbsp;&nbsp;&nbsp;<s:property value="#session.globle_user.userName" /></font></b>
     </td></tr></table>
     </td>
     <td width="46%" height="19" bgcolor="#0965CA">　</td>

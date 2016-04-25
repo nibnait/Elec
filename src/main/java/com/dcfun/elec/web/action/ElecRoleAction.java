@@ -16,7 +16,8 @@ import com.dcfun.elec.domain.ElecUser;
 import com.dcfun.elec.service.IElecRoleService;
 import com.dcfun.elec.service.IElecTextService;
 import com.dcfun.elec.service.IElec_Service;
-import com.dcfun.elec.utils.Util_ValueStack;
+import com.dcfun.elec.utils.ValueStackUtils;
+import com.dcfun.elec.utils.annotation.AnnotationLimit;
 
 @Controller("elecRoleAction")
 @Scope(value="prototype")
@@ -37,6 +38,7 @@ public class ElecRoleAction extends BaseAction<ElecPopedom>{
 	 * @Parameters: 无
 	 * @Return: String: 跳转到/.../roleIndex.jsp
 	 */
+	@AnnotationLimit(mid="ao",pid="am")
 	public String home(){
 		
 		//1、遍历role表	放入request中
@@ -62,6 +64,7 @@ public class ElecRoleAction extends BaseAction<ElecPopedom>{
 	 * @Parameters: 无
 	 * @Return: String: 跳转到/.../roleEdit.jsp
 	 */
+	@AnnotationLimit(mid="gb",pid="ga")
 	public String edit(){
 		
 		//1、获得roleID，
@@ -82,6 +85,7 @@ public class ElecRoleAction extends BaseAction<ElecPopedom>{
 	 * @Parameters: elecPopedom模型驱动 VO对象
 	 * @Return: 无
 	 */
+	@AnnotationLimit(mid="gc",pid="ga")
 	public String save(){
 		
 		elecRoleService.save(elecPopedom);

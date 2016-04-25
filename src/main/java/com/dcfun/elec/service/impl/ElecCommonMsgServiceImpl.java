@@ -18,7 +18,7 @@ import com.dcfun.elec.dao.IElecCommonMsgDao;
 import com.dcfun.elec.domain.ElecCommonMsg;
 import com.dcfun.elec.domain.ElecCommonMsgContent;
 import com.dcfun.elec.service.IElecCommonMsgService;
-import com.dcfun.elec.utils.Util_String;
+import com.dcfun.elec.utils.StringUtils;
 
 
 
@@ -156,7 +156,7 @@ public class ElecCommonMsgServiceImpl implements IElecCommonMsgService {
 		String stationRun = elecCommonMsg.getStationRun();
 		String devRun = elecCommonMsg.getDevRun();
 		//调用StirngUtil的方法，分割字符串
-		List<String> stationList = Util_String.getContentByList(stationRun, 50);
+		List<String> stationList = StringUtils.getContentByList(stationRun, 50);
 		if(stationList!=null && stationList.size()>0){
 			for(int i=0;i<stationList.size();i++){
 				ElecCommonMsgContent elecCommonMsgContent = new ElecCommonMsgContent();
@@ -166,7 +166,7 @@ public class ElecCommonMsgServiceImpl implements IElecCommonMsgService {
 				elecCommonMsgContentDao.save(elecCommonMsgContent);
 			}
 		}
-		List<String> devList = Util_String.getContentByList(devRun, 50);
+		List<String> devList = StringUtils.getContentByList(devRun, 50);
 		if(devList!=null && devList.size()>0){
 			for(int i=0;i<devList.size();i++){
 				ElecCommonMsgContent elecCommonMsgContent = new ElecCommonMsgContent();

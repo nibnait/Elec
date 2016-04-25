@@ -10,7 +10,7 @@ import com.dcfun.elec.domain.ElecCommonMsg;
 import com.dcfun.elec.domain.ElecText;
 import com.dcfun.elec.service.IElecTextService;
 import com.dcfun.elec.service.IElec_Service;
-import com.dcfun.elec.utils.Util_ValueStack;
+import com.dcfun.elec.utils.ValueStackUtils;
 
 @Controller("elec_Action")
 @Scope(value="prototype")

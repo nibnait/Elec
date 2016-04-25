@@ -2,7 +2,7 @@ package com.dcfun.elec.utils;
 
 import java.lang.reflect.ParameterizedType;
 
-public class Util_T {
+public class TUtils {
 
 	public static Class getTClass(Class entity) {
 		ParameterizedType type =  (ParameterizedType) entity.getGenericSuperclass();

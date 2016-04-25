@@ -83,6 +83,16 @@ public class ElecPopedom implements java.io.Serializable {
 	//页面中传递的选中的功能权限
 	private String [] selectoper;
 	
+	//设置所有父节点初始化时展开
+	private String open;
+
+	
+	public String getOpen() {
+		return open;
+	}
+	public void setOpen(String open) {
+		this.open = open;
+	}
 	public String[] getSelectoper() {
 		return selectoper;
 	}

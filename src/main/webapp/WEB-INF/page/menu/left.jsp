@@ -5,8 +5,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script language="JavaScript" src="${pageContext.request.contextPath }/script/jquery-1.4.2.js"></script>
 <script language="JavaScript" src="${pageContext.request.contextPath }/script/jquery-ztree-2.5.js"></script>
-<script language="JavaScript" src="${pageContext.request.contextPath }/script/menuData.js"></script>
-<script language="JavaScript" src="${pageContext.request.contextPath }/script/tree.js"></script>
+<script language="JavaScript" src="${pageContext.request.contextPath }/script/treeMenu.js"></script>
+
 <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath }/css/menu.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/zTreeStyle/zTreeStyle.css" type="text/css">
 </head>

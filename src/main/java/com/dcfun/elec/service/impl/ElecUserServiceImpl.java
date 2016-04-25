@@ -26,7 +26,7 @@ import com.dcfun.elec.domain.ElecUser;
 import com.dcfun.elec.domain.ElecUserFile;
 import com.dcfun.elec.service.IElecUserService;
 import com.dcfun.elec.utils.MD5keyBean;
-import com.dcfun.elec.utils.Util_FileUpload;
+import com.dcfun.elec.utils.FileUploadUtils;
 
 @Service(IElecUserService.SERVICE_NAME)
 @Transactional(readOnly = true)
@@ -74,7 +74,7 @@ public class ElecUserServiceImpl implements IElecUserService {
 		}
 
 		// 按入职时间 升序排序
-		orderby.put("onDutyDateBegin", "asc");
+		orderby.put("onDutyDate", "asc");
 
 		List<ElecUser> list = elecUserDao.findCollectionByConditionNoPage(
 				condition, orderby);
@@ -177,7 +177,7 @@ public class ElecUserServiceImpl implements IElecUserService {
 		String logonPwd = elecUser.getLogonPwd();
 		// 加密后的密码
 		String md5password = "";
-		// 如果没有填写密码，设置初始密码为123
+		// 如果没有填写密码，设置初始密码为123456
 		if (StringUtils.isBlank(logonPwd)) {
 			logonPwd = "123456";
 		}
@@ -210,7 +210,7 @@ public class ElecUserServiceImpl implements IElecUserService {
 				ElecUserFile elecUserFile = new ElecUserFile();
 				elecUserFile.setElecUser(elecUser);
 				elecUserFile.setFileName(fileName[i]);
-				String fileURL = Util_FileUpload.uploadFiles(uploads[i],
+				String fileURL = FileUploadUtils.uploadFiles(uploads[i],
 						fileName[i], "用户管理");
 				elecUserFile.setFileURL(fileURL);
 				elecUserFile.setProgressTime(new Date());
@@ -288,6 +288,28 @@ public class ElecUserServiceImpl implements IElecUserService {
 		// 3、删除用户表 和用户文件表中的数据（级联操作）
 		elecUserDao.deleteObjectByIDs(userIDs);
 
+	}
+
+	/**
+	 * @Name: findUserByLogonName
+	 * @Description: findUserByLogonName
+	 * @Author: dcfun
+	 * @Version: V1.00
+	 * @Create Date: 2016-04-21 15:02:38
+	 * @Parameters: logonName
+	 * @Return: ElecUser
+	 */
+	public ElecUser findUserByLogonName(String logonName) {
+		Map<String, Object> condition = new HashMap<>();
+		condition.put("logonName", logonName);
+		List<ElecUser> userList = elecUserDao.findCollectionByConditionNoPage(condition, null);
+		
+		ElecUser elecUser = null;
+		if (userList!=null && userList.size()>0) {
+			elecUser = userList.get(0);
+		}
+
+		return elecUser;
 	}
 
 }

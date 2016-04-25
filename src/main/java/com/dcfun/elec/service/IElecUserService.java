@@ -20,6 +20,8 @@ public interface IElecUserService {
 	ElecUserFile findUserFileByID(String fileID);
 
 	void deleteUserByID(ElecUser elecUser);
+
+	ElecUser findUserByLogonName(String logonName);
 	
 
 }

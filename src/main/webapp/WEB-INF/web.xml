@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+	<!-- 设置log4j elec.log的输出路径 -->
+	<context-param> 
+		<param-name>webAppRootKey</param-name> 
+		<param-value>webApp.root</param-value> 
+	</context-param>
+	
+	<!-- 自定义过滤器，放置到struts2过滤器的前面 -->
+	<filter>
+		<filter-name>SystemFilter</filter-name>
+		<filter-class>com.dcfun.elec.utils.filter.SystemFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>SystemFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+		<url-pattern>*.jsp</url-pattern>
+	</filter-mapping>
 	
 	<!-- 
 		添加spring解决hibernate懒加载的问题，过滤器 该过滤器一定要放置到struts2过滤器的前面

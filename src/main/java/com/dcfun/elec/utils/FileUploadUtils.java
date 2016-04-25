@@ -6,7 +6,7 @@ import java.util.UUID;
 
 import org.apache.struts2.ServletActionContext;
 
-public class Util_FileUpload {
+public class FileUploadUtils {
 	
 	/**
 	 * * 多文件上传的要求：
@@ -25,7 +25,7 @@ public class Util_FileUpload {
 	public static String uploadFiles(File upload, String fileName, String modelName) {
 		
 		String bathpath = ServletActionContext.getServletContext().getRealPath("/upload");
-		String datepath = Util_FormatDate.Date2String(new Date());
+		String datepath = FormatDateUtils.Date2String(new Date());
 		String filepath = bathpath+"/"+datepath+"/"+modelName;
 		File file = new File(filepath);
 		if (!file.exists()) {

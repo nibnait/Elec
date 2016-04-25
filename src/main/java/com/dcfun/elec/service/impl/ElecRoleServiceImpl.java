@@ -1,5 +1,6 @@
 package com.dcfun.elec.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -16,14 +17,10 @@ import com.dcfun.elec.dao.IElecPopedomDao;
 import com.dcfun.elec.dao.IElecRoleDao;
 import com.dcfun.elec.dao.IElecRolePopedomDao;
 import com.dcfun.elec.dao.IElecUserDao;
-import com.dcfun.elec.dao.IElec_Dao;
 import com.dcfun.elec.domain.ElecPopedom;
 import com.dcfun.elec.domain.ElecRole;
 import com.dcfun.elec.domain.ElecRolePopedom;
-import com.dcfun.elec.domain.ElecText;
-import com.dcfun.elec.domain.ElecUser;
 import com.dcfun.elec.service.IElecRoleService;
-import com.dcfun.elec.service.IElec_Service;
 
 
 @Service(IElecRoleService.SERVICE_NAME)
@@ -53,7 +50,7 @@ public class ElecRoleServiceImpl implements IElecRoleService {
 	 * @Return: List<ElecRole>
 	 */
 	public List<ElecRole> findAllRoleList() {
-		Map<String, String> orderby = new LinkedHashMap<>();
+		Map<String, String> orderby = new LinkedHashMap<String, String>();
 		orderby.put("roleID", "asc");
 		return elecRoleDao.findCollectionByConditionNoPage(null, orderby);
 	}
@@ -73,13 +70,13 @@ public class ElecRoleServiceImpl implements IElecRoleService {
 		Map<String, String> orderby = new LinkedHashMap<>();
 		
 		condition.put("pid", "0");
-		orderby.put("roleID", "asc");
+		orderby.put("mid", "asc");
 		List<ElecPopedom> parentPopedomList = elecPopedomDao.findCollectionByConditionNoPage(condition, orderby);
 		
 		if (parentPopedomList!=null && parentPopedomList.size()>0) {
 			for(ElecPopedom parentPopedom: parentPopedomList){
 				Map<String, Object> condition1 = new HashMap<String, Object>();
-				Map<String, String> orderby1 = new LinkedHashMap<>();
+				Map<String, String> orderby1 = new LinkedHashMap<String, String>();
 				
 				condition1.put("pid", parentPopedom.getMid());
 				orderby1.put("mid", "asc");
@@ -103,7 +100,7 @@ public class ElecRoleServiceImpl implements IElecRoleService {
 	 */
 	public List<ElecPopedom> findAllPopedomListByRoleID(String roleID) {
 		
-		Map<String, Object> condition = new HashMap<>();
+		Map<String, Object> condition = new HashMap<String, Object>();
 		condition.put("roleID", roleID);
 		List<ElecRolePopedom> popedomList = elecRolePopedomDao.findCollectionByConditionNoPage(condition, null);
 		
@@ -163,7 +160,7 @@ public class ElecRoleServiceImpl implements IElecRoleService {
 		String[] popedoms = elecPopedom.getSelectoper();
 	
 		//根据roleID 清空rolePopedom表中原来的roleID对应的 popedoms
-		Map<String, Object> condition = new HashMap<>();
+		Map<String, Object> condition = new HashMap<String, Object>();
 		condition.put("roleID", roleID);
 		List<ElecRolePopedom> list = elecRolePopedomDao.findCollectionByConditionNoPage(condition, null);
 		elecRolePopedomDao.deleteObjectByCollection(list);
@@ -179,6 +176,94 @@ public class ElecRoleServiceImpl implements IElecRoleService {
 		}
 		
 		
+	}
+
+	/**
+	 * @Name: findPopedomByRoleID
+	 * @Description:findPopedomByRoleID
+	 * @Author: dcfun
+	 * @Version: V1.00
+	 * @Create Date: 2016-04-24 13:57:00
+	 * @Parameters: roleID
+	 * @Return: popedomString
+	 */
+	public String findPopedomByRoleID(String roleID) {
+		Map<String, Object> condition = new HashMap<String, Object>();
+		condition.put("roleID", roleID);
+		List<ElecRolePopedom> popedomList = elecRolePopedomDao.findCollectionByConditionNoPage(condition, null);
+		
+		List<ElecPopedom> allPopedomList = this.findAllPopedomList();
+		
+		// 使用包含（String.contains）标记allPopedomList
+		// 组织midStr
+		StringBuffer midStrBuf = new StringBuffer();
+		if (popedomList != null && popedomList.size() > 0) {
+			for (ElecRolePopedom elecRolePopedom : popedomList) {
+				midStrBuf.append(elecRolePopedom.getMid() + "#");
+			}
+			midStrBuf.deleteCharAt(midStrBuf.length()-1);
+		}
+
+		String midStr = midStrBuf.toString();
+
+		return midStr;
+	}
+
+	/**
+	 * @Name: findPopedomByString
+	 * @Description: findPopedomByString
+	 * @Author: dcfun
+	 * @Version: V1.00
+	 * @Create Date: 2016-04-24 13:57:05
+	 * @Parameters: popedomString
+	 * @Return: List<ElecPopedom>
+	 */
+	public List<ElecPopedom> findPopedomByString(String popedomStr) {
+
+		Map<String, Object> condition = new HashMap<String, Object>();
+		Map<String, String> orderby = new LinkedHashMap<String, String>();
+		condition.put("o.isMenu", true);
+//		condition.put("o.mid in", "'"+popedom.replace("#", "','")+"'");
+		orderby.put("o.mid", "asc");		
+		
+		List<ElecPopedom> popedomList = elecPopedomDao.findCollectionByConditionNoPage(condition, orderby);
+		List<ElecPopedom> list = new ArrayList<ElecPopedom>();
+		
+		//既然无法封装 in语句
+		//就用笨方法吧
+		if (popedomList!=null && popedomList.size()>0) {
+			for(ElecPopedom elecPopedom: popedomList){
+				if (popedomStr.contains(elecPopedom.getMid())) {
+					list.add(elecPopedom);
+				}
+			}
+		}
+		
+		return list;
+	}
+
+	/**
+	 * @Name: findRolePopedomByID
+	 * @Description: findRolePopedomByID
+	 * @Author: dcfun
+	 * @Version: V1.00
+	 * @Create Date: 2016-04-25 10:17:14
+	 * @Parameters: String roleID, String mid, String pid
+	 * @Return: boolean
+	 */
+	public boolean findRolePopedomByID(String roleID, String mid, String pid) {
+
+		Map<String, Object> condition = new HashMap<String, Object>();
+		condition.put("roleID", roleID);
+		condition.put("mid", mid);
+		condition.put("pid", pid);
+		
+		List<ElecRolePopedom> list = elecRolePopedomDao.findCollectionByConditionNoPage(condition, null);
+		if (list!=null && list.size()>0) {
+			return true;
+		}
+		
+		return false;
 	}
 	
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import com.dcfun.elec.base.action.BaseAction;
 import com.dcfun.elec.domain.ElecSystemDDL;
 import com.dcfun.elec.service.IElecSystemDDLService;
+import com.dcfun.elec.utils.annotation.AnnotationLimit;
 
 @Controller("elecSystemDDLAction")
 @Scope(value="prototype")
@@ -30,6 +31,7 @@ public class ElecSystemDDLAction extends BaseAction<ElecSystemDDL>{
 	 * @Parameters: 无
 	 * @Return: String: 跳转到ystem/dictionaryIndex.jsp
 	 */
+	@AnnotationLimit(mid="ap",pid="am")
 	public String home(){
 		List<ElecSystemDDL> list = elecSystemDDLService.findSystemDDLListByDistinct();
 //		ValueUtils.putValueStack(list);
@@ -46,6 +48,7 @@ public class ElecSystemDDLAction extends BaseAction<ElecSystemDDL>{
 	 * @Parameters: 无
 	 * @Return: String: 跳转到system/dictionaryEdit.jsp
 	 */
+	@AnnotationLimit(mid="ec",pid="ea")
 	public String edit(){
 		List<ElecSystemDDL> list = elecSystemDDLService.findSystemDDLListByKeyword(elecSystemDDL.getKeyword());
 //		ValueUtils.putValueStack(list);
@@ -62,6 +65,7 @@ public class ElecSystemDDLAction extends BaseAction<ElecSystemDDL>{
 	 * @Parameters: 无
 	 * @Return: String: 跳转到dictionaryIndex.jsp
 	 */
+	@AnnotationLimit(mid="ed",pid="ea")
 	public String save(){
 
 		elecSystemDDLService.saveElecSystemDDL(elecSystemDDL);

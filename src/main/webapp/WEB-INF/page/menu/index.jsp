@@ -1,4 +1,5 @@
 <%@ page language="java"  pageEncoding="UTF-8"%>
+<%@ taglib uri="/struts-tags" prefix="s" %>
 <html>
 <head>
 <meta http-equiv="Content-Language" content="zh-cn">
@@ -55,20 +56,21 @@ FORM {
 						<td colspan=2></td>
 					</tr>
 					<tr>
-						<td height="313" width="73%"></td>
+						<td height="313" width="73%">
+						</td>
 						<td height="99" width="27%">
 							<table border="0" width="70%" id="table4">
+							<s:actionerror/>
 								<tr>
 									<td width="100"><img border="0" src="${pageContext.request.contextPath}/images/yonghu.jpg" width="75" height="20"></td>
-									<td><input type="text" name="name" style="width: 125 px" size="20" value=""  maxlength="25"></td>
+									<td><input type="text" name="name" style="width: 125 px" size="20" value="${requestScope.name}"  maxlength="25"></td>
 	
 								</tr>
 								<tr>
 									<td width="100"><img border="0" src="${pageContext.request.contextPath}/images/mima.jpg" width="75" height="20"></td>
-									<td><input type="password" name="password" style="width: 125 px" size="20" value=""  maxlength="25"></td>
+									<td><input type="password" name="password" style="width: 125 px" size="20" value="${requestScope.password}"  maxlength="25"></td>
 									
 								</tr>
-								<!-- 
 								<tr>
 									<td width="100"><img border="0" src="${pageContext.request.contextPath}/images/check.jpg" width="75" height="20"></td>
 									<td>
@@ -87,10 +89,9 @@ FORM {
 								<tr>
 									<td width="100"><img border="0" src="${pageContext.request.contextPath}/images/remeber.jpg" width="75" height="20"></td>
 									<td>
-										<input type="checkbox" name="remeberMe" id="remeberMe" value="yes"/>
+										<input type="checkbox" name="remeberMe" id="remeberMe" value="yes" ${requestScope.checked }/>
 									</td>
 								</tr>
-								-->
 								<tr>
 									<td width="100"></td>
 									<td width="100"><input type="button" class=btn_mouseout onmouseover="this.className='btn_mouseover'" onmouseout="this.className='btn_mouseout'" value="登   录" name="huifubtn" onclick="checkFunction()"></td>

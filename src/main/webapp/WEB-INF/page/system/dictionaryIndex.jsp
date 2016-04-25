@@ -287,10 +287,15 @@
 				<td colspan=3></td>
 			</TR>
 			<tr>
-				<td align="center" colspan=3><input type="button"
-					name="saveitem" value="保存"
-					style="font-size:12px; color:black; height=20;width=50"
-					onClick="returnMethod()"></td>
+				<td align="center" colspan=3>
+				
+				<!-- 2016-04-25 01:05:14 添加    使用struts标签 的contains属性-->
+				<s:set value="#session.globle_popedom" var="popedom" scope="request"></s:set><!-- 将session中的popedomStr放到request域中  -->
+				<s:if test="#request.popedom.contains('ed')">
+					<input type="button" name="saveitem" value="保存" style="font-size:12px; color:black; height=20;width=50" onClick="returnMethod()">
+				</s:if>
+				
+				</td>
 			</tr>
 
 			<input type="hidden" name="keywordname">

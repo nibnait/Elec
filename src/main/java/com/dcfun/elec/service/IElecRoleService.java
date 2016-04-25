@@ -17,6 +17,12 @@ public interface IElecRoleService {
 	List<ElecPopedom> findAllPopedomListByRoleID(String roleID);
 
 	void save(ElecPopedom elecPopedom);
+
+	String findPopedomByRoleID(String roleID);
+
+	List<ElecPopedom> findPopedomByString(String popedom);
+
+	boolean findRolePopedomByID(String roleID, String mid, String pid);
 	
 
 }

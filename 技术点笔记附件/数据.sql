@@ -37,8 +37,9 @@ INSERT INTO `elec_popedom` VALUES ('dc', 'da', '导出设置保存', '/system/elecExpo
 
 #数据字典
 INSERT INTO `elec_popedom` VALUES ('ea', '0', '数据字典', null, null, null, '1', '0');
-INSERT INTO `elec_popedom` VALUES ('eb', 'ea', '编辑', '/system/elecSystemDDLAction_edit.do', null, null, '0', '0');
-INSERT INTO `elec_popedom` VALUES ('ec', 'ea', '保存', '/system/elecSystemDDLAction_save.do', null, null, '0', '0');
+INSERT INTO `elec_popedom` VALUES ('eb', 'ea', '查看', '/system/elecSystemDDLAction_edit.do', null, null, '0', '0');
+INSERT INTO `elec_popedom` VALUES ('ed', 'ea', '编辑', '/system/elecSystemDDLAction_edit.do', null, null, '0', '0');
+INSERT INTO `elec_popedom` VALUES ('ed', 'ea', '保存', '/system/elecSystemDDLAction_save.do', null, null, '0', '0');
 
 #用户管理
 INSERT INTO `elec_popedom` VALUES ('fa', '0', '用户管理', '', null, null, '1', '0');

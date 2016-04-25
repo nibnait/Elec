@@ -180,14 +180,27 @@ public class ElecUser implements java.io.Serializable {
 
 	/**
 	 * 添加一个标识，判断页面的复选框是否被选中，该标识要放置到ElecUser对象中
-   flag=1：选中
-   flag=2：没有被选中
+   	 * flag=1：选中
+   	 * flag=2：没有被选中
 	 */
 	private String flag;
 	
 	/**2016-04-24 01:20:48 添加  roleID*/
-	String roleID;
+	private String roleID;
 	
+	/**2016-04-25 00:28:19 添加 roleflag标识
+	 * 
+	 * roleflag==null :系统管理员、此时保存-->close.jsp
+	 * roleflag==1 :  非系统管理员， 保存    -->重定向到 /system/userEdit.jsp
+	 * */
+	private String roleflag;
+	
+	public String getRoleflag() {
+		return roleflag;
+	}
+	public void setRoleflag(String roleflag) {
+		this.roleflag = roleflag;
+	}
 	public void setRoleID(String roleID) {
 		this.roleID = roleID;
 	}

@@ -14,6 +14,31 @@
 
 	<!-- 系统管理 -->
 	<package name="system" namespace="/system" extends="json-default">
+		<!-- 自定义拦截器  实现实现处理，实现细颗粒度权限控制-->
+		<interceptors>
+			<!-- 声明拦截器 -->
+			<interceptor name="errorAndLimitInterceptor" class="com.dcfun.elec.utils.interceptor.ErrorAndLimitInterceptor"></interceptor>
+			<!-- 配置拦截器栈 -->
+			<interceptor-stack name="myErrorAndLimitInterceptor">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<!-- 添加放行方法 -->
+				<interceptor-ref name="errorAndLimitInterceptor" >
+					<param name="excludeMethods">menuHome,title,left,change,loading,logout,alermStation,alermDevice,showMenu</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<!-- 覆盖底层的拦截器栈，对包中的所有action都有效 -->
+		<default-interceptor-ref name="myErrorAndLimitInterceptor"></default-interceptor-ref>
+		
+		<!-- 全局转发 -->
+		<global-results>
+			<result name="errorMsg">/errorMsg.jsp</result>
+			<result name="close">/close.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="errorMsg" exception="java.lang.Exception"></exception-mapping>
+		</global-exception-mappings>
+	
 		<!-- 测试 -->
 		<action name="elecTextAction_*" class="elecTextAction" method="{1}">
 			<result name="save">/system/textAdd.jsp</result>
@@ -26,9 +51,11 @@
 			<result name="change">/WEB-INF/page/menu/change.jsp</result>
 			<result name="loading">/WEB-INF/page/menu/loading.jsp</result>
 			<result name="logout" type="redirect">/index.jsp</result>
-
 			<result name="alermStation">/WEB-INF/page/menu/alermStation.jsp</result>
 			<result name="alermDevice">/WEB-INF/page/menu/alermDevice.jsp</result>
+	
+			<result name="error">/WEB-INF/page/menu/index.jsp</result>
+			<result name="showMenu" type="json"></result>
 		</action>
 
 
@@ -76,6 +103,9 @@
 			<result name="input">/WEB-INF/page/system/error.jsp</result>
 			<result name="delete" type="redirectAction">
 				<param name="actionName">elecUserAction_home.do</param>
+			</result>
+			<result name="redirectEdit" type="redirectAction">
+				<param name="actionName"><![CDATA[elecUserAction_edit.do?userID=${userID}&roleflag=${roleflag}]]></param>
 			</result>
 		</action>
 

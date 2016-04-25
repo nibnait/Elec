@@ -16,11 +16,11 @@ import org.hibernate.SessionFactory;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
-import com.dcfun.elec.utils.Util_T;
+import com.dcfun.elec.utils.TUtils;
 
 public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T> {
 
-	Class entityClass = Util_T.getTClass(this.getClass());
+	Class entityClass = TUtils.getTClass(this.getClass());
 
 	@Resource(name = "sessionFactory")
 	public final void setSessionFactoryDi(SessionFactory sessionFactory) {
@@ -67,39 +67,8 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T> {
 		final StringBuffer finalHql = new StringBuffer();
 		finalHql.append("from " + entityClass.getSimpleName()+" o");
 		finalHql.append(" where 1=1");
-		if (keyValues != null) {
-			
-			for (Entry<String, Object> entry : keyValues.entrySet()) {// 把查询条件放到where的后面
-				
-				
-				if (entry.getKey().contains("like")) {
-					if(entry.getKey().contains(".")){
-						finalHql.append(" and "+entry.getKey()+":"+entry.getKey().split("\\.")[1].substring(0, entry.getKey().length()-5));//用了两个split 只为把“>”、“<”分出来
-					}else{
-						//最简单的情况，没有"."的  “like” 
-						
-						finalHql.append(" and "+entry.getKey()+":"+entry.getKey().substring(0, entry.getKey().length()-5));
-					}
-					
-					
-				}else if(entry.getKey().contains("=")){
-					
-					if(entry.getKey().contains(".")){
-						finalHql.append(" and "+entry.getKey().split("\\.")[1].split("\\=")[0]+"= :"+entry.getKey().split("\\.")[1].split("\\=")[0].substring(0, entry.getKey().length()-3));//用了两个split 只为把“>”、“<”分出来
-					}else{
-						//最简单的情况，没有"."的  “>=”、“<=” 
-						finalHql.append(" and "+entry.getKey().split("\\=")[0]+"= :"+entry.getKey().split("\\=")[0].substring(0, entry.getKey().length()-3));
-					}
-					
-					
-				}else if(entry.getKey().contains(".")){
-					finalHql.append(" and "+entry.getKey()+"=:"+entry.getKey().split("\\.")[1]);
-				}else{
-					finalHql.append(" and "+entry.getKey()+"=:"+entry.getKey());
-				}
-			}
-		}
-
+		finalHql.append(this.buildWhere(keyValues));
+		finalHql.append(this.buildOrderBy(orderby));
 		List<T> list = this.getHibernateTemplate().execute(
 				new HibernateCallback() {
 
@@ -110,6 +79,15 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T> {
 						if (keyValues != null) {
 							for (Entry<String, Object> entry : keyValues.entrySet()) {
 								
+//								if(entry.getKey().contains("in")){
+//									/**2016-04-24 14:02:04 添加 --- 封装带in的查询条件*/
+//									if (entry.getKey().contains(".")) {
+//										System.out.println("setParameter:"+entry.getKey().split("\\.")[1].substring(0, entry.getKey().split("\\.")[1].length()-3)+"++"+entry.getValue());
+//										query.setParameter(entry.getKey().split("\\.")[1].substring(0, entry.getKey().length()-4), entry.getValue());
+//									}else {
+//										query.setParameter(entry.getKey().substring(0, entry.getKey().length()-3), entry.getValue());
+//									}
+//								}else
 								if (entry.getKey().contains("like")) {
 									
 									if(entry.getKey().contains(".")){
@@ -118,9 +96,8 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T> {
 									}else{
 										//最简单的情况，没有"."的  “>=”、“<=” 
 										//为了支持 >=、<=  也是拼 [笑Cry]
-										query.setParameter(entry.getKey().substring(0, entry.getKey().length()-5), entry.getValue());
+ 										query.setParameter(entry.getKey().substring(0, entry.getKey().length()-5), "'"+entry.getValue());
 									}
-									
 									
 								}else if(entry.getKey().contains("=")){
 									
@@ -131,7 +108,6 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T> {
 										//为了支持 >=、<=  也是拼 [笑Cry]
 										query.setParameter(entry.getKey().split("\\=")[0].substring(0, entry.getKey().length()-3), entry.getValue());
 									}
-									
 									
 								}else if(entry.getKey().contains(".")){
 									query.setParameter(entry.getKey().split("\\.")[1], entry.getValue());
@@ -146,8 +122,66 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T> {
 					}
 
 				});
-
 		return list;
+	}
+
+	private String buildOrderBy(Map<String, String> orderby) {
+		StringBuffer buffer = new StringBuffer("");
+		if(orderby!=null && orderby.size()>0){
+			buffer.append(" ORDER BY ");
+			for(Map.Entry<String, String> map:orderby.entrySet()){
+				buffer.append(map.getKey()+" "+map.getValue()+",");
+			}
+			//在循环后，删除最后一个逗号
+			buffer.deleteCharAt(buffer.length()-1);
+		}
+		return buffer.toString();
+	}
+
+	private StringBuffer buildWhere(Map<String, Object> keyValues) {
+		final StringBuffer finalHql = new StringBuffer();
+		if (keyValues != null) {
+			
+			for (Entry<String, Object> entry : keyValues.entrySet()) {// 把查询条件放到where的后面
+				
+//				if(entry.getKey().contains("in")){
+//					/**2016-04-24 14:02:04 添加 --- 封装带in的查询条件*/hibernate 找不到in(:mid) mid!!! 
+//					if (entry.getKey().contains(".")) {				//entry.getKey().split("\\.")[1].substring(0, entry.getKey().length()-4)
+//						System.out.println("finalHql.append:"+entry.getKey().split("\\.")[1].substring(0, entry.getKey().split("\\.")[1].length()-3));
+//						finalHql.append(" and "+entry.getKey()+"(:"+entry.getKey().split("\\.")[1].substring(0, entry.getKey().split("\\.")[1].length()-3)+")");
+//						System.out.println("finalHql = "+finalHql);
+//					}else {
+//						//先写不带"." 的，  Mid in ( :Mid)
+//						finalHql.append(" and "+entry.getKey()+"(:"+entry.getKey().substring(0, entry.getKey().length()-3)+" )");
+//					}
+//				}else 
+					if (entry.getKey().contains("like")) {
+					if(entry.getKey().contains(".")){
+						finalHql.append(" and "+entry.getKey()+":"+entry.getKey().split("\\.")[1].substring(0, entry.getKey().length()-5));//用了两个split 只为把“>”、“<”分出来
+					}else{
+						//最简单的情况，没有"."的  “like” 
+						
+						finalHql.append(" and "+entry.getKey()+":"+entry.getKey().substring(0, entry.getKey().length()-5));
+					}
+					
+				}else if(entry.getKey().contains("=")){
+					
+					if(entry.getKey().contains(".")){
+						finalHql.append(" and "+entry.getKey().split("\\.")[1].split("\\=")[0]+"= :"+entry.getKey().split("\\.")[1].split("\\=")[0].substring(0, entry.getKey().length()-4));//用了两个split 只为把“>”、“<”分出来
+					}else{
+						//最简单的情况，没有"."的  “>=”、“<=” 
+						finalHql.append(" and "+entry.getKey().split("\\=")[0]+"= :"+entry.getKey().split("\\=")[0].substring(0, entry.getKey().length()-4));
+					}
+					
+					
+				}else if(entry.getKey().contains(".")){
+					finalHql.append(" and "+entry.getKey()+"=:"+entry.getKey().split("\\.")[1]);
+				}else{
+					finalHql.append(" and "+entry.getKey()+"=:"+entry.getKey());
+				}
+			}
+		}
+		return finalHql;
 	}
 
 }

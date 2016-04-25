@@ -21,7 +21,8 @@ import com.dcfun.elec.domain.ElecUserFile;
 import com.dcfun.elec.service.IElecRoleService;
 import com.dcfun.elec.service.IElecSystemDDLService;
 import com.dcfun.elec.service.IElecUserService;
-import com.dcfun.elec.utils.Util_ValueStack;
+import com.dcfun.elec.utils.ValueStackUtils;
+import com.dcfun.elec.utils.annotation.AnnotationLimit;
 
 @Controller("elecUserAction")
 @Scope(value="prototype")
@@ -48,6 +49,7 @@ public class ElecUserAction extends BaseAction<ElecUser>{
 	 * @Parameters: 无
 	 * @Return: String: 跳转到system/userIndex.jsp
 	 */
+	@AnnotationLimit(mid="an",pid="am")
 	public String home(){
 //		1：加载数据类型是所属单位的数据字典的集合，遍历在页面的下拉菜单中
 		
@@ -72,6 +74,7 @@ public class ElecUserAction extends BaseAction<ElecUser>{
 	 * @Parameters: 无
 	 * @Return: String: 跳转到system/userAdd.jsp
 	 */
+	@AnnotationLimit(mid="fb",pid="fa")
 	public String add(){
 //		1：加载数据字典，用来遍历性别，职位，所属单位，是否在职
 		this.initSystemDDL();
@@ -111,7 +114,7 @@ public class ElecUserAction extends BaseAction<ElecUser>{
 		
 		//3:将list 压入值栈顶
 		//struts会自动将list转化成json数组
-		Util_ValueStack.pushValueStack(list);
+		ValueStackUtils.pushValueStack(list);
 		
 		return "findJctUnit";
 	}
@@ -130,10 +133,11 @@ public class ElecUserAction extends BaseAction<ElecUser>{
 			2	登录名已存在
 			3	登录名不存在，可以使用
 	 */
+	@AnnotationLimit(mid="ff",pid="fa")
 	public String checkUser(){
 		String logonName = elecUser.getLogonName();
 		String message = elecUserService.checkUserByLogonName(logonName);
-		Util_ValueStack.pushValueStack(message);
+		ValueStackUtils.pushValueStack(message);
 		return "checkUser";
 	}
 	
@@ -146,8 +150,20 @@ public class ElecUserAction extends BaseAction<ElecUser>{
 	 * @Parameters: elecUser
 	 * @Return: String: 跳转到/close.jsp
 	 */
+	@AnnotationLimit(mid="fc",pid="fa")
 	public String save(){
 		elecUserService.saveUser(elecUser);
+		
+		/**2016-04-25 00:46:30 添加 --- roleflag
+		 * 
+		 * roleflag==null :系统管理员、此时保存-->close.jsp
+		 * roleflag==1 :  非系统管理员， 保存    -->重定向到 /system/userEdit.jsp
+		 * */
+		String roleflag = elecUser.getRoleflag();
+		if (roleflag!=null && roleflag.equals("1")) {
+			return "redirectEdit";
+		}
+		
 		return "save";
 	}
 	
@@ -160,6 +176,7 @@ public class ElecUserAction extends BaseAction<ElecUser>{
 	 * @Parameters: elecUser
 	 * @Return: String: 跳转到/system/userEdit.jsp
 	 */
+	@AnnotationLimit(mid="fd",pid="fa")
 	public String edit(){
 		//获取用户
 		String userID = elecUser.getUserID();
@@ -167,9 +184,11 @@ public class ElecUserAction extends BaseAction<ElecUser>{
 		
 		//将viewfalg的VO对象转换成 PO持久层对象
 		user.setViewflag(elecUser.getViewflag());
-		
+		user.setRoleflag(elecUser.getRoleflag());
+		//将PO对象中的ElecRole().getRoleID() --> VO对象中的roleID
+		user.setRoleID(user.getElecRole().getRoleID());		
 		//将user压人值栈
-		Util_ValueStack.pushValueStack(user);
+		ValueStackUtils.pushValueStack(user);
 		//加载数据字典
 		this.initSystemDDL();
 		
@@ -266,6 +285,7 @@ public class ElecUserAction extends BaseAction<ElecUser>{
 	 * @Parameters: 无
 	 * @Return: String: 跳转到system/userIndex.jsp
 	 */
+	@AnnotationLimit(mid="fe",pid="fa")
 	public String delete(){
 
 		elecUserService.deleteUserByID(elecUser);

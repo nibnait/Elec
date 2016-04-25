@@ -2,7 +2,7 @@ package com.dcfun.elec.utils;
 
 import org.apache.struts2.ServletActionContext;
 
-public class Util_ValueStack {
+public class ValueStackUtils {
 
 	public static void pushValueStack(Object object) {
 		

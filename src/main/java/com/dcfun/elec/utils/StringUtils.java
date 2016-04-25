@@ -3,7 +3,7 @@ package com.dcfun.elec.utils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Util_String {
+public class StringUtils {
 
 	public static List<String> getContentByList(String wholecontent, int cutcount) {
 		List<String> list = new ArrayList<String>();

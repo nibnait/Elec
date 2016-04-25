@@ -354,6 +354,7 @@
     <br>
     <s:hidden name="userID"></s:hidden>
     <s:hidden name="password" value="%{logonPwd}"></s:hidden>
+    <s:hidden name="roleflag"></s:hidden>
     <table cellSpacing="1" cellPadding="5" width="680" align="center" bgColor="#eeeeee" style="border:1px solid #8ba7e3" border="0">
 
 	 <tr>
@@ -372,7 +373,7 @@
      <tr>
          <td align="center" bgColor="#f5fafe" class="ta_01">登&nbsp;&nbsp;录&nbsp;&nbsp;名：<font color="#FF0000">*</font></td>
          <td class="ta_01" bgColor="#ffffff">
-         	<s:textfield name="logonName" maxlength="25" id="logonName" size="20" readonly="true"></s:textfield>
+         	<s:textfield name="logonName" maxlength="25" id="logonName" size="20" readonly="true" bgColor="#D4D4D4"></s:textfield>
          	<div id="check"></div>
          </td>
          <td width="18%" align="center" bgColor="#f5fafe" class="ta_01">用户姓名：<font color="#FF0000">*</font></td>
@@ -455,7 +456,7 @@
 		<td class="ta_01" bgColor="#ffffff">
 			<s:textfield name="email" maxlength="50"  size="20"></s:textfield>
 		</td>
-		<td align="center" bgColor="#f5fafe" class="ta_01">是否在职：</td>
+		<td align="center" bgColor="#f5fafe" class="ta_01">是否在职：<font color="#FF0000">*</font></td>
 		<td class="ta_01" bgColor="#ffffff">
 			<s:select list="#request.isDutyList" name="isDuty" id="isDuty"
 					  listKey="ddlCode" listValue="ddlName"
@@ -480,8 +481,9 @@
 	<tr>
     <td align="center" bgColor="#f5fafe" class="ta_01">角色：</td>
 		<td class="ta_01" bgColor="#ffffff">
-			<s:select list="#request.roleList" name="roleID" id="roleID"
+			<s:select list="#request.roleList" name="roleID" id="roleID" 
 					  listKey="roleID" listValue="roleName"
+					  headerKey="" headerValue="请选择"
 					  cssStyle="width:155px">
 			</s:select>
 		</td>
@@ -554,7 +556,9 @@
 				<input type="button" id="BT_Submit" name="BT_Submit" value="保存"  style="font-size:12px; color:black; height=22;width=55"  onClick="check_null()">
 			</s:if>
 		    <FONT face="宋体">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT>
+		    <s:if test="roleflag==null">
 		    <input style="font-size:12px; color:black; height=22;width=55" type="button" value="关闭"  name="Reset1"  onClick="window.close()">
+		    </s:if>
 	    </td>
 	</tr>
 </table>　

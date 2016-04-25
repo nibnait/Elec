@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.SimpleFormatter;
 
-public class Util_FormatDate {
+public class FormatDateUtils {
 
 	public static String Date2String(Date date) {
 		return new SimpleDateFormat("yyMMdd").format(date);
