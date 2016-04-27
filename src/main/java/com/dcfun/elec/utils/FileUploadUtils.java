@@ -22,7 +22,7 @@ public class FileUploadUtils {
 	 * @return String filePath：上传到的 服务器的地址
 	 */
 
-	public static String uploadFiles(File upload, String fileName, String modelName) {
+	public static String fileUploadReturnPath(File upload, String fileName, String modelName) {
 		
 		String bathpath = ServletActionContext.getServletContext().getRealPath("/upload");
 		String datepath = FormatDateUtils.Date2String(new Date());

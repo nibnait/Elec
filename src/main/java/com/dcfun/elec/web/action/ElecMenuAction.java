@@ -50,7 +50,8 @@ public class ElecMenuAction extends BaseAction<MenuForm> {
 	public String menuHome() {
 		
 		/** 2016-04-24 09:18:08 添加 --- 各种登陆校验*/
-		boolean flag = LogonUtils.checkImageNumber(request);
+//		boolean flag = LogonUtils.checkImageNumber(request);
+		boolean flag = true;
 		if (!flag) {
 			this.addActionError("验证码 错误，请重新输入");
 			return "error";
@@ -60,6 +61,7 @@ public class ElecMenuAction extends BaseAction<MenuForm> {
 		String logonPwd = menuForm.getPassword();
 		
 		ElecUser elecUser = elecUserService.findUserByLogonName(logonName);
+		System.out.println(elecUser.toString());
 		
 		if (elecUser == null) {
 			this.addActionError("用户名 错误，请重新输入");

@@ -1,4 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%@taglib uri="/struts-tags"  prefix="s"%>
 <html>
  
 <head>
@@ -9,9 +10,6 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/script/pub.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/script/validate.js"></script>
 <script language="javascript"> 
- 
-  	
-  
 function getUrl(ssdw, filename){
 	var strUrl = "";
 	strUrl = "${pageContext.request.contextPath }/UploadFile/Paper/"+ssdw+"/" ;
@@ -36,7 +34,7 @@ function returnConfirm(){
  
 <body>
  
-<form id="Form1" name="Form1" action="elecFileUploadAction_luceneHome.do" method="post" style="margin:0px;"> 
+<form id="Form1" name="Form1" action="${pageContext.request.contextPath }/datachart/elecFileUploadAction_luceneHome.do" method="post" style="margin:0px;"> 
 	<table cellspacing="1" cellpadding="0" width="90%" align="center" bgcolor="#f5fafe" border="0">
 		<tr>
 			<td class="ta_01" align="center" background="${pageContext.request.contextPath }/images/b-info.gif">
@@ -52,25 +50,22 @@ function returnConfirm(){
 					<td class="ta_01" align="center" bgcolor="#f5fafe" height="22">
 					所属单位：</td>
 					<td class="ta_01" >
-						
-						<select name="projId" id="projId" style="width:160px">
-						    <option value="" selected="selected">全部</option>
-						    <option value="1">北京</option>
-						    <option value="2">上海</option>
-						    <option value="3">深圳</option>
-						</select>
+						<s:select list="#request.jctList" name="projId" id="projId"
+								  listKey="ddlCode" listValue="ddlName"
+								  headerKey="" headerValue="全部"
+								  cssStyle="width:160px">
+						</s:select>
  
 					</td>
 					<td width="100" class="ta_01" align="center" bgcolor="#f5fafe" height="22">
 					图纸类别：</td>
 					<td class="ta_01" >
 						 <font face="宋体" color="red"> 
-					  	
-						<select name="belongTo" id="belongTo" style="width:160px">
-						    <option value="" selected="selected">全部</option>
-						    <option value="1">国内图书</option>
-						    <option value="2">国外图书</option>
-						</select>
+					  	<s:select list="#request.picList" name="belongTo" id="belongTo"
+								  listKey="ddlCode" listValue="ddlName"
+								  headerKey="" headerValue="全部"
+								  cssStyle="width:160px">
+						</s:select>
  
 					 </font>
 					</td>
@@ -79,7 +74,7 @@ function returnConfirm(){
 		        <td class="ta_01" align="center" bgcolor="#f5fafe" height="22">
 		           按文件名称和描述搜素：</td>
 		          <td class="ta_01">
-		          	<input type="text" name="queryString" size="21" value="电池" id="queryString" onkeydown="returnMethod()"/>
+		          	<s:textfield name="queryString" id="queryString" size="21" onkeydown="returnMethod()"></s:textfield>
 		          </td>
 		          <td width="100" colspan="2" class="ta_01" align="center" bgcolor="#f5fafe" height="22">
 		            &nbsp;
@@ -105,7 +100,7 @@ function returnConfirm(){
 			注意：由于资源数据比较多，请指定条件查询结果-------------
 			<input type="button" name="BT_Search" value="查询" style="font-size:12px; color:black; height=20;width=50" id="BT_Search" onclick="document.Form1.submit();">
 			
-			<input  id="BT_Add" type="button" value="添加" name="BT_Add" style="font-size:12px; color:black; height=20;width=50"   onclick="openWindow('${pageContext.request.contextPath }/dataChart/dataChartAdd.jsp',800,400);">
+			<input  id="BT_Add" type="button" value="添加" name="BT_Add" style="font-size:12px; color:black; height=20;width=50"   onclick="openWindow('${pageContext.request.contextPath }/datachart/elecFileUploadAction_add.do',800,400);">
 				
 		</td>
 	</TR>
@@ -123,23 +118,27 @@ function returnConfirm(){
 					<td width="6%" align="center" height=22 background="${pageContext.request.contextPath }/images/tablehead.jpg">删除</td>
 						
 				</tr>
-				
-					
+				<s:if test="#request.list!=null && #request.list.size()>0">
+					<s:iterator value="#request.list" status="st">
 						<tr onmouseover="this.style.backgroundColor = 'white'" onmouseout="this.style.backgroundColor = '#F5FAFE';">
-							<td  align="center" width="6%">1</td>
-							<td align="center"  width="10%">北京</td>
-							<td align="center"  width="10%">国内图书</td>
+							<td  align="center" width="6%"><s:property value="#st.index+1"/></td>
+							<td align="center"  width="10%"><s:property value="projId"/></td>
+							<td align="center"  width="10%"><s:property value="belongTo"/></td>
 							<td align="center"  width="48%">
-							<a href="#" onclick="openWindow('${pageContext.request.contextPath }/datachart/elecFileUploadAction_download.do?seqId=2','700','400');"><font color='red'>电池</font>电阻使用帮助.txt</a></td>
-							<td align="center"  width="20%">为了方便客户熟悉电网设备的电压，<font color='red'>电池</font>，<font color='red'>电池</font>组等</td>
+								<a href="#" onclick="openWindow('${pageContext.request.contextPath }/datachart/elecFileUploadAction_download.do?seqId=<s:property value="seqId"/>','700','400');"><s:property value="fileName" escape="false"/></a>
+							</td>
+							<td align="center"  width="20%">
+								<s:property value="comment" escape="false"/>
+							</td>
 							<td align="center" style="HEIGHT: 21px">
-								<a href="elecFileUploadAction_delete.do?seqId=2" onclick="return returnConfirm()">
-								<img src="${pageContext.request.contextPath }/images/delete.gif" width="16" height="16" border="0" style="CURSOR:hand">
+								<a href="elecFileUploadAction_delete.do?seqId=<s:property value="seqId"/>" onclick="return returnConfirm()">
+									<img src="${pageContext.request.contextPath }/images/delete.gif" width="16" height="16" border="0" style="CURSOR:hand">
 								</a>												
 							</td>
 								
 						</tr>
-				
+					</s:iterator>
+				</s:if>
 			</table>
 			</td>
 		</tr>

@@ -302,5 +302,47 @@ function.js/openWindow(sHref,strWidth,strHeight)
 	2. 用户新增/编辑页面：使用数据类型，加载对应数据类型下的集合
 
 3. 联合查询+标量查询  
+	？？？hibernate的联合查询与sql联合查询？？？孰优孰劣
+
+	**利用反射技术 封装了一个 接口**
+```List<T> findCollectionByConditionNoPageWithSql(Map<String, Object> condition, Map<String, String> orderby,	String scalar, ArrayList<String> innerJoin);
+```
+然而，，装逼失败。 因为查出来的object与 t的属性顺序不一致。[(´Д⊂ヽ]  
+
+
+```
+
+// 将List<Object[]>转换成List<ElecUser>
+
+		List<T> tList = new ArrayList<T>();
+		if (list != null && list.size() > 0) {
+			for (Object[] o : list) {
+				try {
+					T t = (T) entityClass.newInstance();
+					Field[] fields = entityClass.getDeclaredFields();
+					for (int i = 0; i < o.length; i++) {
+						Field field = fields[i];
+						field.setAccessible(true); 
+						field.set(t, this.convert2String(o[i], field)); 
+					}
+					tList.add(t);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return tList;
+```
+
+
+
 4. 导出设置  
 	
+
+##day08 
+1. get请求：只能通过url，http协议
+2. dataChartAdd.jsp中的各种js校验
+3. ###lucene
+	1. 如何进行分词？
+	2. 如何计算得分？？

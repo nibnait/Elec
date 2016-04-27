@@ -11,7 +11,4 @@ public interface IElecUserDao extends IBaseDao<ElecUser>{
 
 	public static final String SERVICE_NAME = "com.dcfun.elec.dao.impl.ElecUserDaoImpl";
 
-	List<ElecUser> findCollectionByConditionNoPageWithSql(
-			Map<String, Object> condition, Map<String, String> orderby);
-
 }

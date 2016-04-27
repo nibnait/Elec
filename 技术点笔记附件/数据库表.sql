@@ -110,4 +110,18 @@ create table Elec_ExportFields(
 	noexpFieldName varchar(5000) null 	#未导出字段的英文名
 );
 
+#资料图书管理
+create table Elec_FileUpload(
+	SeqID int not null primary key,		#主键
+	ProjID varchar(50) null,			#工程ID/所属单位
+	BelongTo varchar(50) null,			#所属模块/图纸类别
+	FileName varchar(50) null,			#文件名
+	FileURL varchar(1000) null,			#文件路径
+	ProgressTime varchar(20) null,		#上传时间
+	comment varchar(500) null,			#文件描述
+#	IsDelete varchar(10) null,			#是否删除
+);
+
+
+
 

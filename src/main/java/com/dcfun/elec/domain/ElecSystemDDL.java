@@ -1,6 +1,5 @@
 ﻿package com.dcfun.elec.domain;
 
-
 @SuppressWarnings("serial")
 public class ElecSystemDDL implements java.io.Serializable {
 	
@@ -17,7 +16,6 @@ public class ElecSystemDDL implements java.io.Serializable {
 	public ElecSystemDDL(String keyword){
 		this.keyword = keyword;
 	}
-	
 	
 	public Integer getSeqID() {
 		return seqID;

@@ -41,6 +41,12 @@ public class ElecUser implements java.io.Serializable {
 	//因为 用户和角色应该是多对一的关系！
 	private ElecRole elecRole;
 
+	
+	@Override
+	public String toString() {
+		return "ElecUser [userName=" + userName + ", logonName=" + logonName
+				+ ", elecRole=" + elecRole + ", roleID=" + roleID + "]";
+	}
 	public ElecRole getElecRole() {
 		return elecRole;
 	}

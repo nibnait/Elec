@@ -1,6 +1,5 @@
 package com.dcfun.elec.web.action;
 
-import java.lang.reflect.Array;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -13,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import com.dcfun.elec.base.action.BaseAction;
 import com.dcfun.elec.domain.ElecExportFields;
 import com.dcfun.elec.service.IElecExportFieldsService;
+import com.dcfun.elec.service.IElecFileUploadService;
 import com.dcfun.elec.utils.annotation.AnnotationLimit;
 			 
 @Controller("elecExportFieldsAction")
@@ -23,8 +23,7 @@ public class ElecExportFieldsAction extends BaseAction<ElecExportFields>{
 	
 	@Resource(name=IElecExportFieldsService.SERVICE_NAME)
 	IElecExportFieldsService elecExportFieldsService;
-	
-	
+
 	/**
 	 * @Name: setExportFields
 	 * @Description: 导出设置
@@ -92,5 +91,4 @@ public class ElecExportFieldsAction extends BaseAction<ElecExportFields>{
 		elecExportFieldsService.saveSetExportExcel(elecExportFields);
 		return "close";
 	}
-	
 }

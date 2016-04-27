@@ -1,4 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%@taglib uri="/struts-tags" prefix="s"%>
 <HTML>
 	<HEAD>
 		<title>上传文件</title>
@@ -8,7 +9,9 @@
 		<script type="text/javascript" src="${pageContext.request.contextPath }/My97DatePicker/WdatePicker.js"></script>
 		<script type='text/javascript' src="${pageContext.request.contextPath }/script/validate.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath }/script/pub.js"></script>
+		<script language="javascript" src="${pageContext.request.contextPath }/script/jquery-1.4.2.js"></script>
 <script language="javascript">
+ 	 /***
 	 function init(){
 	   document.getElementById("BT_Submit").disabled=true;
 	   //获取所属单位和图纸类别的条件
@@ -159,11 +162,176 @@
 			strUrl = strUrl + filename;	
 			OpenWindow("new",strUrl,800,450);
 		}
+		*/
+		/**jquery对象*/
+		function init(){
+			$("#BT_Submit").attr("disabled",true);
+		   //获取所属单位和图纸类别的条件
+		   var projId = $("#projId").val();
+		   var belongTo = $("#belongTo").val();
+		   //如果没有指定条件，不按照条件查询
+		   if(projId!=0 || belongTo!=0){
+			   changeList();
+		   }
+		 }
+		function insertRows(){ 
+			$("#BT_Submit").attr("disabled",false);
+			//获取表格对象
+	    	var tb1 = $("#filesTbl");
+	    	var tempRow = $("#filesTbl tr").size();//获取表格的行数,+1的目的去掉添加选项的按钮
+	    	var $tdNum = $("<td align='center'></td>");
+	    	$tdNum.html(tempRow);
+	    	
+	    	var $tdName = $("<td align='center'></td>");
+	    	$tdName.html("<input name=\"uploads\"  type=\"file\" size=\"25\" id=\""+tempRow+"\">");
+	    	
+	    	var $tdComment = $("<td align='center'></td>");
+	    	$tdComment.html("<input name=\"comments\"  type=\"text\" size=\"40\">");
+	    	
+	    	var $tdDel = $("<td align='center'></td>");
+	    	$tdDel.html("<a href='javascript:delTableRow(\""+tempRow+"\")'><img src=${pageContext.request.contextPath }/images/delete.gif width=15 height=14 border=0 style=CURSOR:hand></a>");
+	    	
+	    	
+	    	// 创建tr，将3个td放置到tr中
+	    	var $tr = $("<tr></tr>");
+	    	$tr.append($tdNum);
+	    	$tr.append($tdName);
+	    	$tr.append($tdComment);
+	    	$tr.append($tdDel);
+	    	//在表格的最后追加新增的tr
+	    	tb1.append($tr);
+	    	
+		 } 
+ 
+ 
+		function delTableRow(rowNum){ 
+		   //改变行号和删除的行号
+	       var tb1 = $("#filesTbl");
+	       var tempRow = $("#filesTbl tr").size();//获取表格的行数
+	       if (tempRow >rowNum){     
+	    	  //获取删除行的id指定的对象，例如：<input name=\"itemname\" type=\"text\" id=\""+tempRow+"\" size=\"45\" maxlength=25>
+	    	  $("#"+rowNum).parent().parent().remove();
+	    	  //加1表示寻找下一个id，目的是将后面tr的格式向上移动
+	          for (i=(parseInt(rowNum)+1);i<tempRow;i++){
+	        	  //将i-1的值赋值给编号
+	        	  $("#"+i).parent().prev().html(i-1);
+	        	  //将i-1的值赋值给超链接的删除
+	        	  $("#"+i).parent().next().next().html("<a href='javascript:delTableRow(\""+(i-1)+"\")'><img src=${pageContext.request.contextPath }/images/delete.gif width=15 height=14 border=0 style=CURSOR:hand></a>");//
+	        	  //将i-1的值赋值给文本框的id，用于删除
+	        	  $("#"+i).attr("id",(i-1));//将id设置成i-1
+	          }
+	       }
+	       var tempRow1 = $("#filesTbl tr").size();//获取表格的行数
+	       if(tempRow1 <=1)
+		   {
+	    	   $("#BT_Submit").attr("disabled",true);
+		   }
+		} 
+ 
+		function addFileList(){
+			var $tbl=$("#filesTbl tr");
+		       var flag = false;
+		 	   $tbl.each(function(index,domEle){
+		 		   //第一行
+		 		   if(index==0){
+		 			   return true;//继续循环，类似于循环continue
+		 		   }
+		 		   //从1开始是为了去掉表头
+		 		   else{
+		 			   var $uploads = $(this).find("td:nth-child(2)").find("input[name='uploads']").val();
+		 			   if($.trim($uploads)==""){
+		 				  alert("请选择第"+ index +"行的文件路径！");
+		 				  flag = true;
+		 				  return false;//退出循环，类似于循环break
+		 			   }
+		 		   }
+		 	   })
+		 	   //说明附件存在错误
+		 	   if(flag){
+		 		   return false;
+		 	   }
+		   	   if ( check() && overWriteFile("filesTbl","filesTb2") )
+		   	   {		   		
+						$("#Form1").attr("action","elecFileUploadAction_save.do");
+				     	$("#Form1").submit();
+				
+			   }
+			   else{
+			  		return false ;
+			   }
+                 
+		}
+		function check() {
+		  var projId = $("#projId").val();
+		  if(projId == 0)
+		  {
+		      alert("请选择所属单位！");
+		      $("#projId")[0].focus();
+		      return false;
+		  }
+		  var belongTo = $("#belongTo").val();
+		  if(belongTo == 0)
+		  {
+		    alert("请选择图纸分类！");
+		    $("#belongTo")[0].focus();
+		    return false;
+		  }
+		  return true;
+		}
+		function overWriteFile(tabName1,tabName2)
+		{
+			var $tabName1 = $("#"+tabName1);
+			var $tabName2 = $("#"+tabName2);		
+			var fileName1,fileName2 ;
+			var flag = false;
+			$tabName1.find("tr:gt(0)").each(function(index,domEle){
+	 			   fileName1 = $(this).find("td:nth-child(2)").find("input[name='uploads']").val();
+	 			   fileName1 = fileName1.substr(fileName1.lastIndexOf("\\")+1 ) ;		//文件名
+	 			   if (fileName1.lastIndexOf("'")!=-1)
+				   {
+							alert("上传文件名带有'错误字符'") ;
+							flag = true;
+							return false ;
+				   }
+	 			   /**当前的tr与之后的所有tr进行比对，判断名称是否有冲突*/
+	 			  $("#"+tabName1+" tr:gt("+(index+1)+")").each(function(index1,domEle1){
+	 				   fileName2 = $(domEle1).find("td:nth-child(2)").find("input[name='uploads']").val();
+					   fileName2 = fileName2.substr(fileName2.lastIndexOf("\\")+1 ) ;
+					   if ($.trim(fileName1) == $.trim(fileName2))
+					   {
+							alert("添加上传文件列表中的第"+(index1+index+2)+"行与第"+(index+1)+"行,存在与\""+fileName1+"\"的重名文件") ;
+							flag = true;
+							return false ;
+					   }
+	 			  })
+			});
+			//2.检查"添加上传文件列表"与"已上传文件列表"中是否有重名文件	
+			$tabName1.find("tr:gt(0)").each(function(index,domEle){
+				fileName1 = $(this).find("td:nth-child(2)").find("input[name='uploads']").val();
+	 			fileName1 = fileName1.substr(fileName1.lastIndexOf("\\")+1 ) ;		//文件名
+	 			//大于1的表格的值
+	 			$tabName2.find("tr:gt(0)").each(function(index1,domEle1){
+	 				fileName2 = $(domEle1).find("td:nth-child(2)").find("a").html();
+	 				if ($.trim(fileName1) == $.trim(fileName2))	//存在重名文件
+					{
+						alert("待上传的文件\""+fileName1+"\"已经存在，不允许上传，或者修改文件名，或者通知管理员删除同名文件后再上传");
+						flag = true;
+						return false;//退出循环，相当于break
+					}
+					else
+						return true;//继续循环，相当于continue
+	 			})
+			})
+			if(flag){
+		 		 return false;
+		 	}
+			return true ;
+		}
 		
 		function changeList() {
 			var projId = document.getElementById("projId").value;
 			var belongTo = document.getElementById("belongTo").value;
-			var str = 'dataChartAddList.jsp?projId='+projId+'&belongTo='+belongTo;
+			var str = 'elecFileUploadAction_addList.do?projId='+projId+'&belongTo='+belongTo;
 			Pub.submitActionWithFormGet('Form2',str,'Form1');
 		}	
 </script>
@@ -191,12 +359,11 @@
 									</td>
 									<td class="ta_01">
 										
-										<select name="projId" id="projId" style="width:160px" onchange="changeList();">
-										    <option value="">全部</option>
-										    <option value="1">北京</option>
-										    <option value="2">上海</option>
-										    <option value="3">深圳</option>
-										</select>
+										<s:select list="#request.jctList" name="projId" id="projId"
+												  listKey="ddlCode" listValue="ddlName"
+												  headerKey="0" headerValue="全部"
+												  cssStyle="width:160px" onchange="changeList()">
+										</s:select>
  
 									</td>
 									<td width="100" class="ta_01" align="center" bgcolor="#f5fafe"
@@ -206,11 +373,11 @@
 									<td class="ta_01">
 										<font face="宋体" color="red"> 
 											
-											<select name="belongTo" id="belongTo" style="width:160px" onchange="changeList();">
-											    <option value="">全部</option>
-											    <option value="1">国内图书</option>
-											    <option value="2">国外图书</option>
-											</select>
+											<s:select list="#request.picList" name="belongTo" id="belongTo"
+													  listKey="ddlCode" listValue="ddlName"
+													  headerKey="0" headerValue="全部"
+													  cssStyle="width:160px" onchange="changeList()">
+											</s:select>
  
 											</font>
  

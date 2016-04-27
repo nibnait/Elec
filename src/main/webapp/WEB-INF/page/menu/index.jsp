@@ -9,6 +9,12 @@
 <script type='text/javascript' src='${pageContext.request.contextPath}/script/pub.js'></script>
 <script type="text/javascript" src='${pageContext.request.contextPath}/script/validate.js'></script>
 <SCRIPT type="text/javascript">
+function returnMethod(){
+	if(event.keyCode==13){
+		return checkFunction()
+	}
+	return false;
+}
 function ini(){
    document.all.name.focus();
 }
@@ -63,7 +69,7 @@ FORM {
 							<s:actionerror/>
 								<tr>
 									<td width="100"><img border="0" src="${pageContext.request.contextPath}/images/yonghu.jpg" width="75" height="20"></td>
-									<td><input type="text" name="name" style="width: 125 px" size="20" value="${requestScope.name}"  maxlength="25"></td>
+									<td><input type="text" name="name" style="width: 125 px" size="20" value="${requestScope.name}"  maxlength="25" onclick="checkFunction()"></td>
 	
 								</tr>
 								<tr>
@@ -77,7 +83,7 @@ FORM {
 										<table>
 											<tr>
 												<td>
-													<input type="text" name="checkNumber" id="checkNumber" value=""  maxlength="4" size="7">
+													<input type="text" name="checkNumber" id="checkNumber" value=""  maxlength="4" size="7"  onkeydown="returnMethod()">
 												</td>
 												<td>
 													<img src="${pageContext.request.contextPath}/image.jsp" name="imageNumber" id="imageNumber" style="cursor:hand" title="点击可更换图片" height="20" onclick="checkNumberImage()"/>

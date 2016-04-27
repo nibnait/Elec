@@ -75,7 +75,7 @@
 			<result name="home">/WEB-INF/page/system/dictionaryIndex.jsp</result>
 			<result name="edit">/WEB-INF/page/system/dictionaryEdit.jsp</result>
 			<result name="save" type="redirectAction">
-				<param name="actionName">elecSystemDDLAction_home.do</param>
+				<param name="actionName"><![CDATA[elecSystemDDLAction_home.do?keyword=${keyword}]]></param>
 			</result>
 		</action>
 
@@ -93,7 +93,7 @@
 			</result>
 			<result name="save">/close.jsp</result>
 			<result name="edit">/WEB-INF/page/system/userEdit.jsp</result>
-			<result name="download"></result>
+			<result name="download">/WEB-INF/page/system/userEdit.jsp</result>
 <!-- 		<result name="download" type="stream">
 			    <param name="inputName">inputStream</param>
 			    <param name="contentDisposition">attachment;filename="${#request.filename}"</param>
@@ -123,4 +123,27 @@
 			<result name="setExportFields">/WEB-INF/page/system/exportExcel.jsp</result>
 		</action>
 	</package>
+	
+	<!-- 资料图纸管理 -->
+	<package name="datachart" namespace="/datachart" extends="json-default">
+		<action name="elecFileUploadAction_*" class="elecFileUploadAction" method="{1}">
+			<result name="home">/WEB-INF/page/dataChart/dataChartIndex.jsp</result>
+			<result name="add">/WEB-INF/page/dataChart/dataChartAdd.jsp</result>
+			<result name="save" type="redirectAction">
+				<param name="actionName"><![CDATA[elecFileUploadAction_add.do?projId=${projId}&belongTo=${belongTo}]]></param>
+			</result>
+			<result name="addList">/WEB-INF/page/dataChart/dataChartAddList.jsp</result>
+			<result name="download" type="stream">
+				<!-- <param name="contentType">image/jpeg</param> -->
+			    <param name="inputName">inputStream</param>
+			    <param name="contentDisposition">attachment;filename="${#request.filename}"</param>
+			    <param name="bufferSize">1024</param>
+			</result>
+			<result name="luceneHome">/WEB-INF/page/dataChart/dataChartIndex.jsp</result>
+			<result name="delete" type="redirectAction">
+				<param name="actionName">elecFileUploadAction_home.do</param>
+			</result>
+		</action>
+	</package>
+	
 </struts>

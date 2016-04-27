@@ -11,6 +11,8 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
 
   private static java.util.List _jspx_dependants;
 
+  private org.apache.jasper.runtime.TagHandlerPool _005fjspx_005ftagPool_005fs_005factionerror_005fnobody;
+
   private javax.el.ExpressionFactory _el_expressionfactory;
   private org.apache.AnnotationProcessor _jsp_annotationprocessor;
 
@@ -19,11 +21,13 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
   }
 
   public void _jspInit() {
+    _005fjspx_005ftagPool_005fs_005factionerror_005fnobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _el_expressionfactory = _jspxFactory.getJspApplicationContext(getServletConfig().getServletContext()).getExpressionFactory();
     _jsp_annotationprocessor = (org.apache.AnnotationProcessor) getServletConfig().getServletContext().getAttribute(org.apache.AnnotationProcessor.class.getName());
   }
 
   public void _jspDestroy() {
+    _005fjspx_005ftagPool_005fs_005factionerror_005fnobody.release();
   }
 
   public void _jspService(HttpServletRequest request, HttpServletResponse response)
@@ -51,6 +55,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_out = out;
 
       out.write("\r\n");
+      out.write("\r\n");
       out.write("<html>\r\n");
       out.write("<head>\r\n");
       out.write("<meta http-equiv=\"Content-Language\" content=\"zh-cn\">\r\n");
@@ -68,6 +73,12 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
       out.write("/script/validate.js'></script>\r\n");
       out.write("<SCRIPT type=\"text/javascript\">\r\n");
+      out.write("function returnMethod(){\r\n");
+      out.write("\tif(event.keyCode==13){\r\n");
+      out.write("\t\treturn checkFunction()\r\n");
+      out.write("\t}\r\n");
+      out.write("\treturn false;\r\n");
+      out.write("}\r\n");
       out.write("function ini(){\r\n");
       out.write("   document.all.name.focus();\r\n");
       out.write("}\r\n");
@@ -121,24 +132,32 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t\t\t\t\t<td colspan=2></td>\r\n");
       out.write("\t\t\t\t\t</tr>\r\n");
       out.write("\t\t\t\t\t<tr>\r\n");
-      out.write("\t\t\t\t\t\t<td height=\"313\" width=\"73%\"></td>\r\n");
+      out.write("\t\t\t\t\t\t<td height=\"313\" width=\"73%\">\r\n");
+      out.write("\t\t\t\t\t\t</td>\r\n");
       out.write("\t\t\t\t\t\t<td height=\"99\" width=\"27%\">\r\n");
       out.write("\t\t\t\t\t\t\t<table border=\"0\" width=\"70%\" id=\"table4\">\r\n");
+      out.write("\t\t\t\t\t\t\t");
+      if (_jspx_meth_s_005factionerror_005f0(_jspx_page_context))
+        return;
+      out.write("\r\n");
       out.write("\t\t\t\t\t\t\t\t<tr>\r\n");
       out.write("\t\t\t\t\t\t\t\t\t<td width=\"100\"><img border=\"0\" src=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
       out.write("/images/yonghu.jpg\" width=\"75\" height=\"20\"></td>\r\n");
-      out.write("\t\t\t\t\t\t\t\t\t<td><input type=\"text\" name=\"name\" style=\"width: 125 px\" size=\"20\" value=\"\"  maxlength=\"25\"></td>\r\n");
+      out.write("\t\t\t\t\t\t\t\t\t<td><input type=\"text\" name=\"name\" style=\"width: 125 px\" size=\"20\" value=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${requestScope.name}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
+      out.write("\"  maxlength=\"25\"></td>\r\n");
       out.write("\t\r\n");
       out.write("\t\t\t\t\t\t\t\t</tr>\r\n");
       out.write("\t\t\t\t\t\t\t\t<tr>\r\n");
       out.write("\t\t\t\t\t\t\t\t\t<td width=\"100\"><img border=\"0\" src=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
       out.write("/images/mima.jpg\" width=\"75\" height=\"20\"></td>\r\n");
-      out.write("\t\t\t\t\t\t\t\t\t<td><input type=\"password\" name=\"password\" style=\"width: 125 px\" size=\"20\" value=\"\"  maxlength=\"25\"></td>\r\n");
+      out.write("\t\t\t\t\t\t\t\t\t<td><input type=\"password\" name=\"password\" style=\"width: 125 px\" size=\"20\" value=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${requestScope.password}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
+      out.write("\"  maxlength=\"25\"></td>\r\n");
       out.write("\t\t\t\t\t\t\t\t\t\r\n");
       out.write("\t\t\t\t\t\t\t\t</tr>\r\n");
-      out.write("\t\t\t\t\t\t\t\t<!-- \r\n");
       out.write("\t\t\t\t\t\t\t\t<tr>\r\n");
       out.write("\t\t\t\t\t\t\t\t\t<td width=\"100\"><img border=\"0\" src=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
@@ -147,7 +166,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t\t\t\t\t\t\t\t\t<table>\r\n");
       out.write("\t\t\t\t\t\t\t\t\t\t\t<tr>\r\n");
       out.write("\t\t\t\t\t\t\t\t\t\t\t\t<td>\r\n");
-      out.write("\t\t\t\t\t\t\t\t\t\t\t\t\t<input type=\"text\" name=\"checkNumber\" id=\"checkNumber\" value=\"\"  maxlength=\"4\" size=\"7\">\r\n");
+      out.write("\t\t\t\t\t\t\t\t\t\t\t\t\t<input type=\"text\" name=\"checkNumber\" id=\"checkNumber\" value=\"\"  maxlength=\"4\" size=\"7\"  onkeydown=\"returnMethod()\">\r\n");
       out.write("\t\t\t\t\t\t\t\t\t\t\t\t</td>\r\n");
       out.write("\t\t\t\t\t\t\t\t\t\t\t\t<td>\r\n");
       out.write("\t\t\t\t\t\t\t\t\t\t\t\t\t<img src=\"");
@@ -163,10 +182,11 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
       out.write("/images/remeber.jpg\" width=\"75\" height=\"20\"></td>\r\n");
       out.write("\t\t\t\t\t\t\t\t\t<td>\r\n");
-      out.write("\t\t\t\t\t\t\t\t\t\t<input type=\"checkbox\" name=\"remeberMe\" id=\"remeberMe\" value=\"yes\"/>\r\n");
+      out.write("\t\t\t\t\t\t\t\t\t\t<input type=\"checkbox\" name=\"remeberMe\" id=\"remeberMe\" value=\"yes\" ");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${requestScope.checked }", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
+      out.write("/>\r\n");
       out.write("\t\t\t\t\t\t\t\t\t</td>\r\n");
       out.write("\t\t\t\t\t\t\t\t</tr>\r\n");
-      out.write("\t\t\t\t\t\t\t\t-->\r\n");
       out.write("\t\t\t\t\t\t\t\t<tr>\r\n");
       out.write("\t\t\t\t\t\t\t\t\t<td width=\"100\"></td>\r\n");
       out.write("\t\t\t\t\t\t\t\t\t<td width=\"100\"><input type=\"button\" class=btn_mouseout onmouseover=\"this.className='btn_mouseover'\" onmouseout=\"this.className='btn_mouseout'\" value=\"登   录\" name=\"huifubtn\" onclick=\"checkFunction()\"></td>\r\n");
@@ -200,5 +220,22 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
     } finally {
       _jspxFactory.releasePageContext(_jspx_page_context);
     }
+  }
+
+  private boolean _jspx_meth_s_005factionerror_005f0(PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  s:actionerror
+    org.apache.struts2.views.jsp.ui.ActionErrorTag _jspx_th_s_005factionerror_005f0 = (org.apache.struts2.views.jsp.ui.ActionErrorTag) _005fjspx_005ftagPool_005fs_005factionerror_005fnobody.get(org.apache.struts2.views.jsp.ui.ActionErrorTag.class);
+    _jspx_th_s_005factionerror_005f0.setPageContext(_jspx_page_context);
+    _jspx_th_s_005factionerror_005f0.setParent(null);
+    int _jspx_eval_s_005factionerror_005f0 = _jspx_th_s_005factionerror_005f0.doStartTag();
+    if (_jspx_th_s_005factionerror_005f0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _005fjspx_005ftagPool_005fs_005factionerror_005fnobody.reuse(_jspx_th_s_005factionerror_005f0);
+      return true;
+    }
+    _005fjspx_005ftagPool_005fs_005factionerror_005fnobody.reuse(_jspx_th_s_005factionerror_005f0);
+    return false;
   }
 }

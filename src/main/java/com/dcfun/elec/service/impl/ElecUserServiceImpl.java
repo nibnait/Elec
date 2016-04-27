@@ -1,6 +1,7 @@
 package com.dcfun.elec.service.impl;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -85,10 +86,32 @@ public class ElecUserServiceImpl implements IElecUserService {
 		/**2016-04-25 18:48:47 添加
 		 * 方案二： 使用 左外连接查询用户表
 		 * */
-		List<ElecUser> list = elecUserDao.findCollectionByConditionNoPageWithSql(condition, orderby);
+		String scalar = "o.userID,o.logonName,o.userName,a.ddlName,o.contactTel,o.onDutyDate,b.ddlName";
+		String From = "Elec_User o";
+		ArrayList<String> innerJoin = new ArrayList<String>();
+		innerJoin.add("elec_systemddl a ON o.sexID = a.ddlCode AND a.keyword = '性别'");
+		innerJoin.add("elec_systemddl b ON o.postID= b.ddlCode AND b.keyword = '职位'");
+//		List<ElecUser> list = elecUserDao.findCollectionByConditionNoPageWithSql(condition, orderby, scalar, innerJoin, From);
+		List<Object[]> list = elecUserDao.findCollectionByConditionNoPageWithSql(condition, orderby, scalar, innerJoin, From);
 		
-		
-		return list;
+		// 将List<Object[]>转换成List<ElecUser>
+		List<ElecUser> userList = new ArrayList<ElecUser>();
+		if (list != null && list.size() > 0) {
+			for (Object[] o : list) {
+				ElecUser elecUser1 = new ElecUser();
+				// o.userID,o.logonName,o.userName,a.ddlName,o.contactTel,o.onDutyDate,b.ddlName
+				elecUser1.setUserID(o[0].toString());
+				elecUser1.setLogonName(o[1].toString());
+				elecUser1.setUserName(o[2].toString());
+				elecUser1.setSexID(o[3].toString());
+				elecUser1.setContactTel(o[4].toString());
+				elecUser1.setOnDutyDate((Date) o[5]);
+				elecUser1.setPostID(o[6].toString());
+				userList.add(elecUser1);
+			}
+		}
+		return userList;
+//		return list;
 	}
 
 	/** 使用数据类型和数据项的编号，查询数据字典，获取数据项的值 */
@@ -216,7 +239,7 @@ public class ElecUserServiceImpl implements IElecUserService {
 				ElecUserFile elecUserFile = new ElecUserFile();
 				elecUserFile.setElecUser(elecUser);
 				elecUserFile.setFileName(fileName[i]);
-				String fileURL = FileUploadUtils.uploadFiles(uploads[i],
+				String fileURL = FileUploadUtils.fileUploadReturnPath(uploads[i],
 						fileName[i], "用户管理");
 				elecUserFile.setFileURL(fileURL);
 				elecUserFile.setProgressTime(new Date());
@@ -314,6 +337,7 @@ public class ElecUserServiceImpl implements IElecUserService {
 		ElecUser elecUser = null;
 		if (userList != null && userList.size() > 0) {
 			elecUser = userList.get(0);
+//			elecUser.setRoleID("1");
 		}
 
 		return elecUser;

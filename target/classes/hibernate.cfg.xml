@@ -36,6 +36,7 @@
 		<mapping resource="com/dcfun/elec/domain/ElecPopedom.hbm.xml"/>
 		<mapping resource="com/dcfun/elec/domain/ElecRolePopedom.hbm.xml"/>
 		<mapping resource="com/dcfun/elec/domain/ElecExportFields.hbm.xml"/>
+		<mapping resource="com/dcfun/elec/domain/ElecFileUpload.hbm.xml"/>
 		
 		<!-- 指定使用二级缓存的类 放在maping下面 -->
       	<!-- 3:配置类级别的二级缓存 -->

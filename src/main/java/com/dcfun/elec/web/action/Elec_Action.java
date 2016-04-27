@@ -11,6 +11,7 @@ import com.dcfun.elec.domain.ElecText;
 import com.dcfun.elec.service.IElecTextService;
 import com.dcfun.elec.service.IElec_Service;
 import com.dcfun.elec.utils.ValueStackUtils;
+import com.dcfun.elec.utils.annotation.AnnotationLimit;
 
 @Controller("elec_Action")
 @Scope(value="prototype")
@@ -31,6 +32,7 @@ public class Elec_Action extends BaseAction<ElecText>{
 	 * @Parameters: 无
 	 * @Return: String: 跳转到
 	 */
+	@AnnotationLimit(mid="db",pid="da")
 	public String home(){
 		
 		
