@@ -3,7 +3,7 @@
 
 
  <script language="javascript"> 
-   /**DOM对象*/
+   /**DOM对象*/         
    /**
    function deleteAll(){
 	 var selectuser = document.getElementsByName("userID");
@@ -81,10 +81,22 @@
 		<script type="text/javascript" src="${pageContext.request.contextPath}/My97DatePicker/WdatePicker.js"></script>
 		<script language="javascript" src="${pageContext.request.contextPath }/script/function.js"></script>
 		<script language="javascript" src="${pageContext.request.contextPath }/script/jquery-1.4.2.js"></script>
+		<script language="javascript" src="${pageContext.request.contextPath }/script/page.js"></script>
+		<script language="javascript" src="${pageContext.request.contextPath }/script/validate.js"></script>
+		<script language="javascript" src="${pageContext.request.contextPath }/script/pub.js"></script>
 	</HEAD>
 		
 	<body >
-		<form id="Form1" name="Form1" action="elecUserAction_home.do" method="post" style="margin:0px;"> 
+		<form id="Form1" name="Form1" action="${pageContext.request.contextPath }/system/elecUserAction_home.do" method="post" style="margin:0px;">
+		
+		<!-- 分页隐藏域 begin -->
+			<!-- 当前页 -->
+			<s:hidden name="pageNo" /> 
+		
+			<!-- 传递判断执行的业务标识，initpage=1 -->
+			<s:hidden name="initPage" value="1" />
+		<!-- 分页隐藏域 end -->
+		 
 			<table cellspacing="1" cellpadding="0" width="90%" align="center" bgcolor="#f5fafe" border="0">
 				<TR height=10><td></td></TR>
 				<tr>
@@ -148,8 +160,9 @@
 			             </TABLE>
                    </td>
 					<td class="ta_01" align="right">
+					<!-- 分页 .do -->
 					    <input style="font-size:12px; color:black; height=20;width=80" id="BT_Add" type="button" value="查询" name="BT_find" 
-						 onclick="document.forms[0].submit()">&nbsp;&nbsp;
+						 onclick="gotoquery('elecUserAction_home.do')">&nbsp;&nbsp;
 						<input style="font-size:12px; color:black; height=20;width=80" id="BT_Add" type="button" value="添加用户" name="BT_Add" 
 						 onclick="openWindow('${pageContext.request.contextPath }/system/elecUserAction_add.do','900','700')">&nbsp;&nbsp;
 						<input style="font-size:12px; color:black; height=20;width=80" id="BT_Delete" type="button" value="批量删除" name="BT_Delete" 
@@ -218,6 +231,7 @@
 						
 					</td>
 				</tr>        
+				<%@include file="/WEB-INF/page/pageUI.jsp" %>       
 			</TBODY>
 		</table>
 		</form>

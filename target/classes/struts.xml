@@ -102,11 +102,12 @@
  -->			
 			<result name="input">/WEB-INF/page/system/error.jsp</result>
 			<result name="delete" type="redirectAction">
-				<param name="actionName">elecUserAction_home.do</param>
+				<param name="actionName">elecUserAction_home.do?pageNo=${#request.pageNo}</param>
 			</result>
 			<result name="redirectEdit" type="redirectAction">
 				<param name="actionName"><![CDATA[elecUserAction_edit.do?userID=${userID}&roleflag=${roleflag}]]></param>
 			</result>
+			<result name="list">/WEB-INF/page/system/userList.jsp</result>
 		</action>
 
 		<!-- 角色管理 -->

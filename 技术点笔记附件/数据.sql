@@ -59,3 +59,6 @@ INSERT INTO `elec_popedom` VALUES ('gb', 'ga', '编辑', '/system/elecUserAction_e
 INSERT INTO `elec_popedom` VALUES ('gc', 'ga', '保存', '/system/elecUserAction_save.do', null, null, '0', '0');
 
 -- ----------------------------------------
+
+#导出设置表
+INSERT INTO `elec_exportfields` VALUES ('5-3', '设备运行情况#站点运行情况', 'devRun#stationRun', '创建时间', 'createDate');

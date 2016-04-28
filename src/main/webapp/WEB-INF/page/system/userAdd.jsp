@@ -262,7 +262,7 @@
     }
     //ajax的二级联动，使用选择的所属单位，查询该所属单位下对应的单位名称列表
     function findJctUnit(o){
-    	//货物所属单位的文本内容
+    	//获取所属单位的文本内容
     	var jct = $(o).find("option:selected").text();
     	$.post("elecUserAction_findJctUnit.do",{"jctID":jct},function(data,textStatus){
 	   	    //先删除单位名称的下拉菜单，但是请选择要留下

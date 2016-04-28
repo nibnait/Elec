@@ -6,6 +6,7 @@ import java.util.Map;
 import com.dcfun.elec.base.dao.IBaseDao;
 import com.dcfun.elec.domain.ElecText;
 import com.dcfun.elec.domain.ElecUser;
+import com.dcfun.elec.utils.page.PageInfo;
 
 public interface IElecUserDao extends IBaseDao<ElecUser>{
 

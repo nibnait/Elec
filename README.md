@@ -302,11 +302,15 @@ function.js/openWindow(sHref,strWidth,strHeight)
 	2. 用户新增/编辑页面：使用数据类型，加载对应数据类型下的集合
 
 3. 联合查询+标量查询  
+
+
 	？？？hibernate的联合查询与sql联合查询？？？孰优孰劣
 
 	**利用反射技术 封装了一个 接口**
-```List<T> findCollectionByConditionNoPageWithSql(Map<String, Object> condition, Map<String, String> orderby,	String scalar, ArrayList<String> innerJoin);
-```
+```  
+List<T> findCollectionByConditionNoPageWithSql(Map<String, Object> condition, Map<String, String> orderby,	String scalar, ArrayList<String> innerJoin);
+```  
+
 然而，，装逼失败。 因为查出来的object与 t的属性顺序不一致。[(´Д⊂ヽ]  
 
 
@@ -338,11 +342,21 @@ function.js/openWindow(sHref,strWidth,strHeight)
 
 
 4. 导出设置  
+
+
 	
 
-##day08 
+##day08 资料图纸管理 & lucene检索
 1. get请求：只能通过url，http协议
 2. dataChartAdd.jsp中的各种js校验
 3. ###lucene
 	1. 如何进行分词？
-	2. 如何计算得分？？
+	2. 如何计算得分？？  
+
+
+##day09 
+
+1. 用户管理 添加分页功能  
+2. POI报表导出，JXLexcel文件的导入  
+	 
+3. **jfreechart**  了解（！BUG）  和 **FusionCharts free**

@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.dcfun.elec.domain.ElecFileUpload;
+import com.dcfun.elec.domain.ElecUser;
+import com.dcfun.elec.utils.page.PageInfo;
 
 public interface IBaseDao<T> {
 	
@@ -20,4 +22,5 @@ public interface IBaseDao<T> {
 	List<T> findCollectionByConditionNoPageWithCache(Map<String, Object> condition, Map<String, String> orderby);
 //	List<T> findCollectionByConditionNoPageWithSql(Map<String, Object> condition, Map<String, String> orderby,	String scalar, ArrayList<String> innerJoin, String From);
 	List<Object[]> findCollectionByConditionNoPageWithSql(Map<String, Object> condition, Map<String, String> orderby,	String scalar, ArrayList<String> innerJoin, String From);
+	List<T> findCollectionByConditionWithPage(Map<String, Object> condition, Map<String, String> orderby,PageInfo pageInfo);
 }

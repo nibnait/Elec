@@ -28,6 +28,7 @@ import com.dcfun.elec.domain.ElecUserFile;
 import com.dcfun.elec.service.IElecUserService;
 import com.dcfun.elec.utils.MD5keyBean;
 import com.dcfun.elec.utils.FileUploadUtils;
+import com.dcfun.elec.utils.page.PageInfo;
 
 @Service(IElecUserService.SERVICE_NAME)
 @Transactional(readOnly = true)
@@ -78,15 +79,22 @@ public class ElecUserServiceImpl implements IElecUserService {
 		orderby.put("onDutyDate", "asc");
 
 		/**方案一：查询用户表，再转换 数据字典表*/
-//		List<ElecUser> list = elecUserDao.findCollectionByConditionNoPage(
-//				condition, orderby);
-//
-//		this.convertSystemDDL(list);
+//		List<ElecUser> list = elecUserDao.findCollectionByConditionNoPage(condition, orderby);
+
+		/**2016-04-28 00:23:23  添加分页  begin*/
+		PageInfo pageInfo = new PageInfo(ServletActionContext.getRequest());
+		List<ElecUser> list = elecUserDao.findCollectionByConditionWithPage(condition, orderby, pageInfo);
+		ServletActionContext.getRequest().setAttribute("page", pageInfo.getPageBean());
+
+		/**2016-04-28 00:23:23  添加分页  end*/
+		
+
+		this.convertSystemDDL(list);
 
 		/**2016-04-25 18:48:47 添加
 		 * 方案二： 使用 左外连接查询用户表
 		 * */
-		String scalar = "o.userID,o.logonName,o.userName,a.ddlName,o.contactTel,o.onDutyDate,b.ddlName";
+		/*String scalar = "o.userID,o.logonName,o.userName,a.ddlName,o.contactTel,o.onDutyDate,b.ddlName";
 		String From = "Elec_User o";
 		ArrayList<String> innerJoin = new ArrayList<String>();
 		innerJoin.add("elec_systemddl a ON o.sexID = a.ddlCode AND a.keyword = '性别'");
@@ -110,8 +118,9 @@ public class ElecUserServiceImpl implements IElecUserService {
 				userList.add(elecUser1);
 			}
 		}
-		return userList;
-//		return list;
+		
+		return userList;*/
+		return list;
 	}
 
 	/** 使用数据类型和数据项的编号，查询数据字典，获取数据项的值 */

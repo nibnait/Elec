@@ -25,6 +25,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.dcfun.elec.domain.ElecUser;
 import com.dcfun.elec.utils.TUtils;
+import com.dcfun.elec.utils.page.PageInfo;
 
 public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T> {
 
@@ -393,5 +394,83 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T> {
 		
 		return sb.toString();
 	}
+
+	@Override
+	public List<T> findCollectionByConditionWithPage(final Map<String, Object> keyValues, Map<String, String> orderby,
+			final PageInfo pageInfo) {
+		final StringBuffer finalHql = new StringBuffer();
+		finalHql.append("from " + entityClass.getSimpleName()+" o");
+		finalHql.append(" where 1=1");
+		finalHql.append(this.buildWhere(keyValues));
+		finalHql.append(this.buildOrderBy(orderby));
+		@SuppressWarnings("unchecked")
+		List<T> list = this.getHibernateTemplate().execute(
+				new HibernateCallback() {
+
+					public Object doInHibernate(Session session)
+							throws HibernateException, SQLException {
+
+						Query query = session.createQuery(finalHql.toString());
+						if (keyValues != null) {
+							for (Entry<String, Object> entry : keyValues.entrySet()) {
+								
+								
+								/**2016-04-25 18:36:11 灵机一动
+								 * 
+								 * 		entry.getValue() 中加个 "("...")"不就可以定位到了么。。。哎、蠢！
+								 * */
+//								if(entry.getKey().contains("in")){
+//									/**2016-04-24 14:02:04 添加 --- 封装带in的查询条件*/
+//									if (entry.getKey().contains(".")) {
+//										query.setParameter(entry.getKey().split("\\.")[1].substring(0, entry.getKey().length()-4), entry.getValue());
+//									}else {
+//										query.setParameter(entry.getKey().substring(0, entry.getKey().length()-3), entry.getValue());
+//									}
+//								}else
+								if (entry.getKey().contains("like")) {
+									
+									if(entry.getKey().contains(".")){
+										
+										query.setParameter(entry.getKey().split("\\.")[1].substring(0, entry.getKey().length()-5), entry.getValue());
+									}else{
+										//最简单的情况，没有"."的  “>=”、“<=” 
+										//为了支持 >=、<=  也是拼 [笑Cry]
+ 										query.setParameter(entry.getKey().substring(0, entry.getKey().length()-5), "'"+entry.getValue());
+									}
+									
+								}else if(entry.getKey().contains("=")){
+									
+									if(entry.getKey().contains(".")){
+										query.setParameter(entry.getKey().split("\\.")[1].split("\\=")[0].substring(0, entry.getKey().length()-3), entry.getValue());
+									}else{
+										//最简单的情况，没有"."的  “>=”、“<=” 
+										//为了支持 >=、<=  也是拼 [笑Cry]
+										query.setParameter(entry.getKey().split("\\=")[0].substring(0, entry.getKey().length()-3), entry.getValue());
+									}
+									
+								}else if(entry.getKey().contains(".")){
+									query.setParameter(entry.getKey().split("\\.")[1], entry.getValue());
+								}else{
+									query.setParameter(entry.getKey(), entry.getValue());
+								}
+								
+							}
+						}
+
+						/**2016-04-28 00:23:23  添加分页  begin*/
+						pageInfo.setTotalResult(query.list().size());
+						query.setFirstResult(pageInfo.getBeginResult());
+						query.setMaxResults(pageInfo.getPageSize());
+
+						/**2016-04-28 00:23:23  添加分页  end*/
+						
+						return query.list();
+					}
+
+				});
+		return list;
+	}
+	
+	
 
 }

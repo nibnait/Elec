@@ -61,6 +61,15 @@ public class ElecUserAction extends BaseAction<ElecUser>{
 		List<ElecUser> userList = elecUserService.findUserListByCondition(elecUser);
 		request.setAttribute("userList", userList);
 		
+		/**2016-04-28 00:23:23  添加分页  begin*/
+		String initPage = request.getParameter("initPage");//判断执行的业务标识，initpage=1,则采用分页
+		//执行ajax操作跳转到userList.jsp
+		if (initPage!=null && initPage.equals("1")) {
+			return "list";
+		}
+		
+		/**2016-04-28 00:23:23  添加分页  end*/
+		
 		return "home";
 	}
 	
@@ -287,8 +296,13 @@ public class ElecUserAction extends BaseAction<ElecUser>{
 	 */
 	@AnnotationLimit(mid="fe",pid="fa")
 	public String delete(){
-
 		elecUserService.deleteUserByID(elecUser);
+		
+		/**
+		 * 2016-04-28 01:25:12添加执行删除，传递当前页，这样做，可以删除后定向到当前页
+		 */
+		request.setAttribute("pageNO", request.getParameter("pageNO"));
+		
 		return "delete";
 	}
 	
