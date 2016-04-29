@@ -69,8 +69,8 @@ List<ElecSystemDDL> list = this.getHibernateTemplate().find(hql);
 
 5. 
 VO	栈值对象	  
-PO	持久层对象  
-Hibernate 持久化、游离态、...？？？
+PO	持久态对象  
+Hibernate实体的四种状态：瞬时(VO)、托管(PO)、游离、销毁
 
 
 6. 数据字典 编辑页面那个Form2页面还是有问题！   
