@@ -47,8 +47,8 @@ public class XmlElementData {
 	public XmlElementData(final String name) {
 		super();
 		this.name = name;
-		this.attributes = new ArrayList<XmlAttribute>();
-		this.childrens = new ArrayList<XmlElementData>();
+		this.attributes = new ArrayList<>();
+		this.childrens = new ArrayList<>();
 	}
 
 	/**

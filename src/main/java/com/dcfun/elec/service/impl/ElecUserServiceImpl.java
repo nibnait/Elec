@@ -50,8 +50,8 @@ public class ElecUserServiceImpl implements IElecUserService {
 	@Override
 	public List<ElecUser> findUserListByCondition(ElecUser elecUser) {
 
-		Map<String, Object> condition = new HashMap<String, Object>();
-		Map<String, String> orderby = new LinkedHashMap<String, String>();
+		Map<String, Object> condition = new HashMap<>();
+		Map<String, String> orderby = new LinkedHashMap<>();
 
 		String userName = elecUser.getUserName();
 		if (StringUtils.isNotBlank(userName)) {

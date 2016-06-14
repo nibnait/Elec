@@ -47,8 +47,8 @@ public class CKFinderSetupCKEditor extends TagSupport {
 		if (flashType == null || flashType.equals("")) {
 			flashType = DEFAULT_FLASH_TYPE;
 		}
-		Map<String, Map<String, String>> attr = new HashMap<String, Map<String, String>>();
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, Map<String, String>> attr = new HashMap<>();
+		Map<String, String> params = new HashMap<>();
 		params.put("filebrowserBrowseUrl", buildBrowseUrl(null));
 		params.put("filebrowserUploadUrl", buildUploadUrl("Files"));
 		params.put("filebrowserImageBrowseUrl", buildBrowseUrl(imageType));

@@ -99,9 +99,9 @@ public class ElecCommonMsgServiceImpl implements IElecCommonMsgService {
 			/**********************************************begin**********************************************************/
 			//获取数据内容
 			//以类型作为条件，按照显示顺序升序排列，查询站点运行情况的数据
-			Map<String, Object> stationCondition = new HashMap<String, Object>();
+			Map<String, Object> stationCondition = new HashMap<>();
 			stationCondition.put("type", "1");
-			Map<String, String> stationOrderby = new LinkedHashMap<String, String>();
+			Map<String, String> stationOrderby = new LinkedHashMap<>();
 			stationOrderby.put("orderby", "asc");
 			List<ElecCommonMsgContent> stationList = elecCommonMsgContentDao.findCollectionByConditionNoPage(stationCondition, stationOrderby);
 			//获取返回的数据（拼装之后）
@@ -116,9 +116,9 @@ public class ElecCommonMsgServiceImpl implements IElecCommonMsgService {
 			commonMsg.setStationRun(stationContent);
 			/**********************************************************************************/
 			//以类型作为条件，按照显示顺序升序排列，查询站点运行情况的数据
-			Map<String, Object> devCondition = new HashMap<String, Object>();
+			Map<String, Object> devCondition = new HashMap<>();
 			devCondition.put("type", "2");
-			Map<String, String> devOrderby = new LinkedHashMap<String, String>();
+			Map<String, String> devOrderby = new LinkedHashMap<>();
 			devOrderby.put("orderby", "asc");
 			List<ElecCommonMsgContent> devList = elecCommonMsgContentDao.findCollectionByConditionNoPage(devCondition, devOrderby);
 			//获取返回的数据（拼装之后）

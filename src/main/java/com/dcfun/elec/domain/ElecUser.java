@@ -28,7 +28,7 @@ public class ElecUser implements java.io.Serializable {
 	private String remark;		//备注
 	
 	
-	private Set<ElecUserFile> elecUserFiles = new HashSet<ElecUserFile>();
+	private Set<ElecUserFile> elecUserFiles = new HashSet<>();
 
 	public Set<ElecUserFile> getElecUserFiles() {
 		return elecUserFiles;

@@ -44,8 +44,8 @@ public class ElecExportFieldsAction extends BaseAction<ElecExportFields>{
 		   * map集合的key：表示英文的名称
 		   * map集合的value：表示中文的名称
 		 */
-		Map<String, String> map = new LinkedHashMap<String, String>();
-		Map<String, String> nomap = new LinkedHashMap<String, String>();
+		Map<String, String> map = new LinkedHashMap<>();
+		Map<String, String> nomap = new LinkedHashMap<>();
 		
 		String[] eArray = getFieldsArray(elecExportFields.getExpFieldName(), "#");
 		String[] zArray = getFieldsArray(elecExportFields.getExpNameList(), "#");

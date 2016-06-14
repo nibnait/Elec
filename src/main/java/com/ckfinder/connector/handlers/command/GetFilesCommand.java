@@ -117,7 +117,7 @@ public class GetFilesCommand extends XMLCommand {
 	 *
 	 */
 	private void filterListByHiddenAndNotAllowed() {
-		List<String> tmpFiles = new ArrayList<String>();
+		List<String> tmpFiles = new ArrayList<>();
 		for (String file : this.files) {
 			if (FileUtils.checkFileExtension(file, this.configuration.getTypes().get(this.type)) == 0
 					&& !FileUtils.checkIfFileIsHidden(file, this.configuration)) {

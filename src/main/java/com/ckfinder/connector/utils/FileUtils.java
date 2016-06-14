@@ -54,14 +54,14 @@ public class FileUtils {
 
 
 	private static final Map<String, String> UTF8_LOWER_ACCENTS
-														= new HashMap<String, String>();
+														= new HashMap<>();
 	private static final Map<String, String> UTF8_UPPER_ACCENTS
-														= new HashMap<String, String>();
+														= new HashMap<>();
 
 
         private static final Map<String, String> encodingMap;
         static {
-            Map<String, String> mapHelper = new HashMap<String, String>();
+            Map<String, String> mapHelper = new HashMap<>();
             mapHelper.put("%21", "!");
 	    mapHelper.put("%27", "'");
 	    mapHelper.put("%28", "(");
@@ -79,7 +79,7 @@ public class FileUtils {
 	 */
 	public static List<String> findChildrensList(final File dir,
 			final boolean searchDirs) {
-		List<String> files = new ArrayList<String>();
+		List<String> files = new ArrayList<>();
 		for (String subFiles : dir.list()) {
 			File file = new File(dir + "/" + subFiles);
 			if ((searchDirs && file.isDirectory())

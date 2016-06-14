@@ -88,7 +88,7 @@ public class GetFoldersCommand extends XMLCommand {
 	 * ACL.
 	 */
 	private void filterListByHiddenAndNotAllowed() {
-		List<String> tmpDirs = new ArrayList<String>();
+		List<String> tmpDirs = new ArrayList<>();
 		for (String dir : this.directories) {
 			if (AccessControlUtil.getInstance(this.configuration).checkFolderACL(this.type, this.currentFolder + dir,
 					this.userRole,

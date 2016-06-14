@@ -160,7 +160,7 @@ public class DeleteFilesCommand extends XMLCommand implements IPostCommand {
 			IConfiguration configuration,
 			Object... params) throws ConnectorException {
 		super.initParams(request, configuration);
-		this.files = new ArrayList<FilePostParam>();
+		this.files = new ArrayList<>();
 		getFilesListFromRequest(request);
 	}
 

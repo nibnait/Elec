@@ -70,7 +70,7 @@ public class ElecPopedom implements java.io.Serializable {
 	
 	/**非持久化javabean属性*/
 	//表示如果一个父包含的所有子的集合
-	private List<ElecPopedom> list = new ArrayList<ElecPopedom>();
+	private List<ElecPopedom> list = new ArrayList<>();
 	//角色ID
 	private String roleID;
 	/**

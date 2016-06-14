@@ -54,7 +54,7 @@ public class LuceneUtils {
 	public static List<ElecFileUpload> searcherIndexByCondition(String projId,
 			String belongTo, String queryString) {
 		
-		List<ElecFileUpload> fileUploadList = new ArrayList<ElecFileUpload>();
+		List<ElecFileUpload> fileUploadList = new ArrayList<>();
 		try {
 			IndexSearcher indexSearcher = new IndexSearcher(
 					IndexReader.open(Configuration.getDirectory()));
