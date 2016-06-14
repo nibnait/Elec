@@ -666,7 +666,7 @@ public class FileUtils {
 	 * fills data for upper accesnts map.
 	 */
 	private static void fillUpperAccents() {
-		if (UTF8_UPPER_ACCENTS.size() == 0) {
+		if (UTF8_UPPER_ACCENTS.isEmpty()) {
 			UTF8_UPPER_ACCENTS.put("À", "A");
 			UTF8_UPPER_ACCENTS.put("Ô", "O");
 			UTF8_UPPER_ACCENTS.put("Ď", "D");
@@ -783,7 +783,7 @@ public class FileUtils {
 	 * fills data for lower accesnts map.
 	 */
 	private static void fillLowerAccents() {
-		if (UTF8_LOWER_ACCENTS.size() == 0) {
+		if (UTF8_LOWER_ACCENTS.isEmpty()) {
 			UTF8_LOWER_ACCENTS.put("à", "a");
 			UTF8_LOWER_ACCENTS.put("ô", "o");
 			UTF8_LOWER_ACCENTS.put("ď", "d");

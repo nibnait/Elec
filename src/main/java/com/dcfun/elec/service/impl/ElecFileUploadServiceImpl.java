@@ -121,7 +121,7 @@ public class ElecFileUploadServiceImpl implements IElecFileUploadService {
 
 		// 将查询的结果，封装到List<ElecFileUpload>
 		List<ElecFileUpload> fileUploadList = new ArrayList<ElecFileUpload>();
-		if (list != null && list.size() > 0) {
+		if (list != null && !list.isEmpty()) {
 			for (int i = 0; i < list.size(); i++) {
 				Object[] arrays = list.get(i);
 				// 组织页面显示的对象
@@ -176,7 +176,7 @@ public class ElecFileUploadServiceImpl implements IElecFileUploadService {
 		List<ElecFileUpload> list = LuceneUtils.searcherIndexByCondition(projId, belongTo, queryString);
 				
 		//将lucene查到的ElecFileUpload 转成数据库中的ElecFileUpload
-		if (list!=null && list.size()>0) {
+		if (list!=null && !list.isEmpty()) {
 			for(ElecFileUpload fileUpload:list){
 				Integer seqId = fileUpload.getSeqId();
 				Map<String, Object> condition = new HashMap<String, Object>();

@@ -125,7 +125,7 @@ public class ElecUserServiceImpl implements IElecUserService {
 
 	/** 使用数据类型和数据项的编号，查询数据字典，获取数据项的值 */
 	private void convertSystemDDL(List<ElecUser> list) {
-		if (list != null && list.size() > 0) {
+		if (list != null && !list.isEmpty()) {
 			for (ElecUser user : list) {
 				// 性别
 				if (user.getSexID() != null) {
@@ -162,7 +162,7 @@ public class ElecUserServiceImpl implements IElecUserService {
 			condition.put("logonName", logonName);
 			List<ElecUser> list = elecUserDao.findCollectionByConditionNoPage(
 					condition, null);
-			if (list != null && list.size() > 0) {
+			if (list != null && !list.isEmpty()) {
 				message = "2";
 			} else {
 				message = "3";
@@ -307,7 +307,7 @@ public class ElecUserServiceImpl implements IElecUserService {
 				ElecUser user = elecUserDao.findObjectById(userIDs[i]);
 				Set<ElecUserFile> userFiles = user.getElecUserFiles();
 
-				if (userFiles != null && userFiles.size() > 0) {
+				if (userFiles != null && !userFiles.isEmpty()) {
 					for (ElecUserFile userFile : userFiles) {
 						String filepath = ServletActionContext
 								.getServletContext().getRealPath("")
@@ -344,7 +344,7 @@ public class ElecUserServiceImpl implements IElecUserService {
 				condition, null);
 
 		ElecUser elecUser = null;
-		if (userList != null && userList.size() > 0) {
+		if (userList != null && !userList.isEmpty()) {
 			elecUser = userList.get(0);
 //			elecUser.setRoleID("1");
 		}
