@@ -98,7 +98,7 @@ public class InitCommand extends XMLCommand {
 		}
 		element.setAttribute("imgWidth", String.valueOf(configuration.getImgWidth()));
 		element.setAttribute("imgHeight", String.valueOf(configuration.getImgHeight()));
-		if (configuration.getPlugins().size() > 0) {
+		if (!configuration.getPlugins().isEmpty()) {
 			element.setAttribute("plugins", getPlugins());
 		}
 		rootElement.appendChild(element);
@@ -240,7 +240,7 @@ public class InitCommand extends XMLCommand {
 	 * @return list of types names.
 	 */
 	private List<String> getTypes() {
-		if (configuration.getDefaultResourceTypes().size() > 0) {
+		if (!configuration.getDefaultResourceTypes().isEmpty()) {
 			return configuration.getDefaultResourceTypes();
 		} else {
 			return configuration.getResourceTypesOrder();

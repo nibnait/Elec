@@ -73,7 +73,7 @@ public class ElecRoleServiceImpl implements IElecRoleService {
 		orderby.put("mid", "asc");
 		List<ElecPopedom> parentPopedomList = elecPopedomDao.findCollectionByConditionNoPage(condition, orderby);
 		
-		if (parentPopedomList!=null && parentPopedomList.size()>0) {
+		if (parentPopedomList!=null && !parentPopedomList.isEmpty()) {
 			for(ElecPopedom parentPopedom: parentPopedomList){
 				Map<String, Object> condition1 = new HashMap<String, Object>();
 				Map<String, String> orderby1 = new LinkedHashMap<String, String>();
@@ -109,7 +109,7 @@ public class ElecRoleServiceImpl implements IElecRoleService {
 		// 使用包含（String.contains）标记allPopedomList
 		// 组织midStr
 		StringBuffer midStrBuf = new StringBuffer();
-		if (popedomList != null && popedomList.size() > 0) {
+		if (popedomList != null && !popedomList.isEmpty()) {
 			for (ElecRolePopedom elecRolePopedom : popedomList) {
 				midStrBuf.append(elecRolePopedom.getMid() + "#");
 			}
@@ -126,7 +126,7 @@ public class ElecRoleServiceImpl implements IElecRoleService {
 	private void flag_allPopedomList(
 			String midStr, List<ElecPopedom> allPopedomList) {
 
-		if (allPopedomList!=null && allPopedomList.size()>0) {
+		if (allPopedomList!=null && !allPopedomList.isEmpty()) {
 			for(ElecPopedom elecPopedom:allPopedomList){
 				if (midStr.contains(elecPopedom.getMid())) {
 					elecPopedom.setFlag("1");
@@ -136,7 +136,7 @@ public class ElecRoleServiceImpl implements IElecRoleService {
 				
 				//**获取子集合!! 并标记
 				List<ElecPopedom> childPoprdom = elecPopedom.getList();
-				if (childPoprdom!=null && childPoprdom.size()>0) {
+				if (childPoprdom!=null && !childPoprdom.isEmpty()) {
 					this.flag_allPopedomList(midStr, childPoprdom);
 				}
 			}
@@ -197,7 +197,7 @@ public class ElecRoleServiceImpl implements IElecRoleService {
 		// 使用包含（String.contains）标记allPopedomList
 		// 组织midStr
 		StringBuffer midStrBuf = new StringBuffer();
-		if (popedomList != null && popedomList.size() > 0) {
+		if (popedomList != null && !popedomList.isEmpty()) {
 			for (ElecRolePopedom elecRolePopedom : popedomList) {
 				midStrBuf.append(elecRolePopedom.getMid() + "#");
 			}
@@ -231,7 +231,7 @@ public class ElecRoleServiceImpl implements IElecRoleService {
 		
 		//既然无法封装 in语句
 		//就用笨方法吧
-		if (popedomList!=null && popedomList.size()>0) {
+		if (popedomList!=null && !popedomList.isEmpty()) {
 			for(ElecPopedom elecPopedom: popedomList){
 				if (popedomStr.contains(elecPopedom.getMid())) {
 					list.add(elecPopedom);
@@ -259,7 +259,7 @@ public class ElecRoleServiceImpl implements IElecRoleService {
 		condition.put("pid", pid);
 		
 		List<ElecRolePopedom> list = elecRolePopedomDao.findCollectionByConditionNoPage(condition, null);
-		if (list!=null && list.size()>0) {
+		if (list!=null && !list.isEmpty()) {
 			return true;
 		}
 		

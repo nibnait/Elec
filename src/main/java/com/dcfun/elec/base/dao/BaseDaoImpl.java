@@ -141,7 +141,7 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T> {
 
 	private String buildOrderBy(Map<String, String> orderby) {
 		StringBuffer buffer = new StringBuffer("");
-		if(orderby!=null && orderby.size()>0){
+		if(orderby!=null && !orderby.isEmpty()){
 			buffer.append(" ORDER BY ");
 			for(Map.Entry<String, String> map:orderby.entrySet()){
 				buffer.append(map.getKey()+" "+map.getValue()+",");
@@ -386,7 +386,7 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T> {
 	private String buildInnerJoin(ArrayList<String> innerJoin) {
 
 		StringBuffer sb = new StringBuffer();
-		if (innerJoin!=null && innerJoin.size()>0) {
+		if (innerJoin!=null && !innerJoin.isEmpty()) {
 			for (int i = 0; i < innerJoin.size(); i++) {
 				sb.append(" INNER JOIN "+innerJoin.get(i));
 			}

@@ -94,7 +94,7 @@ public class ElecCommonMsgServiceImpl implements IElecCommonMsgService {
 	public ElecCommonMsg findCommonMsg() {
 		List<ElecCommonMsg> list = elecCommonMsgDao.findCollectionByConditionNoPage(null, null);
 		ElecCommonMsg commonMsg = null;
-		if(list!=null && list.size()>0){
+		if(list!=null && !list.isEmpty()){
 			commonMsg = list.get(0);
 			/**********************************************begin**********************************************************/
 			//获取数据内容
@@ -106,7 +106,7 @@ public class ElecCommonMsgServiceImpl implements IElecCommonMsgService {
 			List<ElecCommonMsgContent> stationList = elecCommonMsgContentDao.findCollectionByConditionNoPage(stationCondition, stationOrderby);
 			//获取返回的数据（拼装之后）
 			String stationContent = "";
-			if(stationList!=null && stationList.size()>0){
+			if(stationList!=null && !stationList.isEmpty()){
 				for(ElecCommonMsgContent elecCommonMsgContent:stationList){
 					String content = elecCommonMsgContent.getContent();
 					stationContent += content;
@@ -123,7 +123,7 @@ public class ElecCommonMsgServiceImpl implements IElecCommonMsgService {
 			List<ElecCommonMsgContent> devList = elecCommonMsgContentDao.findCollectionByConditionNoPage(devCondition, devOrderby);
 			//获取返回的数据（拼装之后）
 			String devContent = "";
-			if(devList!=null && devList.size()>0){
+			if(devList!=null && !devList.isEmpty()){
 				for(ElecCommonMsgContent elecCommonMsgContent:devList){
 					String content = elecCommonMsgContent.getContent();
 					devContent += content;
@@ -157,7 +157,7 @@ public class ElecCommonMsgServiceImpl implements IElecCommonMsgService {
 		String devRun = elecCommonMsg.getDevRun();
 		//调用StirngUtil的方法，分割字符串
 		List<String> stationList = StringUtils.getContentByList(stationRun, 50);
-		if(stationList!=null && stationList.size()>0){
+		if(stationList!=null && !stationList.isEmpty()){
 			for(int i=0;i<stationList.size();i++){
 				ElecCommonMsgContent elecCommonMsgContent = new ElecCommonMsgContent();
 				elecCommonMsgContent.setType("1");//1表示站点运行情况
@@ -167,7 +167,7 @@ public class ElecCommonMsgServiceImpl implements IElecCommonMsgService {
 			}
 		}
 		List<String> devList = StringUtils.getContentByList(devRun, 50);
-		if(devList!=null && devList.size()>0){
+		if(devList!=null && !devList.isEmpty()){
 			for(int i=0;i<devList.size();i++){
 				ElecCommonMsgContent elecCommonMsgContent = new ElecCommonMsgContent();
 				elecCommonMsgContent.setType("2");//2表示设备运行情况
@@ -182,7 +182,7 @@ public class ElecCommonMsgServiceImpl implements IElecCommonMsgService {
 		//查询运行监控表，获取运行监控表的数据，返回List<ElecCommonMsg> list，使用list作为判断数据库中是否存在数据
 		List<ElecCommonMsg> list = elecCommonMsgDao.findCollectionByConditionNoPage(null, null);
 		//如果list!=null:数据表表中存在数据，获取页面传递的2个参数，组织PO对象，执行更新（update）
-		if(list!=null && list.size()>0){
+		if(list!=null && !list.isEmpty()){
 			//方案一：先删除再创建
 			//方案二：组织PO对象，执行update
 			ElecCommonMsg commonMsg = list.get(0);

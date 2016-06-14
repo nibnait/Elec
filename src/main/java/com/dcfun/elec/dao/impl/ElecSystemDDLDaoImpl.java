@@ -63,7 +63,7 @@ public class ElecSystemDDLDaoImpl extends BaseDaoImpl<ElecSystemDDL> implements 
 		});
 		//返回数据项的值
 		String ddlName = "";
-		if(list!=null && list.size()>0){
+		if(list!=null && !list.isEmpty()){
 			Object o = list.get(0);
 			ddlName = o.toString();
 		}
