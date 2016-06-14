@@ -200,7 +200,7 @@ public class ImageUtils {
 	 */
 	public static boolean isImage(final File file) {
 		List<String> list = Arrays.asList(ALLOWED_EXT);
-		String fileExt = null;
+		String fileExt;
 		if (file != null) {
 			fileExt = FileUtils.getFileExtension(file.getName().toLowerCase());
 			return (fileExt != null) ? list.contains(fileExt) : false;
@@ -285,7 +285,7 @@ public class ImageUtils {
 			throws IOException {
 		ByteArrayOutputStream byteArrayOS = new ByteArrayOutputStream();
 		byte[] buffer = new byte[MAX_BUFF_SIZE];
-		int readNum = -1;
+		int readNum;
 		while ((readNum = stream.read(buffer)) != -1) {
 			byteArrayOS.write(buffer, 0, readNum);
 		}

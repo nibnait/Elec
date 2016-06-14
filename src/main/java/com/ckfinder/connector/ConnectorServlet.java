@@ -112,7 +112,7 @@ public class ConnectorServlet extends HttpServlet {
 			throw new ServletException(startException);
 		}
 		String command = request.getParameter("command");
-		IConfiguration configuration = null;
+		IConfiguration configuration;
 		try {
 			configuration = ConfigurationFactory.getInstace().getConfiguration(request);
 			if (configuration == null) {
@@ -134,7 +134,7 @@ public class ConnectorServlet extends HttpServlet {
 			configuration.setDebugMode(
 					Boolean.valueOf(getServletConfig().getInitParameter("debug")));
 
-			CommandHandlerEnum cmd = null;
+			CommandHandlerEnum cmd;
 
 			try {
 				cmd = CommandHandlerEnum.valueOf(command.toUpperCase());
@@ -255,7 +255,7 @@ public class ConnectorServlet extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 		ServletContextFactory.setServletContext(getServletContext());
-		IConfiguration configuration = null;
+		IConfiguration configuration;
 		try {
 			String className = getServletConfig().getInitParameter(
 					"configuration");
@@ -390,7 +390,7 @@ public class ConnectorServlet extends HttpServlet {
 				final HttpServletResponse response, final IConfiguration configuration,
 				final ServletContext sc, final Object... params)
 				throws ConnectorException {
-			Command com = null;
+			Command com;
 			try {
 				com = command.getClass().newInstance();
 			} catch (IllegalAccessException e1) {

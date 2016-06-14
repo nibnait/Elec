@@ -196,7 +196,7 @@ public class InitCommand extends XMLCommand {
 		Element element = creator.getDocument().createElement("ResourceTypes");
 		rootElement.appendChild(element);
 
-		List<String> types = null;
+		List<String> types;
 		if (super.type != null && !super.type.equals("")) {
 			types = new ArrayList<String>();
 			types.add(super.type);
