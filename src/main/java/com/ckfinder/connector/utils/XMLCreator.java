@@ -67,7 +67,7 @@ public class XMLCreator {
 	 * standard constuctor.
 	 */
 	public XMLCreator() {
-		this.errorList = new ArrayList<ErrorNode>();
+		this.errorList = new ArrayList<>();
 	}
 
 	/**

@@ -41,7 +41,7 @@ public class Events {
 	 * default constructor.
 	 */
 	public Events() {
-		eventHandlers = new HashMap<Events.EventTypes, List<EventCommandData>>();
+		eventHandlers = new HashMap<>();
 		eventHandlers.put(EventTypes.AfterFileUpload, new ArrayList<EventCommandData>());
 		eventHandlers.put(EventTypes.InitCommand, new ArrayList<EventCommandData>());
 		eventHandlers.put(EventTypes.BeforeExecuteCommand,

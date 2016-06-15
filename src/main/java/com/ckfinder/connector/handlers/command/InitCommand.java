@@ -198,7 +198,7 @@ public class InitCommand extends XMLCommand {
 
 		List<String> types;
 		if (super.type != null && !super.type.equals("")) {
-			types = new ArrayList<String>();
+			types = new ArrayList<>();
 			types.add(super.type);
 		} else {
 			types = getTypes();

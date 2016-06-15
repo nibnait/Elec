@@ -51,8 +51,8 @@ public class ElecSystemDDLServiceImpl implements IElecSystemDDLService {
 	*/
 	public List<ElecSystemDDL> findSystemDDLListByKeyword(String keyword) {
 		
-		Map<String, Object> condition = new HashMap<String, Object>();
-		Map<String, String> orderby = new LinkedHashMap<String, String>();
+		Map<String, Object> condition = new HashMap<>();
+		Map<String, String> orderby = new LinkedHashMap<>();
 		
 		condition.put("o.keyword", keyword);
 		orderby.put("o.ddlCode", "asc");

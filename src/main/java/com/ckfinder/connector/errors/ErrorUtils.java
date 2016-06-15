@@ -86,7 +86,7 @@ public final class ErrorUtils {
 	 */
 	private ErrorUtils() {
 		List<String> allAvailLangCodes = getAllLangCodes();
-		langMap = new HashMap<String, Map<Integer, String>>();
+		langMap = new HashMap<>();
 		for (String langCode : allAvailLangCodes) {
 			langMap.put(langCode, getMessagesByLangCode(langCode));
 		}
@@ -105,7 +105,7 @@ public final class ErrorUtils {
 	 * @return read files from jar that matches lang file pattern.
 	 */
 	private List<String> readJarFiles() {
-		List<String> langFiles = new ArrayList<String>();
+		List<String> langFiles = new ArrayList<>();
 		try {
 			URL dirURL = ConnectorServlet.class.getResource("/lang/");
 			// #768 there was a problem that files were loaded from work not from jar
@@ -160,7 +160,7 @@ public final class ErrorUtils {
 	 * @return map of lang messages.
 	 */
 	private Map<Integer, String> getMessagesByLangCode(final String langCode) {
-		Map<Integer, String> langCodeMap = new HashMap<Integer, String>();
+		Map<Integer, String> langCodeMap = new HashMap<>();
 		try {
 
 			InputStream is = ConnectorServlet.class.getResourceAsStream("/lang/" + langCode + ".xml");

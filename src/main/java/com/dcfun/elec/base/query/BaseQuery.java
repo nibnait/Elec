@@ -7,7 +7,7 @@ public abstract class BaseQuery {
 
 
 	//将收集到的表单元素封装成map
-	private Map<String, Object> keyValues = new HashMap<String, Object>();
+	private Map<String, Object> keyValues = new HashMap<>();
 
 	public Map<String, Object> getKeyValues() {
 		return keyValues;

@@ -91,11 +91,11 @@ public class Configuration implements IConfiguration {
 	public Configuration(final ServletConfig servletConfig) {
 		this.servletConf = servletConfig;
 		this.xmlFilePath = servletConfig.getInitParameter("XMLConfig");
-		this.plugins = new ArrayList<PluginInfo>();
-		this.htmlExtensions = new ArrayList<String>();
-		this.hiddenFolders = new ArrayList<String>();
-		this.hiddenFiles = new ArrayList<String>();
-		this.defaultResourceTypes = new ArrayList<String>();
+		this.plugins = new ArrayList<>();
+		this.htmlExtensions = new ArrayList<>();
+		this.hiddenFolders = new ArrayList<>();
+		this.hiddenFiles = new ArrayList<>();
+		this.defaultResourceTypes = new ArrayList<>();
 	}
 
 	/**
@@ -111,8 +111,8 @@ public class Configuration implements IConfiguration {
 		this.imgWidth = DEFAULT_IMG_WIDTH;
 		this.imgHeight = DEFAULT_IMG_HEIGHT;
 		this.imgQuality = DEFAULT_IMG_QUALITY;
-		this.types = new HashMap<String, ResourceType>();
-		this.typesOrder = new ArrayList<String>();
+		this.types = new HashMap<>();
+		this.typesOrder = new ArrayList<>();
 		this.thumbsEnabled = false;
 		this.thumbsURL = "";
 		this.thumbsDir = "";
@@ -121,18 +121,18 @@ public class Configuration implements IConfiguration {
 		this.thumbsDirectAccess = false;
 		this.thumbsMaxHeight = DEFAULT_THUMB_MAX_HEIGHT;
 		this.thumbsMaxWidth = DEFAULT_THUMB_MAX_WIDTH;
-		this.accessControlLevels = new ArrayList<AccessControlLevel>();
-		this.hiddenFolders = new ArrayList<String>();
-		this.hiddenFiles = new ArrayList<String>();
+		this.accessControlLevels = new ArrayList<>();
+		this.hiddenFolders = new ArrayList<>();
+		this.hiddenFiles = new ArrayList<>();
 		this.doubleExtensions = false;
 		this.forceASCII = false;
 		this.checkSizeAfterScaling = false;
 		this.uriEncoding = DEFAULT_URI_ENCODING;
 		this.userRoleSessionVar = "";
-		this.plugins = new ArrayList<PluginInfo>();
+		this.plugins = new ArrayList<>();
 		this.secureImageUploads = false;
-		this.htmlExtensions = new ArrayList<String>();
-		this.defaultResourceTypes = new ArrayList<String>();
+		this.htmlExtensions = new ArrayList<>();
+		this.defaultResourceTypes = new ArrayList<>();
 		this.events = new Events();
 		this.basePathBuilder = null;
 		this.disallowUnsafeCharacters = false;
@@ -385,7 +385,7 @@ public class Configuration implements IConfiguration {
 	 * @param childNodes nodes with ACL configuration.
 	 */
 	private void setACLs(final NodeList childNodes) {
-		this.accessControlLevels = new ArrayList<AccessControlLevel>();
+		this.accessControlLevels = new ArrayList<>();
 		for (int i = 0; i < childNodes.getLength(); i++) {
 			Node childNode = childNodes.item(i);
 			if (childNode.getNodeName().equals("accessControl")) {
@@ -508,8 +508,8 @@ public class Configuration implements IConfiguration {
 	 * @param doc XML document.
 	 */
 	private void setTypes(final Document doc) {
-		types = new HashMap<String, ResourceType>();
-		typesOrder = new ArrayList<String>();
+		types = new HashMap<>();
+		typesOrder = new ArrayList<>();
 		NodeList list = doc.getElementsByTagName("type");
 
 		for (int i = 0; i < list.getLength(); i++) {
@@ -1077,19 +1077,19 @@ public class Configuration implements IConfiguration {
 		configuration.events = this.events;
 		configuration.basePathBuilder = this.basePathBuilder;
 
-		configuration.htmlExtensions = new ArrayList<String>();
+		configuration.htmlExtensions = new ArrayList<>();
 		configuration.htmlExtensions.addAll(this.htmlExtensions);
-		configuration.hiddenFolders = new ArrayList<String>();
-		configuration.hiddenFiles = new ArrayList<String>();
+		configuration.hiddenFolders = new ArrayList<>();
+		configuration.hiddenFiles = new ArrayList<>();
 		configuration.hiddenFiles.addAll(this.hiddenFiles);
 		configuration.hiddenFolders.addAll(this.hiddenFolders);
-		configuration.typesOrder = new ArrayList<String>();
+		configuration.typesOrder = new ArrayList<>();
 		configuration.typesOrder.addAll(this.typesOrder);
-		configuration.defaultResourceTypes = new ArrayList<String>();
+		configuration.defaultResourceTypes = new ArrayList<>();
 		configuration.defaultResourceTypes.addAll(this.defaultResourceTypes);
-		configuration.types = new HashMap<String, ResourceType>();
-		configuration.accessControlLevels = new ArrayList<AccessControlLevel>();
-		configuration.plugins = new ArrayList<PluginInfo>();
+		configuration.types = new HashMap<>();
+		configuration.accessControlLevels = new ArrayList<>();
+		configuration.plugins = new ArrayList<>();
 		copyTypes(configuration.types);
 		copyACls(configuration.accessControlLevels);
 		copyPlugins(configuration.plugins);

@@ -308,7 +308,7 @@ public class CopyFilesCommand extends XMLCommand implements IPostCommand {
 			final IConfiguration configuration,
 			final Object... params) throws ConnectorException {
 		super.initParams(request, configuration);
-		this.files = new ArrayList<FilePostParam>();
+		this.files = new ArrayList<>();
 		this.copiedAll = (request.getParameter("copied") != null) ? Integer.valueOf(request.getParameter("copied")) : 0;
 
 		getFilesListFromRequest(request);
