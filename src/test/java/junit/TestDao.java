@@ -67,7 +67,7 @@ public class TestDao {
 	public void deleteObjectByCollection(){
 		
 		IElecTextDao elecTextDao = (IElecTextDao) ac.getBean(IElecTextDao.SERVICE_NAME);
-		List<ElecText> list = new ArrayList<ElecText>();
+		List<ElecText> list = new ArrayList<>();
 		ElecText elecText1 = new ElecText();
 		elecText1.setTextID("402895ef49f46c5f0149f46c64cd0001");
 		

@@ -6,7 +6,7 @@ import java.util.List;
 public class StringUtils {
 
 	public static List<String> getContentByList(String wholecontent, int cutcount) {
-		List<String> list = new ArrayList<String>();
+		List<String> list = new ArrayList<>();
 		//获取完整内容字符串的总长度
     	int contentlen = wholecontent.length(); 
         //内容截取，用内容总长和截取长度进行比较，无须截取的话直接插入

@@ -50,7 +50,7 @@ public class ElecRoleServiceImpl implements IElecRoleService {
 	 * @Return: List<ElecRole>
 	 */
 	public List<ElecRole> findAllRoleList() {
-		Map<String, String> orderby = new LinkedHashMap<String, String>();
+		Map<String, String> orderby = new LinkedHashMap<>();
 		orderby.put("roleID", "asc");
 		return elecRoleDao.findCollectionByConditionNoPage(null, orderby);
 	}
@@ -66,7 +66,7 @@ public class ElecRoleServiceImpl implements IElecRoleService {
 	 */
 	public List<ElecPopedom> findAllPopedomList() {
 		
-		Map<String, Object> condition = new HashMap<String, Object>();
+		Map<String, Object> condition = new HashMap<>();
 		Map<String, String> orderby = new LinkedHashMap<>();
 		
 		condition.put("pid", "0");
@@ -75,8 +75,8 @@ public class ElecRoleServiceImpl implements IElecRoleService {
 		
 		if (parentPopedomList!=null && !parentPopedomList.isEmpty()) {
 			for(ElecPopedom parentPopedom: parentPopedomList){
-				Map<String, Object> condition1 = new HashMap<String, Object>();
-				Map<String, String> orderby1 = new LinkedHashMap<String, String>();
+				Map<String, Object> condition1 = new HashMap<>();
+				Map<String, String> orderby1 = new LinkedHashMap<>();
 				
 				condition1.put("pid", parentPopedom.getMid());
 				orderby1.put("mid", "asc");
@@ -100,7 +100,7 @@ public class ElecRoleServiceImpl implements IElecRoleService {
 	 */
 	public List<ElecPopedom> findAllPopedomListByRoleID(String roleID) {
 		
-		Map<String, Object> condition = new HashMap<String, Object>();
+		Map<String, Object> condition = new HashMap<>();
 		condition.put("roleID", roleID);
 		List<ElecRolePopedom> popedomList = elecRolePopedomDao.findCollectionByConditionNoPage(condition, null);
 		
@@ -160,7 +160,7 @@ public class ElecRoleServiceImpl implements IElecRoleService {
 		String[] popedoms = elecPopedom.getSelectoper();
 	
 		//根据roleID 清空rolePopedom表中原来的roleID对应的 popedoms
-		Map<String, Object> condition = new HashMap<String, Object>();
+		Map<String, Object> condition = new HashMap<>();
 		condition.put("roleID", roleID);
 		List<ElecRolePopedom> list = elecRolePopedomDao.findCollectionByConditionNoPage(condition, null);
 		elecRolePopedomDao.deleteObjectByCollection(list);
@@ -188,7 +188,7 @@ public class ElecRoleServiceImpl implements IElecRoleService {
 	 * @Return: popedomString
 	 */
 	public String findPopedomByRoleID(String roleID) {
-		Map<String, Object> condition = new HashMap<String, Object>();
+		Map<String, Object> condition = new HashMap<>();
 		condition.put("roleID", roleID);
 		List<ElecRolePopedom> popedomList = elecRolePopedomDao.findCollectionByConditionNoPage(condition, null);
 		
@@ -220,14 +220,14 @@ public class ElecRoleServiceImpl implements IElecRoleService {
 	 */
 	public List<ElecPopedom> findPopedomByString(String popedomStr) {
 
-		Map<String, Object> condition = new HashMap<String, Object>();
-		Map<String, String> orderby = new LinkedHashMap<String, String>();
+		Map<String, Object> condition = new HashMap<>();
+		Map<String, String> orderby = new LinkedHashMap<>();
 		condition.put("o.isMenu", true);
 //		condition.put("o.mid in", "'"+popedom.replace("#", "','")+"'");
 		orderby.put("o.mid", "asc");		
 		
 		List<ElecPopedom> popedomList = elecPopedomDao.findCollectionByConditionNoPage(condition, orderby);
-		List<ElecPopedom> list = new ArrayList<ElecPopedom>();
+		List<ElecPopedom> list = new ArrayList<>();
 		
 		//既然无法封装 in语句
 		//就用笨方法吧
@@ -253,7 +253,7 @@ public class ElecRoleServiceImpl implements IElecRoleService {
 	 */
 	public boolean findRolePopedomByID(String roleID, String mid, String pid) {
 
-		Map<String, Object> condition = new HashMap<String, Object>();
+		Map<String, Object> condition = new HashMap<>();
 		condition.put("roleID", roleID);
 		condition.put("mid", mid);
 		condition.put("pid", pid);

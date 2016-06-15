@@ -97,8 +97,8 @@ public class ElecFileUploadServiceImpl implements IElecFileUploadService {
 			ElecFileUpload elecFileUpload) {
 
 		// 组织查询条件
-		Map<String, Object> condition = new HashMap<String, Object>();
-		Map<String, String> orderby = new LinkedHashMap<String, String>();
+		Map<String, Object> condition = new HashMap<>();
+		Map<String, String> orderby = new LinkedHashMap<>();
 		if (!elecFileUpload.getProjId().equals("0")) {
 			condition.put("o.projId", elecFileUpload.getProjId());
 		}
@@ -109,7 +109,7 @@ public class ElecFileUploadServiceImpl implements IElecFileUploadService {
 		
 		String scalar = "o.seqID,a.ddlName,b.ddlName,o.FileName,o.FileURL,o.progressTime,o.comment";
 		String From = "Elec_FileUpload o";
-		ArrayList<String> innerJoin = new ArrayList<String>();
+		ArrayList<String> innerJoin = new ArrayList<>();
 		innerJoin.add(" elec_systemddl a ON o.projID = a.ddlCode AND a.keyword='所属单位' ");
 		innerJoin.add(" elec_systemddl b ON o.belongTo = b.ddlCode AND b.keyword='图纸类别' ");
 		
@@ -120,8 +120,13 @@ public class ElecFileUploadServiceImpl implements IElecFileUploadService {
 						scalar, innerJoin, From);
 
 		// 将查询的结果，封装到List<ElecFileUpload>
+<<<<<<< HEAD
 		List<ElecFileUpload> fileUploadList = new ArrayList<ElecFileUpload>();
 		if (list != null && !list.isEmpty()) {
+=======
+		List<ElecFileUpload> fileUploadList = new ArrayList<>();
+		if (list != null && list.size() > 0) {
+>>>>>>> 43365707b590f3d0bcd1e88eb24b230468022998
 			for (int i = 0; i < list.size(); i++) {
 				Object[] arrays = list.get(i);
 				// 组织页面显示的对象
@@ -167,7 +172,7 @@ public class ElecFileUploadServiceImpl implements IElecFileUploadService {
 	public List<ElecFileUpload> findFileUploadListByLuceneCondition(
 			ElecFileUpload elecFileUpload) {
 		
-		List<ElecFileUpload> fileUploadList = new ArrayList<ElecFileUpload>();
+		List<ElecFileUpload> fileUploadList = new ArrayList<>();
 
 		//组织查询条件，进行 lucene索引查询
 		String projId = elecFileUpload.getProjId();
@@ -179,7 +184,7 @@ public class ElecFileUploadServiceImpl implements IElecFileUploadService {
 		if (list!=null && !list.isEmpty()) {
 			for(ElecFileUpload fileUpload:list){
 				Integer seqId = fileUpload.getSeqId();
-				Map<String, Object> condition = new HashMap<String, Object>();
+				Map<String, Object> condition = new HashMap<>();
 				condition.put("seqId", seqId);
 				List<ElecFileUpload> file = elecFileUploadDao.findCollectionByConditionNoPage(condition, null);
 				

@@ -11,7 +11,7 @@ public class ElecRole implements java.io.Serializable {
 	private String roleName;	//角色名称
 	
 	/** 2016-04-23 23:45:25添加 Set<ElecUser>*/
-	private Set<ElecUser> elecUsers = new HashSet<ElecUser>();
+	private Set<ElecUser> elecUsers = new HashSet<>();
 	
 	public Set<ElecUser> getElecUsers() {
 		return elecUsers;

@@ -20,7 +20,7 @@ import com.dcfun.elec.domain.ElecUser;
 
 public class SystemFilter implements Filter{
 
-	List<String> list = new ArrayList<String>();//存放一些 本来就没有Session的URL
+	List<String> list = new ArrayList<>();//存放一些 本来就没有Session的URL
 	
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {

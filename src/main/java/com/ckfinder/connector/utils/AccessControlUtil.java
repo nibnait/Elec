@@ -94,7 +94,7 @@ public final class AccessControlUtil {
 	 * loads ACL configuration from connector configuration.
 	 */
 	public void loadACLConfig() {
-		aclEntries = new ArrayList<AccessControlUtil.ACLEntry>();
+		aclEntries = new ArrayList<>();
 		for (AccessControlLevel item : configuration.getAccessConrolLevels()) {
 			ACLEntry aclEntry = new ACLEntry();
 			aclEntry.role = item.getRole();
@@ -221,7 +221,7 @@ public final class AccessControlUtil {
 	 */
 	private List<ACLEntry> findACLEntryByRoleAndType(final String type,
 			final String role) {
-		List<ACLEntry> res = new ArrayList<AccessControlUtil.ACLEntry>();
+		List<ACLEntry> res = new ArrayList<>();
 		for (ACLEntry item : aclEntries) {
 			if (item.role.equals(role) && item.type.equals(type)) {
 				res.add(item);
