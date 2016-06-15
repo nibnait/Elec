@@ -155,7 +155,7 @@ public class ElecUserServiceImpl implements IElecUserService {
 	 * @Return: String: message 1 登录名为空 2 登录名已存在 3 登录名不存在，可以使用
 	 */
 	public String checkUserByLogonName(String logonName) {
-		String message = "";
+		String message;
 
 		if (StringUtils.isNotBlank(logonName)) {
 			Map<String, Object> condition = new HashMap<>();
@@ -214,7 +214,7 @@ public class ElecUserServiceImpl implements IElecUserService {
 		// 获取加密前的密码
 		String logonPwd = elecUser.getLogonPwd();
 		// 加密后的密码
-		String md5password = "";
+		String md5password;
 		// 如果没有填写密码，设置初始密码为123456
 		if (StringUtils.isBlank(logonPwd)) {
 			logonPwd = "123456";

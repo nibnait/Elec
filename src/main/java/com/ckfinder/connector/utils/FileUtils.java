@@ -163,14 +163,14 @@ public class FileUtils {
 		}
 		try {
 			in = new FileInputStream(file);
-			byte[] buf = null;
+			byte[] buf;
 			if (file.length() < MAX_BUFFER_SIZE) {
 				buf = new byte[(int) file.length()];
 			} else {
 				buf = new byte[MAX_BUFFER_SIZE];
 			}
 			
-                        int numRead = 0;
+                        int numRead;
                         while ((numRead = in.read(buf)) != -1) {
                             out.write(buf, 0, numRead);
                         }
@@ -620,7 +620,7 @@ public class FileUtils {
 
 		StringTokenizer tokens = new StringTokenizer(fileName, ".");
 		String cfileName = tokens.nextToken();
-		String currToken = "";
+		String currToken;
 		while (tokens.hasMoreTokens()) {
 			currToken = tokens.nextToken();
 			if (tokens.hasMoreElements()) {

@@ -240,7 +240,7 @@ public class ElecUserAction extends BaseAction<ElecUser>{
 //			while((isSize=inputStream.read(oBuff)) != -1){
 //				outputStream.write(oBuff, 0, isSize);
 //			}
-			for (int b=-1;(b=inputStream.read())!=-1; ){
+			for (int b; (b=inputStream.read())!=-1; ){
 				outputStream.write(b);
 			}
 			

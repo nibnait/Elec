@@ -89,7 +89,7 @@ public class Events {
 			throws ConnectorException {
 		for (EventCommandData eventCommandData : eventHandlers.get(eventTyp)) {
 			try {
-				IEventHandler events = null;
+				IEventHandler events;
 				if (eventCommandData.getPluginInfo() != null) {
 					events = eventCommandData.getEventListener().getConstructor(PluginInfo.class).newInstance(eventCommandData.getPluginInfo());
 				} else {

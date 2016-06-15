@@ -154,7 +154,7 @@ public class ResourceType {
 	private long parseMaxSize() {
 
 		char lastChar = maxSize.toLowerCase().charAt(maxSize.length() - 1);
-		int a = 0;
+		int a;
 		switch (lastChar) {
 			case 'k':
 				a = BYTES;

@@ -36,7 +36,7 @@ public class ErrorAndLimitInterceptor extends MethodFilterInterceptor {
 			//获取action中的方法的封装类(action中的方法没有参数)
 			Method method = action.getClass().getMethod(methodName, null);
 			// Action的返回值   
-			String result = null; 
+			String result; 
 			
 			//在完成跳转Action之前完成细颗粒权限控制，控制Action的每个方法
 			//检查注解，是否可以操作权限的URL
@@ -119,7 +119,7 @@ public class ErrorAndLimitInterceptor extends MethodFilterInterceptor {
 		 *   * 在elec_role_popedom表中存在   flag=true，此时可以访问Action的方法;
 		 *   * 在elec_role_popedom表中不存在 flag=false，此时不能访问Action的方法;
 		 */
-		boolean flag = false;
+		boolean flag;
 		//拦截器中加载spring容器，从而获取Service类，使用Service类查询对应的用户信息
 		WebApplicationContext wac = WebApplicationContextUtils.getWebApplicationContext(request.getSession().getServletContext());
 		IElecRoleService elecRoleService = (IElecRoleService)wac.getBean(IElecRoleService.SERVICE_NAME);

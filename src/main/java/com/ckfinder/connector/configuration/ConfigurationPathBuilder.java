@@ -29,7 +29,7 @@ public class ConfigurationPathBuilder extends DefaultPathBuilder {
 	 */
 	@Override
 	public String getBaseUrl(final HttpServletRequest request) {
-		String baseURL = null;
+		String baseURL;
 		try {
 			IConfiguration conf = ConfigurationFactory.getInstace().getConfiguration();
 			baseURL = conf.getBaseURL();
@@ -52,7 +52,7 @@ public class ConfigurationPathBuilder extends DefaultPathBuilder {
 	 */
 	@Override
 	public String getBaseDir(final HttpServletRequest request) {
-		String baseDir = null;
+		String baseDir;
 		try {
 			IConfiguration conf = ConfigurationFactory.getInstace().getConfiguration();
 			baseDir = conf.getBaseDir();

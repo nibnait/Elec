@@ -298,7 +298,7 @@ public class Configuration implements IConfiguration {
 	 * @return adjusted image quality
 	 */
 	private float adjustQuality(final String imgQuality) {
-		float helper = 0f;
+		float helper;
 		try {
 			helper = Math.abs(Float.valueOf(imgQuality).floatValue());
 		} catch (NumberFormatException e) {

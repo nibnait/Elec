@@ -16,9 +16,9 @@ public class StringUtils {
 	    //内容长度超过截取长度
 	    else{
 	    	//定义并初始化内容段落
-	    	String contentpart ="";
+	    	String contentpart;
 	    	//定义并初始化被截取的段落数量
-	    	int contentround =0;
+	    	int contentround;
             //开始截取的位置
 	    	int begincount = 0; 
             //判断截取的段落数
