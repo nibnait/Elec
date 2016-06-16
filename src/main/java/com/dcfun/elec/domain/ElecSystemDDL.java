@@ -1,4 +1,4 @@
-﻿package com.dcfun.elec.domain;
+package com.dcfun.elec.domain;
 
 @SuppressWarnings("serial")
 public class ElecSystemDDL implements java.io.Serializable {
