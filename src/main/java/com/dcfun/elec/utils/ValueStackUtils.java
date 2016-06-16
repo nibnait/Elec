@@ -4,6 +4,9 @@ import org.apache.struts2.ServletActionContext;
 
 public class ValueStackUtils {
 
+	private ValueStackUtils() {
+	}
+
 	public static void pushValueStack(Object object) {
 		
 		ServletActionContext.getContext().getValueStack().push(object);

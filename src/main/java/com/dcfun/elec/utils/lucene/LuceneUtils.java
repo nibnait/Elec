@@ -34,6 +34,9 @@ import com.dcfun.elec.domain.ElecFileUpload;
 
 public class LuceneUtils {
 
+	private LuceneUtils() {
+	}
+
 	/**向索引库中添加数据*/
 	public static void addIndex(ElecFileUpload fileUpload) {
 		Document doc = FileUploadDocument.FileUploadToDocument(fileUpload);

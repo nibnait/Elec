@@ -6,6 +6,9 @@ import java.util.logging.SimpleFormatter;
 
 public class FormatDateUtils {
 
+	private FormatDateUtils() {
+	}
+
 	public static String Date2String(Date date) {
 		return new SimpleDateFormat("yyMMdd").format(date);
 	}

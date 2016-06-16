@@ -43,6 +43,9 @@ public class ImageUtils {
 		"xbm", "wbmp"};
 	private static final int MAX_BUFF_SIZE = 1024;
 
+	private ImageUtils() {
+	}
+
 	/**
 	 * Resizes the image and writes it to the disk.
 	 *
