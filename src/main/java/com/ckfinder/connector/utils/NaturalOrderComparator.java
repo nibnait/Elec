@@ -34,6 +34,7 @@ public class NaturalOrderComparator implements Comparator<String>, Serializable 
 	 * @return 1 if first string is greater, 0 if both are equals or -1 when
 	 * second string is greater.
 	 */
+	@Override
 	public int compare(final String string1, final String string2) {
 		String string1Copy = string1.toLowerCase();
 		String string2Copy = string2.toLowerCase();
