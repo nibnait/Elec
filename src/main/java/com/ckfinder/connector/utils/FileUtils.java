@@ -584,6 +584,7 @@ public class FileUtils {
         public static Boolean hasChildren( String dirPath, File dir, IConfiguration configuration, String resourceType, String currentUserRole )
         {
                 FileFilter fileFilter = new FileFilter() {
+                	@Override
                     public boolean accept(File file) {
                         return file.isDirectory();
                     }
