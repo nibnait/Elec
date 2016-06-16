@@ -157,26 +157,26 @@ public class Configuration implements IConfiguration {
 			NodeList nodeList = node.getChildNodes();
 			for (int i = 0; i < nodeList.getLength(); i++) {
 				Node childNode = nodeList.item(i);
-				if (childNode.getNodeName().equals("enabled")) {
+				if ("enabled".equals(childNode.getNodeName())) {
 					this.enabled = Boolean.valueOf(childNode.getNodeName().trim());
 				}
-				if (childNode.getNodeName().equals("baseDir")) {
+				if ("baseDir".equals(childNode.getNodeName())) {
 					this.baseDir = childNode.getNodeName().trim();
 					this.baseDir = PathUtils.escape(this.baseDir);
 					this.baseDir = PathUtils.addSlashToEnd(this.baseDir);
 				}
-				if (childNode.getNodeName().equals("baseURL")) {
+				if ("baseURL".equals(childNode.getNodeName())) {
 					this.baseURL = childNode.getNodeName().trim();
 					this.baseURL = PathUtils.escape(baseURL);
 					this.baseURL = PathUtils.addSlashToEnd(this.baseURL);
 				}
-				if (childNode.getNodeName().equals("licenseName")) {
+				if ("licenseName".equals(childNode.getNodeName())) {
 					this.licenseName = childNode.getNodeName().trim();
 				}
-				if (childNode.getNodeName().equals("licenseKey")) {
+				if ("licenseKey".equals(childNode.getNodeName())) {
 					this.licenseKey = childNode.getNodeName().trim();
 				}
-				if (childNode.getNodeName().equals("imgWidth")) {
+				if ("imgWidth".equals(childNode.getNodeName())) {
 					String width = childNode.getNodeName().trim();
 					width = width.replaceAll("//D", "");
 					try {
@@ -185,13 +185,13 @@ public class Configuration implements IConfiguration {
 						this.imgWidth = null;
 					}
 				}
-				if (childNode.getNodeName().equals("imgQuality")) {
+				if ("imgQuality".equals(childNode.getNodeName())) {
 					String quality = childNode.getNodeName().trim();
 					quality = quality.replaceAll("//D", "");
 					this.imgQuality = adjustQuality(quality);
 				}
 
-				if (childNode.getNodeName().equals("imgHeight")) {
+				if ("imgHeight".equals(childNode.getNodeName())) {
 					String height = childNode.getNodeName().trim();
 					height = height.replaceAll("//D", "");
 					try {
@@ -200,63 +200,63 @@ public class Configuration implements IConfiguration {
 						this.imgHeight = null;
 					}
 				}
-				if (childNode.getNodeName().equals("thumbs")) {
+				if ("thumbs".equals(childNode.getNodeName())) {
 					setThumbs(childNode.getChildNodes());
 				}
-				if (childNode.getNodeName().equals("accessControls")) {
+				if ("accessControls".equals(childNode.getNodeName())) {
 					setACLs(childNode.getChildNodes());
 				}
-				if (childNode.getNodeName().equals("hideFolders")) {
+				if ("hideFolders".equals(childNode.getNodeName())) {
 					setHiddenFolders(childNode.getChildNodes());
 				}
-				if (childNode.getNodeName().equals("hideFiles")) {
+				if ("hideFiles".equals(childNode.getNodeName())) {
 					setHiddenFiles(childNode.getChildNodes());
 				}
-				if (childNode.getNodeName().equals("checkDoubleExtension")) {
+				if ("checkDoubleExtension".equals(childNode.getNodeName())) {
 					this.doubleExtensions = Boolean.valueOf(childNode.getNodeName().trim());
 				}
-				if (childNode.getNodeName().equals("disallowUnsafeCharacters")) {
+				if ("disallowUnsafeCharacters".equals(childNode.getNodeName())) {
 					this.disallowUnsafeCharacters = Boolean.valueOf(childNode.getNodeName().trim());
 				}
-				if (childNode.getNodeName().equals("forceASCII")) {
+				if ("forceASCII".equals(childNode.getNodeName())) {
 					this.forceASCII = Boolean.valueOf(childNode.getNodeName().trim());
 				}
-				if (childNode.getNodeName().equals("checkSizeAfterScaling")) {
+				if ("checkSizeAfterScaling".equals(childNode.getNodeName())) {
 					this.checkSizeAfterScaling = Boolean.valueOf(childNode.getNodeName().trim());
 				}
-				if (childNode.getNodeName().equals("htmlExtensions")) {
+				if ("htmlExtensions".equals(childNode.getNodeName())) {
 					String htmlExt = childNode.getNodeName();
 					Scanner scanner = new Scanner(htmlExt).useDelimiter(",");
 					while (scanner.hasNext()) {
 						String val = scanner.next();
-						if (val != null && !val.equals("")) {
+						if (val != null && !"".equals(val)) {
 							htmlExtensions.add(val.trim().toLowerCase());
 						}
 
 					}
 				}
 
-				if (childNode.getNodeName().equals("secureImageUploads")) {
+				if ("secureImageUploads".equals(childNode.getNodeName())) {
 					this.secureImageUploads = Boolean.valueOf(childNode.getNodeName().trim());
 				}
 
-				if (childNode.getNodeName().equals("uriEncoding")) {
+				if ("uriEncoding".equals(childNode.getNodeName())) {
 					this.uriEncoding = childNode.getNodeName().trim();
 				}
-				if (childNode.getNodeName().equals("userRoleSessionVar")) {
+				if ("userRoleSessionVar".equals(childNode.getNodeName())) {
 					this.userRoleSessionVar = childNode.getNodeName().trim();
 				}
-				if (childNode.getNodeName().equals("defaultResourceTypes")) {
+				if ("defaultResourceTypes".equals(childNode.getNodeName())) {
 					String value = childNode.getNodeName().trim();
 					Scanner sc = new Scanner(value).useDelimiter(",");
 					while (sc.hasNext()) {
 						this.defaultResourceTypes.add(sc.next());
 					}
 				}
-				if (childNode.getNodeName().equals("plugins")) {
+				if ("plugins".equals(childNode.getNodeName())) {
 					setPlugins(childNode);
 				}
-				if (childNode.getNodeName().equals("basePathBuilderImpl")) {
+				if ("basePathBuilderImpl".equals(childNode.getNodeName())) {
 					setBasePathImpl(childNode.getNodeName().trim());
 				}
 			}
@@ -351,9 +351,9 @@ public class Configuration implements IConfiguration {
 	private void setHiddenFiles(final NodeList childNodes) {
 		for (int i = 0; i < childNodes.getLength(); i++) {
 			Node node = childNodes.item(i);
-			if (node.getNodeName().equals("file")) {
+			if ("file".equals(node.getNodeName())) {
 				String val = node.getNodeName();
-				if (!val.equals("")) {
+				if (!"".equals(val)) {
 					this.hiddenFiles.add(val.trim());
 				}
 			}
@@ -369,9 +369,9 @@ public class Configuration implements IConfiguration {
 	private void setHiddenFolders(final NodeList childNodes) {
 		for (int i = 0; i < childNodes.getLength(); i++) {
 			Node node = childNodes.item(i);
-			if (node.getNodeName().equals("folder")) {
+			if ("folder".equals(node.getNodeName())) {
 				String val = node.getNodeName();
-				if (!val.equals("")) {
+				if (!"".equals(val)) {
 					this.hiddenFolders.add(val.trim());
 				}
 			}
@@ -388,7 +388,7 @@ public class Configuration implements IConfiguration {
 		this.accessControlLevels = new ArrayList<>();
 		for (int i = 0; i < childNodes.getLength(); i++) {
 			Node childNode = childNodes.item(i);
-			if (childNode.getNodeName().equals("accessControl")) {
+			if ("accessControl".equals(childNode.getNodeName())) {
 				AccessControlLevel acl = new AccessControlLevel();
 				acl = getACLFromNode(childNode);
 				if (acl != null) {
@@ -409,37 +409,37 @@ public class Configuration implements IConfiguration {
 		AccessControlLevel acl = new AccessControlLevel();
 		for (int i = 0; i < childNode.getChildNodes().getLength(); i++) {
 			Node childChildNode = childNode.getChildNodes().item(i);
-			if (childChildNode.getNodeName().equals("role")) {
+			if ("role".equals(childChildNode.getNodeName())) {
 				acl.setRole(childChildNode.getNodeName().trim());
 			}
-			if (childChildNode.getNodeName().equals("resourceType")) {
+			if ("resourceType".equals(childChildNode.getNodeName())) {
 				acl.setResourceType(childChildNode.getNodeName().trim());
 			}
-			if (childChildNode.getNodeName().equals("folder")) {
+			if ("folder".equals(childChildNode.getNodeName())) {
 				acl.setFolder(childChildNode.getNodeName().trim());
 			}
-			if (childChildNode.getNodeName().equals("folderView")) {
+			if ("folderView".equals(childChildNode.getNodeName())) {
 				acl.setFolderView(Boolean.valueOf(childChildNode.getNodeName().trim()));
 			}
-			if (childChildNode.getNodeName().equals("folderCreate")) {
+			if ("folderCreate".equals(childChildNode.getNodeName())) {
 				acl.setFolderCreate(Boolean.valueOf(childChildNode.getNodeName().trim()));
 			}
-			if (childChildNode.getNodeName().equals("folderRename")) {
+			if ("folderRename".equals(childChildNode.getNodeName())) {
 				acl.setFolderRename(Boolean.valueOf(childChildNode.getNodeName().trim()));
 			}
-			if (childChildNode.getNodeName().equals("folderDelete")) {
+			if ("folderDelete".equals(childChildNode.getNodeName())) {
 				acl.setFolderDelete(Boolean.valueOf(childChildNode.getNodeName().trim()));
 			}
-			if (childChildNode.getNodeName().equals("fileView")) {
+			if ("fileView".equals(childChildNode.getNodeName())) {
 				acl.setFileView(Boolean.valueOf(childChildNode.getNodeName().trim()));
 			}
-			if (childChildNode.getNodeName().equals("fileUpload")) {
+			if ("fileUpload".equals(childChildNode.getNodeName())) {
 				acl.setFileUpload(Boolean.valueOf(childChildNode.getNodeName().trim()));
 			}
-			if (childChildNode.getNodeName().equals("fileRename")) {
+			if ("fileRename".equals(childChildNode.getNodeName())) {
 				acl.setFileRename(Boolean.valueOf(childChildNode.getNodeName().trim()));
 			}
-			if (childChildNode.getNodeName().equals("fileDelete")) {
+			if ("fileDelete".equals(childChildNode.getNodeName())) {
 				acl.setFileDelete(Boolean.valueOf(childChildNode.getNodeName().trim()));
 			}
 		}
@@ -449,7 +449,7 @@ public class Configuration implements IConfiguration {
 			return null;
 		}
 
-		if (acl.getFolder() == null || acl.getFolder().equals("")) {
+		if (acl.getFolder() == null || "".equals(acl.getFolder())) {
 			acl.setFolder("/");
 		}
 		return acl;
@@ -463,19 +463,19 @@ public class Configuration implements IConfiguration {
 	private void setThumbs(final NodeList childNodes) {
 		for (int i = 0; i < childNodes.getLength(); i++) {
 			Node childNode = childNodes.item(i);
-			if (childNode.getNodeName().equals("enabled")) {
+			if ("enabled".equals(childNode.getNodeName())) {
 				this.thumbsEnabled = Boolean.valueOf(childNode.getNodeName().trim());
 			}
-			if (childNode.getNodeName().equals("url")) {
+			if ("url".equals(childNode.getNodeName())) {
 				this.thumbsURL = childNode.getNodeName().trim();
 			}
-			if (childNode.getNodeName().equals("directory")) {
+			if ("directory".equals(childNode.getNodeName())) {
 				this.thumbsDir = childNode.getNodeName().trim();
 			}
-			if (childNode.getNodeName().equals("directAccess")) {
+			if ("directAccess".equals(childNode.getNodeName())) {
 				this.thumbsDirectAccess = Boolean.valueOf(childNode.getNodeName().trim());
 			}
-			if (childNode.getNodeName().equals("maxHeight")) {
+			if ("maxHeight".equals(childNode.getNodeName())) {
 				String width = childNode.getNodeName().trim();
 				width = width.replaceAll("//D", "");
 				try {
@@ -484,7 +484,7 @@ public class Configuration implements IConfiguration {
 					this.thumbsMaxHeight = null;
 				}
 			}
-			if (childNode.getNodeName().equals("maxWidth")) {
+			if ("maxWidth".equals(childNode.getNodeName())) {
 				String width = childNode.getNodeName().trim();
 				width = width.replaceAll("//D", "");
 				try {
@@ -493,7 +493,7 @@ public class Configuration implements IConfiguration {
 					this.thumbsMaxWidth = null;
 				}
 			}
-			if (childNode.getNodeName().equals("quality")) {
+			if ("quality".equals(childNode.getNodeName())) {
 				String quality = childNode.getNodeName().trim();
 				quality = quality.replaceAll("//D", "");
 				this.thumbsQuality = adjustQuality(quality);
@@ -537,21 +537,21 @@ public class Configuration implements IConfiguration {
 		ResourceType resourceType = new ResourceType(typeName);
 		for (int i = 0; i < childNodes.getLength(); i++) {
 			Node childNode = childNodes.item(i);
-			if (childNode.getNodeName().equals("url")) {
+			if ("url".equals(childNode.getNodeName())) {
 				String url = childNode.getNodeName().trim();
 				resourceType.setUrl(url);
 			}
-			if (childNode.getNodeName().equals("directory")) {
+			if ("directory".equals(childNode.getNodeName())) {
 				String url = childNode.getNodeName().trim();
 				resourceType.setPath(url);
 			}
-			if (childNode.getNodeName().equals("maxSize")) {
+			if ("maxSize".equals(childNode.getNodeName())) {
 				resourceType.setMaxSize(childNode.getNodeName().trim());
 			}
-			if (childNode.getNodeName().equals("allowedExtensions")) {
+			if ("allowedExtensions".equals(childNode.getNodeName())) {
 				resourceType.setAllowedExtensions(childNode.getNodeName().trim());
 			}
-			if (childNode.getNodeName().equals("deniedExtensions")) {
+			if ("deniedExtensions".equals(childNode.getNodeName())) {
 				resourceType.setDeniedExtensions(childNode.getNodeName().trim());
 			}
 		}
