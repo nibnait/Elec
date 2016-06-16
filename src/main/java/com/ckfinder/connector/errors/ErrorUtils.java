@@ -137,7 +137,7 @@ public final class ErrorUtils {
 				}
 			}
 		} catch (IOException e) {
-			return null;
+			return new ArrayList<>();
 		}
 		return langFiles;
 

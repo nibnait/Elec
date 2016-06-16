@@ -73,7 +73,7 @@ public class ElecExportFieldsAction extends BaseAction<ElecExportFields>{
 		if (StringUtils.isNotBlank(expFieldName)) {
 			return expFieldName.split(string);
 		}
-		return null;
+		return new String[0];
 	}
 
 	/**  
