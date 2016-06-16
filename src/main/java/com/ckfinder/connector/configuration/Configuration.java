@@ -300,7 +300,7 @@ public class Configuration implements IConfiguration {
 	private float adjustQuality(final String imgQuality) {
 		float helper;
 		try {
-			helper = Math.abs(Float.valueOf(imgQuality).floatValue());
+			helper = Math.abs(Float.parseFloat(imgQuality));
 		} catch (NumberFormatException e) {
 			return DEFAULT_IMG_QUALITY;
 		}
