@@ -71,6 +71,9 @@ public class FileUtils {
             encodingMap = Collections.unmodifiableMap(mapHelper);
         }
 
+	private FileUtils() {
+	}
+
 	/**
 	 * Gets list of childeren folder or files for dir, according to searchDirs param.
 	 * @param dir folder to search.

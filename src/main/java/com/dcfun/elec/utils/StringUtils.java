@@ -5,6 +5,9 @@ import java.util.List;
 
 public class StringUtils {
 
+	private StringUtils() {
+	}
+
 	public static List<String> getContentByList(String wholecontent, int cutcount) {
 		List<String> list = new ArrayList<>();
 		//获取完整内容字符串的总长度

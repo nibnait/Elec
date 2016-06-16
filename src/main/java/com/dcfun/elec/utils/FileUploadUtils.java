@@ -7,7 +7,10 @@ import java.util.UUID;
 import org.apache.struts2.ServletActionContext;
 
 public class FileUploadUtils {
-	
+
+	private FileUploadUtils() {
+	}
+
 	/**
 	 * * 多文件上传的要求：
 		  1：将上传的文件统一放置到upload的文件夹下

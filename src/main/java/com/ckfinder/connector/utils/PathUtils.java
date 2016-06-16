@@ -19,6 +19,9 @@ import java.util.regex.Pattern;
  */
 public class PathUtils {
 
+	private PathUtils() {
+	}
+
 	/**
 	 * Escapes double slashes (//) and replace all backslashes (\) with slashes
 	 * (/). Additionally preserves UNC paths.

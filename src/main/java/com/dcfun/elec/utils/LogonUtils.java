@@ -12,6 +12,9 @@ import org.apache.commons.lang3.StringUtils;
 
 public class LogonUtils {
 
+	private LogonUtils() {
+	}
+
 	public static boolean checkImageNumber(HttpServletRequest request) {
 
 		// 获取页面的验证码
