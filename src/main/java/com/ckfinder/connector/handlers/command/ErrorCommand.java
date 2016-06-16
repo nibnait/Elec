@@ -53,8 +53,8 @@ public class ErrorCommand extends Command {
 					break;
 			}
 
-		} catch (IOException e) {
-			throw new ConnectorException(e);
+		} catch (IOException exception) {
+			throw new ConnectorException(exception);
 		}
 	}
 

@@ -38,7 +38,7 @@ public class ElecExportFieldsAction extends BaseAction<ElecExportFields>{
 		
 		//根据belongTo查到ElecExportFields
 		String belongTo = elecExportFields.getBelongTo();
-		ElecExportFields elecExportFields = elecExportFieldsService.findElecExportFieldsById(belongTo);
+		ElecExportFields elecExportFieldsLocalVar = elecExportFieldsService.findElecExportFieldsById(belongTo);
 		/**
 		 * 组织2个Map集合，分别存放导出的字段和未导出的字段
 		   * map集合的key：表示英文的名称
@@ -47,10 +47,10 @@ public class ElecExportFieldsAction extends BaseAction<ElecExportFields>{
 		Map<String, String> map = new LinkedHashMap<>();
 		Map<String, String> nomap = new LinkedHashMap<>();
 		
-		String[] eArray = getFieldsArray(elecExportFields.getExpFieldName(), "#");
-		String[] zArray = getFieldsArray(elecExportFields.getExpNameList(), "#");
-		String[] noeArray = getFieldsArray(elecExportFields.getNoExpFieldName(), "#");
-		String[] nozArray = getFieldsArray(elecExportFields.getNoExpNameList(), "#");
+		String[] eArray = getFieldsArray(elecExportFieldsLocalVar.getExpFieldName(), "#");
+		String[] zArray = getFieldsArray(elecExportFieldsLocalVar.getExpNameList(), "#");
+		String[] noeArray = getFieldsArray(elecExportFieldsLocalVar.getNoExpFieldName(), "#");
+		String[] nozArray = getFieldsArray(elecExportFieldsLocalVar.getNoExpNameList(), "#");
 		
 		if (eArray!=null && eArray.length>0) {
 			for (int i = 0; i < eArray.length; i++) {
