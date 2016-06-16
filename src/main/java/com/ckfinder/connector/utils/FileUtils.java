@@ -428,12 +428,12 @@ public class FileUtils {
 		String newFileName = fileName;
 		fillLowerAccents();
 		fillUpperAccents();
-		for (String s : UTF8_LOWER_ACCENTS.keySet()) {
-			newFileName = newFileName.replace(s, UTF8_LOWER_ACCENTS.get(s));
+		for (Map.Entry<String, String> entry : UTF8_LOWER_ACCENTS.entrySet()) {
+			newFileName = newFileName.replace(entry.getKey(), entry.getValue());
 		}
 
-		for (String s : UTF8_UPPER_ACCENTS.keySet()) {
-			newFileName = newFileName.replace(s, UTF8_UPPER_ACCENTS.get(s));
+		for (Map.Entry<String, String> entry : UTF8_UPPER_ACCENTS.entrySet()) {
+			newFileName = newFileName.replace(entry.getKey(), entry.getValue());
 		}
 		return newFileName;
 	}
