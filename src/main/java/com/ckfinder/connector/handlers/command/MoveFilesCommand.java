@@ -123,14 +123,12 @@ public class MoveFilesCommand extends XMLCommand implements IPostCommand {
 				continue;
 			}
 
-			if (!this.type.equals(file.getType())) {
-				if (FileUtils.checkFileExtension(file.getName(),
-						this.configuration.getTypes().get(file.getType())) == 1) {
-					creator.appendErrorNodeChild(
-							Constants.Errors.CKFINDER_CONNECTOR_ERROR_INVALID_EXTENSION,
-							file.getName(), file.getFolder(), file.getType());
-					continue;
-				}
+			if (!this.type.equals(file.getType()) && FileUtils.checkFileExtension(file.getName(),
+					this.configuration.getTypes().get(file.getType())) == 1) {
+				creator.appendErrorNodeChild(
+						Constants.Errors.CKFINDER_CONNECTOR_ERROR_INVALID_EXTENSION,
+						file.getName(), file.getFolder(), file.getType());
+				continue;
 			}
 
 			if (FileUtils.checkIfFileIsHidden(file.getName(),
