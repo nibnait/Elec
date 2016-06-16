@@ -120,13 +120,9 @@ public class ElecFileUploadServiceImpl implements IElecFileUploadService {
 						scalar, innerJoin, From);
 
 		// 将查询的结果，封装到List<ElecFileUpload>
-<<<<<<< HEAD
-		List<ElecFileUpload> fileUploadList = new ArrayList<ElecFileUpload>();
-		if (list != null && !list.isEmpty()) {
-=======
+
 		List<ElecFileUpload> fileUploadList = new ArrayList<>();
-		if (list != null && list.size() > 0) {
->>>>>>> 43365707b590f3d0bcd1e88eb24b230468022998
+		if (list != null && !list.isEmpty()) {
 			for (int i = 0; i < list.size(); i++) {
 				Object[] arrays = list.get(i);
 				// 组织页面显示的对象
