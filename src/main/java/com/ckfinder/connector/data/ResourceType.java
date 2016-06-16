@@ -168,7 +168,7 @@ public class ResourceType {
 			default:
 				return 0;
 		}
-		long value = Long.valueOf(maxSize.substring(0, maxSize.length() - 1));
+		long value = Long.parseLong(maxSize.substring(0, maxSize.length() - 1));
 		return value * a;
 
 	}
