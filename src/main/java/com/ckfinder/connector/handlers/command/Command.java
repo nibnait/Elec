@@ -106,11 +106,9 @@ public abstract class Command {
 
 			if (checkConnector(request) && checkParam(this.currentFolder)) {
 				this.currentFolder = PathUtils.escape(this.currentFolder);
-				if (!checkHidden()) {
-					if ((this.currentFolder == null || this.currentFolder.equals(""))
-							|| checkIfCurrFolderExists(request)) {
+				if (!checkHidden() && ((this.currentFolder == null || this.currentFolder.equals(""))
+						|| checkIfCurrFolderExists(request))) {
 						this.type = getParameter(request, "type");
-					}
 				}
 
 			}

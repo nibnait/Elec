@@ -44,10 +44,9 @@ public class FileUploadFilter implements Filter {
 			request.setAttribute("session.parameter.name", getSessionParameterName());
 		}
 		// only for fileupload
-		if ("FILEUPLOAD".equalsIgnoreCase(request.getParameter("command"))) {
-
-			if ((request instanceof HttpServletRequest)
-					&& (response instanceof HttpServletResponse)) {
+		if ("FILEUPLOAD".equalsIgnoreCase(request.getParameter("command"))
+			&& (request instanceof HttpServletRequest) 
+			&& (response instanceof HttpServletResponse)) {
 				HttpServletRequest httpRequest = (HttpServletRequest) request;
 				String contentLength = httpRequest.getHeader(CONTENT_LENGTH);
 				if ((contentLength != null && Integer.parseInt(contentLength) == 0)) {
@@ -56,7 +55,6 @@ public class FileUploadFilter implements Filter {
 							httpRequest);
 					return;
 				}
-			}
 		}
 		filterChain.doFilter(request, response);
 	}
