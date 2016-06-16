@@ -49,7 +49,7 @@ public class FileUploadFilter implements Filter {
 			&& (response instanceof HttpServletResponse)) {
 				HttpServletRequest httpRequest = (HttpServletRequest) request;
 				String contentLength = httpRequest.getHeader(CONTENT_LENGTH);
-				if ((contentLength != null && Integer.parseInt(contentLength) == 0)) {
+				if (contentLength != null && Integer.parseInt(contentLength) == 0) {
 					HttpServletResponse httpResponse = (HttpServletResponse) response;
 					setSessionCookie((HttpServletResponse) response,
 							httpRequest);

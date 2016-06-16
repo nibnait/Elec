@@ -207,7 +207,7 @@ public class ConnectorServlet extends HttpServlet {
 	private void checkPostRequest(final HttpServletRequest request)
 			throws ConnectorException {
 		if (request.getParameter("CKFinderCommand") == null
-				|| !(request.getParameter("CKFinderCommand").equals("true"))) {
+				|| !request.getParameter("CKFinderCommand").equals("true")) {
 			throw new ConnectorException(
 					Constants.Errors.CKFINDER_CONNECTOR_ERROR_INVALID_REQUEST, true);
 		}
